@@ -8,6 +8,7 @@ import { IndexModule } from "./components/index/index.module";
 import { LayoutModule } from "./components/layout/layout.module";
 import { SharedModule } from "./components/shared/shared.module";
 import { ModelModule } from "./models/model.module";
+import { UserModule } from "./components/user/user.module";
 
 @NgModule({
   declarations: [AppComponent],
@@ -19,6 +20,7 @@ import { ModelModule } from "./models/model.module";
     LayoutModule,
     ModelModule,
     SharedModule,
+    UserModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

@@ -89,7 +89,7 @@
   <div class="container">
       <a class="navbar-brand" routerLink="/">
         <img src="/assets/img/abklp_brand.svg" height="40" />
-        <strong class="navbar-nav">We Care For Your Health</strong>
+        <strong class="d-block">We Care For Your Health</strong>
       </a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-nav">
         <span class="navbar-toggler-icon"></span>
@@ -140,7 +140,7 @@
               *ngIf="auth.authenticated"
               class="nav-link"
               [class.active]="title == 'Profile'"
-              [routerLink]="['/user', 'profile']"
+              [routerLink]="['user', 'profile']"
               >Profile</a
             >
           </li>
