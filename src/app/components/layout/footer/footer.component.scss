@@ -5,4 +5,7 @@ footer {
   height: 50px;
   line-height: 50px;
   margin-top: $default-distance * 1;
+  
+  position:fixed;
+  bottom: 0px;
 }

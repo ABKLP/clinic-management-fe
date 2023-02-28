@@ -1,11 +1,21 @@
 
-<app-header [title]="title"></app-header>
-<app-sidebar></app-sidebar>
 
-<div style="min-height: 100%; display: flex; flex-direction: column">
-  <div style="min-height: 100%">
-    <router-outlet></router-outlet>
+  
+
+  <div class="row align-items-md-stretch">
+    <app-header [title]="title"></app-header>
+    <div class="col-md-2">
+      <app-sidebar></app-sidebar>
+    </div>
+    <div class="col-md-8">
+      <div style="min-height: 100%; display: flex; flex-direction: column">
+        <div style="min-height: 100%">
+          <router-outlet></router-outlet>
+        </div>
+      </div>
+    </div>
   </div>
-</div>
+
+
 
 <app-footer></app-footer>

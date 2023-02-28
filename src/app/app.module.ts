@@ -8,12 +8,11 @@ import { IndexModule } from "./components/index/index.module";
 import { LayoutModule } from "./components/layout/layout.module";
 import { SharedModule } from "./components/shared/shared.module";
 import { ModelModule } from "./models/model.module";
-import { UserModule } from "./components/user/user.module";
-import { AccountInfoComponent } from './account-info/account-info.component';
+
 
 
 @NgModule({
-  declarations: [AppComponent, AccountInfoComponent],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -22,7 +21,6 @@ import { AccountInfoComponent } from './account-info/account-info.component';
     LayoutModule,
     ModelModule,
     SharedModule,
-    UserModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

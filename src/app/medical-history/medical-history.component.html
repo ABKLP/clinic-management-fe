@@ -1,0 +1,41 @@
+
+<div class="row align-items-md-stretch">
+  <div class="col-md-12">
+    <br>
+    <div class="h-300 p-5 bg-light border rounded-4">
+      <h1 class="text-center">Medical History</h1>  
+      <!-- begin medical list -->
+      <div class="table-responsive">
+        <table class="table table-bordered table-hover">
+          <thead>
+            <tr>
+              <th class="text-center"></th>
+              <th class="text-center">Diagnostic | Findings</th>
+              <th class="text-center">Medication</th>
+              <th class="text-center">Recorded Date</th>
+              <th class="text-center">Physician</th>
+            </tr>
+          </thead>
+          <tbody *ngIf="medicalList.length > 0">
+            <tr *ngFor="let item of medicalList; let i = index">
+              <td class="text-center">#{{ i + 1 }}</td>
+              <td class="text-center">{{item}}</td>
+              <td class="text-center">Ibuprofen</td>
+              <td class="text-center">Jan.20.2023</td>
+              <td class="text-center">Dr. Wilson</td>
+            </tr>
+          </tbody>
+          <!-- begin empty table -->
+          <tbody *ngIf="medicalList.length === 0">
+            <tr>
+              <td class="text-center" colspan="6">No records to display :(</td>
+            </tr>
+          </tbody>
+          <!-- end empty table -->
+        </table>
+      </div>
+      <!-- end medical list -->
+    </div>
+  </div>
+</div>
+
