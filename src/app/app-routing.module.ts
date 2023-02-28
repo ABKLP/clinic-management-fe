@@ -1,5 +1,6 @@
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
+import { AccountInfoComponent } from "./account-info/account-info.component";
 
 import { AuthComponent } from "./components/auth/auth.component";
 import { RegisterComponent } from "./components/auth/register.component";
@@ -15,6 +16,12 @@ const routesDefaultLayout: Routes = [
   {
     path: "user/profile",
     component: ProfileComponent,
+    // component: ProfileComponent,
+    // canActivate: [AuthComponent],
+  },
+  {
+    path: "account-info",
+    component: AccountInfoComponent,
     // component: ProfileComponent,
     // canActivate: [AuthComponent],
   },

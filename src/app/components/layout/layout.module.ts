@@ -6,6 +6,8 @@ import { DefaultLayoutComponent } from "./default/default.component";
 import { EmptyLayoutComponent } from "./empty/empty.component";
 import { HeaderComponent } from "./header/header.component";
 import { FooterComponent } from "./footer/footer.component";
+import { SidebarComponent } from "./sidebar/sidebar.component";
+
 
 @NgModule({
   imports: [CommonModule, RouterModule],
@@ -14,7 +16,9 @@ import { FooterComponent } from "./footer/footer.component";
     EmptyLayoutComponent,
     HeaderComponent,
     FooterComponent,
+    SidebarComponent,
   ],
-  exports: [DefaultLayoutComponent, EmptyLayoutComponent, HeaderComponent, FooterComponent],
+  exports: [DefaultLayoutComponent, EmptyLayoutComponent, HeaderComponent,
+     FooterComponent,SidebarComponent],
 })
 export class LayoutModule {}

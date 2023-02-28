@@ -16,10 +16,7 @@ export class ProfileComponent implements OnInit {
   isEditing: boolean = false;
   @Input() title?: string;
 
-  sideTitles = [
-    "Patient Overview",
-    "Medical History",
-  ]
+  
 
   constructor(public repository: UserRepository, private router: Router) 
   {
