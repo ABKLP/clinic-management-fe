@@ -5,7 +5,7 @@
     <div class="h-500 p-5 bg-light border rounded-4">
       <h1 class="headTitle text-center">Account Information</h1>
       <form
-      novalidate
+        novalidate
         #form="ngForm"
         *ngIf="this.repository.profileReady && userProfile"
         (ngSubmit)="save(form)"
@@ -46,11 +46,11 @@
           </div>
           <!-- end last name -->
           <!-- begin email -->
-          <div class="col col-sm-6">
+          <div class="col-12">
             <div class="form-group mb-2">
               <label for="email" class="form-label"> Email </label>
               <input
-                type="text"
+                type="email"
                 class="form-control"
                 [disabled]="!isEditing"
                 id="email"
@@ -65,7 +65,8 @@
           <!-- begin username -->
           <div class="col-12">
             <div class="form-group mb-2">
-              <label for="username" class="form-label"> Username </label>
+              <label for="username" class="form-label"> <strong>Username:&emsp;</strong></label>
+              <label for="username" class="form-label">  {{user.username}} </label>
               <input
                 type="text"
                 class="form-control"
