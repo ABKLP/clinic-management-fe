@@ -6,21 +6,20 @@ import { DefaultLayoutComponent } from "./default/default.component";
 import { EmptyLayoutComponent } from "./empty/empty.component";
 import { HeaderComponent } from "./header/header.component";
 import { FooterComponent } from "./footer/footer.component";
-import { SidebarComponent } from "../../sidebar/sidebar.component";
-import { UserModule } from "../user/user.module";
-
-
 
 @NgModule({
-  imports: [CommonModule, RouterModule,UserModule],
+  imports: [CommonModule, RouterModule],
   declarations: [
     DefaultLayoutComponent,
     EmptyLayoutComponent,
     HeaderComponent,
     FooterComponent,
-    SidebarComponent,
   ],
-  exports: [DefaultLayoutComponent, EmptyLayoutComponent, HeaderComponent,
-     FooterComponent,SidebarComponent],
+  exports: [
+    DefaultLayoutComponent,
+    EmptyLayoutComponent,
+    HeaderComponent,
+    FooterComponent,
+  ],
 })
 export class LayoutModule {}

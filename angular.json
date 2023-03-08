@@ -49,18 +49,10 @@
             "styles": [
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "node_modules/@fortawesome/fontawesome-free/css/all.min.css",
-              "src/styles.scss",
-              "src/styles/medical/owl.carousel.min.css",
-              "src/styles/medical/owl.theme.default.min.css",
-              "src/styles/medical/bootstrap-icons.css",
-              "src/styles/medical/templatemo-medic-care.css"
+              "src/styles.scss"
             ],
             "scripts": [
-              "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js",
-              "src/styles/medical-js/custom.js",
-              "src/styles/medical-js/jquery.min.js",
-              "src/styles/medical-js/owl.carousel.min.js",
-              "src/styles/medical-js/scrollspy.min.js"
+              "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"
             ]
           },
           "configurations": {
@@ -129,8 +121,5 @@
         }
       }
     }
-  },
-  "cli": {
-    "analytics": false
   }
 }

@@ -9,8 +9,6 @@ import { LayoutModule } from "./components/layout/layout.module";
 import { SharedModule } from "./components/shared/shared.module";
 import { ModelModule } from "./models/model.module";
 
-
-
 @NgModule({
   declarations: [AppComponent],
   imports: [
