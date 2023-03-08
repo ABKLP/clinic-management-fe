@@ -15,6 +15,11 @@ import { FooterComponent } from "./footer/footer.component";
     HeaderComponent,
     FooterComponent,
   ],
-  exports: [DefaultLayoutComponent, EmptyLayoutComponent, HeaderComponent, FooterComponent],
+  exports: [
+    DefaultLayoutComponent,
+    EmptyLayoutComponent,
+    HeaderComponent,
+    FooterComponent,
+  ],
 })
 export class LayoutModule {}
