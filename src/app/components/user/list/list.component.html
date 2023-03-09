@@ -1,0 +1,55 @@
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <!-- begin breadcrumb -->
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a [routerLink]="'/'">Home</a></li>
+          <li class="breadcrumb-item active" aria-current="page">Users</li>
+        </ol>
+      </nav>
+      <!-- end breadcrumb -->
+
+      <!-- begin loading -->
+      <loading-placeholder *ngIf="!this.isReady"></loading-placeholder>
+      <!-- end loading -->
+
+      <!-- begin list user -->
+      <div class="table-responsive">
+        <table class="table table-bordered table-hover">
+          <thead>
+            <tr>
+              <th class="text-center">#</th>
+              <th class="text-center">First name</th>
+              <th class="text-center">Last name</th>
+              <th class="text-center">Email</th>
+              <th class="text-center">Phone number</th>
+              <th class="text-center">Username</th>
+              <th class="text-center">Role</th>
+            </tr>
+          </thead>
+
+          <tbody *ngIf="userList.length > 0">
+            <tr *ngFor="let user of userList; let i = index">
+              <td class="text-center">{{ i + 1 }}</td>
+              <td class="text-center">{{ user.firstName }}</td>
+              <td class="text-center">{{ user.lastName }}</td>
+              <td class="text-center">{{ user.email }}</td>
+              <td class="text-center">{{ user.phoneNumber }}</td>
+              <td class="text-center">{{ user.username }}</td>
+              <td class="text-center">{{ toCapitalize(user.role) }}</td>
+            </tr>
+          </tbody>
+          <!-- begin empty table -->
+          <tbody *ngIf="userList.length === 0">
+            <tr *ngFor="let user of userList; let i = index">
+              <td class="text-center" colspan="7">No records to display :(</td>
+            </tr>
+          </tbody>
+          <!-- end empty table -->
+        </table>
+      </div>
+      <!-- end list user -->
+    </div>
+  </div>
+</div>
