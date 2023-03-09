@@ -11,6 +11,7 @@ import { UserModule } from "./components/user/user.module";
 import { ModelModule } from "./models/model.module";
 import { AuthGuard } from "./guards/auth.guard";
 import { AdminPermissionGuard } from "./guards/admin-permission.guard";
+import { EmployeePermissionGuard } from "./guards/employee-permission.guard";
 
 @NgModule({
   declarations: [AppComponent],
@@ -24,7 +25,7 @@ import { AdminPermissionGuard } from "./guards/admin-permission.guard";
     ModelModule,
     SharedModule,
   ],
-  providers: [AuthGuard, AdminPermissionGuard],
+  providers: [AuthGuard, AdminPermissionGuard, EmployeePermissionGuard],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
