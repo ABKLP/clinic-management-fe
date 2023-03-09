@@ -27,6 +27,14 @@ export class AuthService {
     sessionStorage.setItem("username", value);
   }
 
+  get userRole(): string | null {
+    return sessionStorage.getItem("userRole");
+  }
+
+  set userRole(value: string | null) {
+    sessionStorage.setItem("userRole", value);
+  }
+
   authenticate(username: string, password: string): Observable<ResponseModel> {
     return this.dataSource.authenticate(username, password).pipe(
       map((response) => {
@@ -43,6 +51,7 @@ export class AuthService {
   getUser(): void {
     this.dataSource.getUser().subscribe((response) => {
       this.userId = response._id;
+      this.userRole = response.role;
     });
   }
 
