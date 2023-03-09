@@ -53,6 +53,13 @@ export class RestDataSource {
       );
   }
 
+  getUserList(): Observable<User[]> {
+    return this.http.get<User[]>(
+      `${this.baseUrl}/users/list`,
+      this.provideToken()
+    );
+  }
+
   getUser(): Observable<User> {
     return this.http.get<User>(`${this.baseUrl}/users/me`, this.provideToken());
   }

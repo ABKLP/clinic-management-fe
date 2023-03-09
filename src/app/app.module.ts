@@ -7,7 +7,11 @@ import { AuthModule } from "./components/auth/auth.module";
 import { IndexModule } from "./components/index/index.module";
 import { LayoutModule } from "./components/layout/layout.module";
 import { SharedModule } from "./components/shared/shared.module";
+import { UserModule } from "./components/user/user.module";
 import { ModelModule } from "./models/model.module";
+import { AuthGuard } from "./guards/auth.guard";
+import { AdminPermissionGuard } from "./guards/admin-permission.guard";
+import { EmployeePermissionGuard } from "./guards/employee-permission.guard";
 
 @NgModule({
   declarations: [AppComponent],
@@ -16,11 +20,12 @@ import { ModelModule } from "./models/model.module";
     AppRoutingModule,
     AuthModule,
     IndexModule,
+    UserModule,
     LayoutModule,
     ModelModule,
     SharedModule,
   ],
-  providers: [],
+  providers: [AuthGuard, AdminPermissionGuard, EmployeePermissionGuard],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

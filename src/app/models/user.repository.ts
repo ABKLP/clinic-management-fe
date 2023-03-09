@@ -5,10 +5,22 @@ import { User } from "./user.model";
 
 @Injectable()
 export class UserRepository {
+  private _users: User[] = [];
   private user: User = new User();
+  listReady: boolean = false;
   profileReady: boolean = false;
 
   constructor(private dataSource: RestDataSource) {}
+
+  getUsers(): User[] {
+    return this._users;
+  }
+
+  async setUsers() {
+    this.listReady = false;
+    this._users = await this.dataSource.getUserList().toPromise();
+    this.listReady = true;
+  }
 
   get getUser(): User {
     return this.user;
