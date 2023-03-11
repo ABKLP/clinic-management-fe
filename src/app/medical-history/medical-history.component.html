@@ -1,6 +1,8 @@
-
-<div class="row align-items-md-stretch">
-  <div class="col-md-12">
+<div class="SbMargin row align-items-md-stretch">
+  <div class="col-md-3 align-items-center">
+    <app-sidebar></app-sidebar>
+  </div>
+  <div class="col-md-6 align-items-center">
     <br>
     <div class="h-300 p-5 bg-light border rounded-4">
       <h1 class="headTitle text-center">Medical History</h1>  
@@ -26,15 +28,18 @@
             </tr>
           </tbody>
           <!-- begin empty table -->
-          <tbody *ngIf="medicalList.length === 0">
+          <!-- <tbody *ngIf="medicalList.length === 0">
             <tr>
               <td class="text-center" colspan="6">No records to display :(</td>
             </tr>
-          </tbody>
+          </tbody> -->
           <!-- end empty table -->
         </table>
       </div>
       <!-- end medical list -->
     </div>
+  </div>
+  <div class="col-md-3 align-items-center">
+
   </div>
 </div>

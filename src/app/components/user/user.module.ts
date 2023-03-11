@@ -5,16 +5,21 @@ import { ModelModule } from "src/app/models/model.module";
 import { BrowserModule } from "@angular/platform-browser";
 import { RouterModule } from "@angular/router";
 import { SharedModule } from "../shared/shared.module";
+import { ProfileComponent } from "./profile.component";
+import { SidebarComponent } from "src/app/sidebar/sidebar.component";
+import { MedicalHistoryComponent } from "src/app/medical-history/medical-history.component";
+
 
 @NgModule({
-  imports: [
-    ModelModule,
-    BrowserModule,
+  imports: 
+  [BrowserModule,
     FormsModule,
     RouterModule,
     SharedModule,
+    ModelModule,
   ],
-  declarations: [UserListComponent],
+    
+  declarations: [UserListComponent,ProfileComponent,SidebarComponent,MedicalHistoryComponent],
   exports: [UserListComponent],
 })
 export class UserModule {}

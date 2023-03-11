@@ -1,22 +1,29 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, Input, OnInit } from "@angular/core";
 import { NgForm } from "@angular/forms";
 import { Router } from "@angular/router";
 import { User } from "src/app/models/user.model";
 import { UserRepository } from "src/app/models/user.repository";
 
-
 @Component({
-  selector: "app-user-profile",
-  templateUrl: "./profile.component.html",
-  styleUrls: ["./profile.component.scss"],
+  selector: 'app-medical-history',
+  templateUrl: './medical-history.component.html',
+  styleUrls: ['./medical-history.component.scss']
 })
-export class ProfileComponent implements OnInit {
+export class MedicalHistoryComponent implements OnInit {
   public user: User;
   public message: string;
   isPasswordVisible: boolean = false;
   isEditing: boolean = false;
+  @Input() title?: string;
 
-  constructor(public repository: UserRepository, private router: Router) {
+  medicalList = [
+    "Cold",
+    "Fever",
+  ]
+
+
+  constructor(public repository: UserRepository, private router: Router) 
+  {
     this.repository.setUser();
   }
 

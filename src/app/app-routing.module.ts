@@ -9,6 +9,8 @@ import { EmptyLayoutComponent } from "./components/layout/empty/empty.component"
 import { UserListComponent } from "./components/user/list/list.component";
 import { AuthGuard } from "./guards/auth.guard";
 import { AdminPermissionGuard } from "./guards/admin-permission.guard";
+import { ProfileComponent } from "./components/user/profile.component";
+import { MedicalHistoryComponent } from "./medical-history/medical-history.component";
 
 const routesDefaultLayout: Routes = [
   { path: "", component: IndexComponent },
@@ -16,6 +18,16 @@ const routesDefaultLayout: Routes = [
     path: "users/list",
     component: UserListComponent,
     canActivate: [AuthGuard, AdminPermissionGuard],
+  },
+  {
+    path: "user/profile",
+    component: ProfileComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: "user/medical-history",
+    component: MedicalHistoryComponent,
+    canActivate: [AuthGuard],
   },
 ];
 
