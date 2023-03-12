@@ -7,7 +7,7 @@ import { RouterModule } from "@angular/router";
 import { SharedModule } from "../shared/shared.module";
 import { ProfileComponent } from "./profile.component";
 import { SidebarComponent } from "src/app/sidebar/sidebar.component";
-import { MedicalHistoryComponent } from "src/app/medical-history/medical-history.component";
+import { MedicalRecordComponent } from "src/app/medicalRecord/medicalRecord.component";
 
 
 @NgModule({
@@ -19,7 +19,7 @@ import { MedicalHistoryComponent } from "src/app/medical-history/medical-history
     ModelModule,
   ],
     
-  declarations: [UserListComponent,ProfileComponent,SidebarComponent,MedicalHistoryComponent],
+  declarations: [UserListComponent,ProfileComponent,SidebarComponent,MedicalRecordComponent],
   exports: [UserListComponent],
 })
 export class UserModule {}

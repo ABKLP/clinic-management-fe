@@ -14,7 +14,7 @@ export class SidebarComponent implements OnInit {
 
   sideTitles = [
     "Account Information",
-    "Medical History",
+    "Medical Record",
     "Schedule",
   ]
   constructor(public auth: AuthService) { }

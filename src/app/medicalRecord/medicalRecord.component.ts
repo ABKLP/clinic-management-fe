@@ -5,11 +5,11 @@ import { User } from "src/app/models/user.model";
 import { UserRepository } from "src/app/models/user.repository";
 
 @Component({
-  selector: 'app-medical-history',
-  templateUrl: './medical-history.component.html',
-  styleUrls: ['./medical-history.component.scss']
+  selector: 'app-medicalRecord',
+  templateUrl: './medicalRecord.component.html',
+  styleUrls: ['./medicalRecord.component.scss']
 })
-export class MedicalHistoryComponent implements OnInit {
+export class MedicalRecordComponent implements OnInit {
   public user: User;
   public message: string;
   isPasswordVisible: boolean = false;
