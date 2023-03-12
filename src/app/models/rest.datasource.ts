@@ -5,6 +5,7 @@ import { catchError, map } from "rxjs/operators";
 import { ResponseModel } from "./response.model";
 import { User } from "./user.model";
 import { environment } from "src/environments/environment";
+import { MedicalRecordList } from "./medical-record.model";
 
 @Injectable()
 export class RestDataSource {
@@ -88,4 +89,59 @@ export class RestDataSource {
       }),
     };
   }
+
+  // Tournament APIs
+  getMedicalRecordList(): Observable<MedicalRecordList[]> {
+    return this.http.get<MedicalRecordList[]>(`${this.baseUrl}/medical-record/list`);
+  }
+
+  insertMedicalRecordList(item: MedicalRecordList): Observable<MedicalRecordList> {
+    return this.http
+      .post<MedicalRecordList>(`${this.baseUrl}/medical-record/add`, item, this.provideToken())
+      .pipe(
+        map((response) => {
+          return response;
+        }),
+        catchError((error) => {
+          console.error(error.error);
+          return of(error.error);
+        })
+      );
+  }
+
+  updateMedicalRecordList(item: MedicalRecordList): Observable<ResponseModel> {
+    return this.http
+      .put<ResponseModel>(
+        `${this.baseUrl}/medical-record/edit/${item._id}`,
+        item,
+        this.provideToken()
+      )
+      .pipe(
+        map((response) => {
+          return response;
+        }),
+        catchError((error) => {
+          console.error(error.error);
+          return of(error.error);
+        })
+      );
+  }
+
+  deleteMedicalRecordList(id: string): Observable<ResponseModel> {
+    return this.http
+      .delete<ResponseModel>(
+        `${this.baseUrl}/medical-record/delete/${id}`,
+        this.provideToken()
+      )
+      .pipe(
+        map((response) => {
+          return response;
+        }),
+        catchError((error) => {
+          console.error(error.error);
+          return of(error.error);
+        })
+      );
+  }
+
 }

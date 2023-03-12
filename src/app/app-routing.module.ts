@@ -10,7 +10,8 @@ import { UserListComponent } from "./components/user/list/list.component";
 import { AuthGuard } from "./guards/auth.guard";
 import { AdminPermissionGuard } from "./guards/admin-permission.guard";
 import { ProfileComponent } from "./components/user/profile.component";
-import { MedicalRecordComponent } from "./medicalRecord/medicalRecord.component";
+import { MedicalRecordComponent } from "./medical-record/medical-record.component";
+import { AddEditComponent } from "./add-edit/add-edit.component";
 
 const routesDefaultLayout: Routes = [
   { path: "", component: IndexComponent },
@@ -25,8 +26,13 @@ const routesDefaultLayout: Routes = [
     canActivate: [AuthGuard],
   },
   {
-    path: "user/medical-record",
+    path: "user/medical-record/view",
     component: MedicalRecordComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: "user/medical-record/add",
+    component: AddEditComponent,
     canActivate: [AuthGuard],
   },
 ];

@@ -5,9 +5,9 @@ import { User } from "src/app/models/user.model";
 import { UserRepository } from "src/app/models/user.repository";
 
 @Component({
-  selector: 'app-medicalRecord',
-  templateUrl: './medicalRecord.component.html',
-  styleUrls: ['./medicalRecord.component.scss']
+  selector: 'app-medical-record',
+  templateUrl: './medical-record.component.html',
+  styleUrls: ['./medical-record.component.scss']
 })
 export class MedicalRecordComponent implements OnInit {
   public user: User;

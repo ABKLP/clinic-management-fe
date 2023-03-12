@@ -22,7 +22,7 @@
           <li>
             <a class="nav-link text-white"
               [class.active]="title == 'Medical Record'"
-              [routerLink]="'/user/medical-record'"
+              [routerLink]="'/user/medical-record/view'"
               routerLinkActive="active"
             >
               <svg class="bi me-2" width="16" height="16"><use xlink:href="#speedometer2"/></svg>
@@ -31,8 +31,8 @@
           </li>
           <li>
             <a class="nav-link text-white"
-              [class.active]="title == 'Schedule'"
-              [routerLink]="'/Schedule'"
+              [class.active]="title == 'Add Medical Record'"
+              [routerLink]="'/user/medical-record/add'"
               routerLinkActive="active"
             >
               <svg class="bi me-2" width="16" height="16"><use xlink:href="#speedometer2"/></svg>
