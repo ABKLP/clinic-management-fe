@@ -1,8 +1,8 @@
-import { Component, Input, OnInit } from "@angular/core";
-import { NgForm } from "@angular/forms";
-import { Router } from "@angular/router";
-import { User } from "src/app/models/user.model";
-import { UserRepository } from "src/app/models/user.repository";
+import { Component, OnInit } from "@angular/core";
+import { AuthService } from "../models/auth.service";
+import { MedicalRecordList } from "../models/medical-record.model";
+import { MedicalRecordRepository } from "../models/medical-record.repository";
+import { toDateString } from "../utils";
 
 @Component({
   selector: 'app-medical-record',
@@ -10,45 +10,26 @@ import { UserRepository } from "src/app/models/user.repository";
   styleUrls: ['./medical-record.component.scss']
 })
 export class MedicalRecordComponent implements OnInit {
-  public user: User;
-  public message: string;
-  isPasswordVisible: boolean = false;
-  isEditing: boolean = false;
-  @Input() title?: string;
-
-  medicalList = [
-    "Cold",
-    "Fever",
-  ]
-
-
-  constructor(public repository: UserRepository, private router: Router) 
-  {
-    this.repository.setUser();
+  title = "Medical Record";
+ 
+  constructor(
+    private repository: MedicalRecordRepository,
+    private auth: AuthService
+  ) {
   }
 
-  ngOnInit(): void { }
-
-  get userProfile(): User {
-    this.user = this.repository.getUser;
-    return this.user;
+  async ngOnInit(): Promise<void> {
+    await this.repository.setMedicalRecordList();
   }
 
-  get passwordType(): string {
-    return this.isPasswordVisible ? "text" : "password";
+  get medicalList(): MedicalRecordList[] {
+    return this.repository.getMedicalRecordList().filter(t => t.owner.id === this.auth.userId);
   }
 
-  togglePassword() {
-    this.isPasswordVisible = !this.isPasswordVisible;
+  deleteMethod(id: string) {
+    if (confirm("Are you sure?")) {
+      this.repository.deleteMedicalRecordList(id);
+    }
   }
 
-  toggleEditMode() {
-    this.isEditing = !this.isEditing;
-  }
-
-  save(form: NgForm) {
-    this.repository.saveUser(this.user);
-    this.router.navigateByUrl("/user/profile");
-    this.toggleEditMode();
-  }
 }

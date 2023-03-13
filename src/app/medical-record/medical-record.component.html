@@ -16,24 +16,46 @@
               <th class="text-center">Medication</th>
               <th class="text-center">Recorded Date</th>
               <th class="text-center">Physician</th>
+              <th class="text-center" colspan="3">Actions</th>
             </tr>
           </thead>
           <tbody *ngIf="medicalList.length > 0">
             <tr *ngFor="let item of medicalList; let i = index">
               <td class="text-center">#{{ i + 1 }}</td>
-              <td class="text-center">{{item}}</td>
-              <td class="text-center">Ibuprofen</td>
-              <td class="text-center">Jan.20.2023</td>
-              <td class="text-center">Dr. Wilson</td>
+              <td class="text-center">{{item.findings}}</td>
+              <td class="text-center">{{item.medicine}}</td>
+              <td class="text-center">{{item.recordedDate}}</td>
+              <td class="text-center">{{item.doctorName}}</td>
+
+              <td class="text-center">
+                <button
+                  [routerLink]="['/tournament', 'edit', item._id]"
+                  class="btn bg-primary btn-primary btn-sm"
+                >
+                  <i class="fas fa-pencil-alt"></i>
+                </button>
+              </td>
+              <td class="text-center">
+                <button
+                  (click)="deleteMethod(item._id)"
+                  class="btn bg-danger btn-danger btn-sm"
+                >
+                  <i class="fas fa-trash-alt"></i>
+                </button>
+              </td>
+
             </tr>
           </tbody>
+          
           <!-- begin empty table -->
-          <!-- <tbody *ngIf="medicalList.length === 0">
+          <tbody *ngIf="medicalList.length === 0">
             <tr>
               <td class="text-center" colspan="6">No records to display :(</td>
             </tr>
-          </tbody> -->
+          </tbody>
           <!-- end empty table -->
+
+
         </table>
       </div>
       <!-- end medical list -->

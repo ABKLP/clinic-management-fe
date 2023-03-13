@@ -4,8 +4,9 @@ import { FormsModule } from "@angular/forms";
 
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
-import { AuthModule } from "./components/auth/auth.module";
+
 import { IndexModule } from "./components/index/index.module";
+import { AuthModule } from "./components/auth/auth.module";
 import { LayoutModule } from "./components/layout/layout.module";
 import { SharedModule } from "./components/shared/shared.module";
 import { UserModule } from "./components/user/user.module";
