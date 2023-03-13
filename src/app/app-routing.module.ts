@@ -26,6 +26,11 @@ const routesDefaultLayout: Routes = [
     canActivate: [AuthGuard],
   },
   {
+    path: "medical-record/:mode/:id",
+    component: AddEditComponent,
+    canActivate: [AuthGuard],
+  },
+  {
     path: "medical-record/list",
     component: MedicalRecordComponent,
     canActivate: [AuthGuard],

@@ -30,13 +30,24 @@
             </a>
           </li>
           <li>
-            <a class="nav-link text-white"
+            <!--if not edit mode see this -->
+            <a *ngIf="!editing" class="nav-link text-white"
               [class.active]="title == 'Add Medical Record'"
               [routerLink]="'/medical-record/add'"
               routerLinkActive="active"
             >
               <svg class="bi me-2" width="16" height="16"><use xlink:href="#speedometer2"/></svg>
               {{sideTitles[2]}}
+            </a>
+
+            <!--if edit mode see this -->
+            <a *ngIf="editing" class="nav-link text-white"
+              [class.active]="title == 'Edit Medical Record'"
+              [routerLink]="'/medical-record/edit'"
+              routerLinkActive="active"
+            >
+              <svg class="bi me-2" width="16" height="16"><use xlink:href="#speedometer2"/></svg>
+              Edit Medical Record
             </a>
           </li>
         </ul>

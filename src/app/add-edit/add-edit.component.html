@@ -11,8 +11,7 @@
         <form #form="ngForm" (ngSubmit)="save(form)">
 
           <div class="form-group">
-            <!-- //type should be hidden -->
-            <input type="text" name="id" [(ngModel)]="medicalRecordList._id" />
+            <input type="hidden" name="id" [(ngModel)]="medicalRecordList._id" />
           </div>
 
           <!-- 00 begin findings | diagnostic field -->
@@ -109,7 +108,7 @@
             Submit
         </button>
         <span>&nbsp;</span>
-        <a [routerLink]="'/user/medical-record/view'" class="btn btn-secondary">
+        <a [routerLink]="'/user/medical-record/list'" class="btn btn-secondary">
             <i class="fa-solid fa-rotate-left"></i>
             Cancel
         </a>

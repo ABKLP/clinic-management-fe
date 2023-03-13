@@ -52,13 +52,11 @@ export class AddEditComponent implements OnInit {
   async save(form: NgForm) {
     this.isSubmitted = true;
     // TODO: add validations to the form
+      if (!this.editing) {
+        this.medicalRecordList.owner = this.auth.userId;
+        this.medicalRecordList.recordedDate = 'Date.now()';
+      }
 
-      // if (!this.editing) {
-      //   this.medicalRecordList.owner = this.auth.userId;
-      //   this.medicalRecordList.deleted = false;
-      //   this.medicalRecordList.createdAt = Date.now();
-      // }
-      // this.#generateTournament();
       await this.repository.saveMedicalRecordList(this.medicalRecordList);
       this.router.navigateByUrl("/medical-record/list");
   }
@@ -68,7 +66,7 @@ export class AddEditComponent implements OnInit {
     return isNotEmpty(this.medicalRecordList.findings);
   }
 
-  //CHECK FINDING FIELD IF EMPTY
+  //CHECK MEDICATION FIELD IF EMPTY
   get isMedicationValid(): boolean {
     return isNotEmpty(this.medicalRecordList.medicine);
   }
