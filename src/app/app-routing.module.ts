@@ -7,11 +7,12 @@ import { IndexComponent } from "./components/index/index.component";
 import { DefaultLayoutComponent } from "./components/layout/default/default.component";
 import { EmptyLayoutComponent } from "./components/layout/empty/empty.component";
 import { UserListComponent } from "./components/user/list/list.component";
-import { AuthGuard } from "./guards/auth.guard";
-import { AdminPermissionGuard } from "./guards/admin-permission.guard";
 import { ProfileComponent } from "./components/user/profile.component";
 import { MedicalRecordComponent } from "./medical-record/medical-record.component";
 import { AddEditComponent } from "./add-edit/add-edit.component";
+import { AppointmentListComponent } from "./components/appointment/list/list.component";
+import { AuthGuard } from "./guards/auth.guard";
+import { AdminPermissionGuard } from "./guards/admin-permission.guard";
 
 const routesDefaultLayout: Routes = [
   { path: "", component: IndexComponent },
@@ -38,6 +39,11 @@ const routesDefaultLayout: Routes = [
   {
     path: "medical-record/add",
     component: AddEditComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: "appointments/list",
+    component: AppointmentListComponent,
     canActivate: [AuthGuard],
   },
 ];
