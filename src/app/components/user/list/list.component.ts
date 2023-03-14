@@ -3,6 +3,7 @@ import { Router } from "@angular/router";
 import { AuthService } from "src/app/models/auth.service";
 import { User } from "src/app/models/user.model";
 import { UserRepository } from "src/app/models/user.repository";
+import { toCapitalize } from "src/app/utils";
 
 @Component({
   selector: "app-user-list",
@@ -30,7 +31,7 @@ export class UserListComponent implements OnInit {
     return this.repository.listReady;
   }
 
-  toCapitalize(text: string) {
-    return `${text[0].toUpperCase()}${text.slice(1)}`;
+  toCapitalize(value: string) {
+    return toCapitalize(value);
   }
 }
