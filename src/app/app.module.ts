@@ -11,10 +11,10 @@ import { LayoutModule } from "./components/layout/layout.module";
 import { SharedModule } from "./components/shared/shared.module";
 import { UserModule } from "./components/user/user.module";
 import { ModelModule } from "./models/model.module";
+import { AppointmentModule } from "./components/appointment/appointment.module";
 import { AuthGuard } from "./guards/auth.guard";
 import { AdminPermissionGuard } from "./guards/admin-permission.guard";
 import { EmployeePermissionGuard } from "./guards/employee-permission.guard";
-
 
 @NgModule({
   declarations: [AppComponent],
@@ -25,6 +25,7 @@ import { EmployeePermissionGuard } from "./guards/employee-permission.guard";
     AuthModule,
     IndexModule,
     UserModule,
+    AppointmentModule,
     LayoutModule,
     ModelModule,
     SharedModule,
