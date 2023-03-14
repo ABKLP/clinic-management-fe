@@ -5,6 +5,7 @@ import { catchError, map } from "rxjs/operators";
 import { ResponseModel } from "./response.model";
 import { User } from "./user.model";
 import { MedicalRecord } from "./medical-record.model";
+import { Appointment } from "./appointment.model";
 import { environment } from "src/environments/environment";
 
 @Injectable()
@@ -21,6 +22,64 @@ export class RestDataSource {
 
   set authToken(value: string | null) {
     sessionStorage.setItem("authToken", value);
+  }
+
+  // Appointment APIs
+  getAppointmentList(): Observable<Appointment[]> {
+    return this.http.get<Appointment[]>(`${this.baseUrl}/appointments/list`);
+  }
+
+  insertAppointment(item: Appointment): Observable<Appointment> {
+    return this.http
+      .post<Appointment>(
+        `${this.baseUrl}/appointments/add`,
+        item,
+        this.provideToken()
+      )
+      .pipe(
+        map((response) => {
+          return response;
+        }),
+        catchError((error) => {
+          console.error(error.error);
+          return of(error.error);
+        })
+      );
+  }
+
+  updateAppointment(item: Appointment): Observable<ResponseModel> {
+    return this.http
+      .put<ResponseModel>(
+        `${this.baseUrl}/appointments/edit/${item._id}`,
+        item,
+        this.provideToken()
+      )
+      .pipe(
+        map((response) => {
+          return response;
+        }),
+        catchError((error) => {
+          console.error(error.error);
+          return of(error.error);
+        })
+      );
+  }
+
+  deleteAppointment(id: string): Observable<ResponseModel> {
+    return this.http
+      .delete<ResponseModel>(
+        `${this.baseUrl}/appointments/delete/${id}`,
+        this.provideToken()
+      )
+      .pipe(
+        map((response) => {
+          return response;
+        }),
+        catchError((error) => {
+          console.error(error.error);
+          return of(error.error);
+        })
+      );
   }
 
   // Authentication APIs
@@ -82,14 +141,6 @@ export class RestDataSource {
       );
   }
 
-  private provideToken() {
-    return {
-      headers: new HttpHeaders({
-        Authorization: `Bearer ${this.authToken}`,
-      }),
-    };
-  }
-
   // Medical Record APIs
   getMedicalRecord(): Observable<MedicalRecord[]> {
     return this.http.get<MedicalRecord[]>(
@@ -149,5 +200,13 @@ export class RestDataSource {
           return of(error.error);
         })
       );
+  }
+
+  private provideToken() {
+    return {
+      headers: new HttpHeaders({
+        Authorization: `Bearer ${this.authToken}`,
+      }),
+    };
   }
 }
