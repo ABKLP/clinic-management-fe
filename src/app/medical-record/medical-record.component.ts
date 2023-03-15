@@ -1,8 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { AuthService } from "../models/auth.service";
-import { MedicalRecordList } from "../models/medical-record.model";
+import { MedicalRecord } from "../models/medical-record.model";
 import { MedicalRecordRepository } from "../models/medical-record.repository";
-import { toDateString } from "../utils";
 
 @Component({
   selector: 'app-medical-record',
@@ -19,16 +18,16 @@ export class MedicalRecordComponent implements OnInit {
   }
 
   async ngOnInit(): Promise<void> {
-    await this.repository.setMedicalRecordList();
+    await this.repository.setMedicalRecord();
   }
 
-  get medicalList(): MedicalRecordList[] {
-    return this.repository.getMedicalRecordList().filter(t => t.owner.id === this.auth.userId);
+  get medicalRecord(): MedicalRecord[] {
+    return this.repository.getMedicalRecord().filter(t => t.owner.id === this.auth.userId);
   }
 
   deleteMethod(id: string) {
     if (confirm("Are you sure?")) {
-      this.repository.deleteMedicalRecordList(id);
+      this.repository.deleteMedicalRecord(id);
     }
   }
 

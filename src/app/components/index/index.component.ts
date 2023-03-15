@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { MedicalRecordList } from "src/app/models/medical-record.model";
+import { MedicalRecord } from "src/app/models/medical-record.model";
 import { MedicalRecordRepository } from "src/app/models/medical-record.repository";
 
 @Component({
@@ -17,8 +17,8 @@ export class IndexComponent implements OnInit {
 
   async ngOnInit(): Promise<void> {}
 
-  get tournamentList(): MedicalRecordList[] {
-    return this.repository.getMedicalRecordList().filter(
+  get medicalRecord(): MedicalRecord[] {
+    return this.repository.getMedicalRecord().filter(
       (t) =>
       t.recordedDate !==null
     );

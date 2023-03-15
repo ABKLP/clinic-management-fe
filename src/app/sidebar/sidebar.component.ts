@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from "@angular/core";
 import { AuthService } from "src/app/models/auth.service";
 import { ActivatedRoute } from '@angular/router';
-import { MedicalRecordList } from "../models/medical-record.model";
+import { MedicalRecord } from "../models/medical-record.model";
 import { MedicalRecordRepository } from "../models/medical-record.repository";
 
 @Component({
@@ -13,7 +13,7 @@ import { MedicalRecordRepository } from "../models/medical-record.repository";
 export class SidebarComponent implements OnInit {
   @Input() title?: string;
   editing: boolean = false;
-  medicalRecordList: MedicalRecordList = new MedicalRecordList();
+  _medicalRecord: MedicalRecord = new MedicalRecord();
 
   sideTitles = [
     "Account Information",
@@ -22,16 +22,15 @@ export class SidebarComponent implements OnInit {
   ]
   constructor(private repository: MedicalRecordRepository,public auth: AuthService,private activeRoute: ActivatedRoute) { }
 
-  // ngOnInit(): void {}
 
   async ngOnInit(): Promise<void> {
-    //await this.repository.setMedicalRecordList();
+    await this.repository.setMedicalRecord();
 
     this.editing = this.activeRoute.snapshot.params["mode"] === "edit";
 
     // Edit
     if (this.editing) {
-      this.medicalRecordList = this.repository.getItem(this.activeRoute.snapshot.params["id"]);
+      this._medicalRecord = this.repository.getItem(this.activeRoute.snapshot.params["id"]);
     }
   }
 

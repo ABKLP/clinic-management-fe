@@ -11,7 +11,7 @@
         <form #form="ngForm" (ngSubmit)="save(form)">
 
           <div class="form-group">
-            <input type="hidden" name="id" [(ngModel)]="medicalRecordList._id" />
+            <input type="hidden" name="id" [(ngModel)]="_medicalRecord._id" />
           </div>
 
           <!-- 00 begin findings | diagnostic field -->
@@ -23,7 +23,7 @@
                 id="findingsTextField"
                 placeholder="Enter Patient Diagnotics & Findings e.g. Fever"
                 name="findings"
-                [(ngModel)]="medicalRecordList.findings"
+                [(ngModel)]="_medicalRecord.findings"
               >
               </textarea>
             </div>
@@ -44,7 +44,7 @@
                 id="medicineTextField"
                 placeholder="Enter Patient Medicine Prescription"
                 name="medicine"
-                [(ngModel)]="medicalRecordList.medicine"
+                [(ngModel)]="_medicalRecord.medicine"
               >
               </textarea>
             </div>
@@ -65,7 +65,7 @@
                 class="form-control"
                 id="recordedDateTextField"
                 name="recordedDate"
-                [(ngModel)]="medicalRecordList.recordedDate"
+                [(ngModel)]="_medicalRecord.recordedDate"
                 required
               />
             </div>
@@ -84,7 +84,7 @@
             <label for="doctor"><strong>Physician</strong></label>
             <select class="form-control" id="doctor"
                     required
-                    [(ngModel)]="medicalRecordList.doctorName" name="doctor"
+                    [(ngModel)]="_medicalRecord.doctorName" name="doctor"
                     #doctor="ngModel">
               <option *ngFor="let pow of doctorList" [value]="pow">{{pow}}</option>
             </select>

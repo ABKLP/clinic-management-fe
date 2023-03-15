@@ -1,44 +1,44 @@
 import { Injectable } from "@angular/core";
 import { ResponseModel } from "./response.model";
 import { RestDataSource } from "./rest.datasource";
-import { MedicalRecordList } from "./medical-record.model";
+import { MedicalRecord as MedicalRecord } from "./medical-record.model";
 
 @Injectable()
 export class MedicalRecordRepository {
-  private _medicalRecordList: MedicalRecordList[] = [];
+  private _medicalRecord: MedicalRecord[] = [];
   listReady: boolean = false;
 
   constructor(private dataSource: RestDataSource) { }
 
-  getMedicalRecordList(): MedicalRecordList[] {
-    return this._medicalRecordList;
+  getMedicalRecord(): MedicalRecord[] {
+    return this._medicalRecord;
   }
 
-  async setMedicalRecordList() {
+  async setMedicalRecord() {
     this.listReady = false;
-    this._medicalRecordList = await this.dataSource.getMedicalRecordList().toPromise();
+    this._medicalRecord = await this.dataSource.getMedicalRecord().toPromise();
     this.listReady = true;
   }
 
-  getItem(id: string): MedicalRecordList {
-    return { ...this._medicalRecordList.find((trn) => trn._id === id)! };
+  getItem(id: string): MedicalRecord {
+    return { ...this._medicalRecord.find((trn) => trn._id === id)! };
   }
 
-  async saveMedicalRecordList(item: MedicalRecordList) {
+  async saveMedicalRecord(item: MedicalRecord) {
     // If it does not have id, then create a new item
     if (item._id === null || item._id === "" || item._id === undefined) {
-      const response = await this.dataSource.insertMedicalRecordList(item).toPromise();
+      const response = await this.dataSource.insertMedicalRecord(item).toPromise();
       if (response._id) {
-        this._medicalRecordList.push(response);
+        this._medicalRecord.push(response);
       } else {
         const error = response as ResponseModel;
         alert(`Error: ${error.message}`);
       }
     } else {
-      const response: ResponseModel = await this.dataSource.updateMedicalRecordList(item).toPromise();
+      const response: ResponseModel = await this.dataSource.updateMedicalRecord(item).toPromise();
       if (response.success === true) {
-        this._medicalRecordList.splice(
-          this._medicalRecordList.findIndex((trn) => trn._id === item._id),
+        this._medicalRecord.splice(
+          this._medicalRecord.findIndex((trn) => trn._id === item._id),
           1,
           item
         );
@@ -48,11 +48,11 @@ export class MedicalRecordRepository {
     }
   }
 
-  deleteMedicalRecordList(id: string) {
-    this.dataSource.deleteMedicalRecordList(id).subscribe((response) => {
+  deleteMedicalRecord(id: string) {
+    this.dataSource.deleteMedicalRecord(id).subscribe((response) => {
       if (response.success) {
-        this._medicalRecordList.splice(
-          this._medicalRecordList.findIndex((trn) => trn._id === id),
+        this._medicalRecord.splice(
+          this._medicalRecord.findIndex((trn) => trn._id === id),
           1
         );
       } else {

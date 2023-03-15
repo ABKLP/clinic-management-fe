@@ -1,4 +1,4 @@
-export class MedicalRecordList {
+export class MedicalRecord {
   constructor(
     public _id?: string,
     public findings?: string,
