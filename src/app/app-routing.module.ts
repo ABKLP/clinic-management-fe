@@ -11,6 +11,7 @@ import { ProfileComponent } from "./components/user/profile.component";
 import { MedicalRecordComponent } from "./medical-record/medical-record.component";
 import { AddEditComponent } from "./add-edit/add-edit.component";
 import { AppointmentListComponent } from "./components/appointment/list/list.component";
+import { AppointmentAddEditComponent } from "./components/appointment/add-edit/add-edit.component";
 import { AuthGuard } from "./guards/auth.guard";
 import { AdminPermissionGuard } from "./guards/admin-permission.guard";
 
@@ -44,6 +45,16 @@ const routesDefaultLayout: Routes = [
   {
     path: "appointments/list",
     component: AppointmentListComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: "appointments/:mode",
+    component: AppointmentAddEditComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: "appointments/:mode/:id",
+    component: AppointmentAddEditComponent,
     canActivate: [AuthGuard],
   },
 ];
