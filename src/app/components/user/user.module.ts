@@ -11,15 +11,21 @@ import { MedicalRecordComponent } from "src/app/medical-record/medical-record.co
 import { AddEditComponent } from "src/app/add-edit/add-edit.component";
 
 @NgModule({
-  imports: 
-  [BrowserModule,
+  imports: [
+    BrowserModule,
     FormsModule,
     RouterModule,
     SharedModule,
     ModelModule,
   ],
-    
-  declarations: [UserListComponent,ProfileComponent,SidebarComponent,MedicalRecordComponent,AddEditComponent],
+
+  declarations: [
+    UserListComponent,
+    ProfileComponent,
+    SidebarComponent,
+    MedicalRecordComponent,
+    AddEditComponent,
+  ],
   exports: [UserListComponent],
 })
 export class UserModule {}

@@ -4,8 +4,8 @@ import { Observable, of } from "rxjs";
 import { catchError, map } from "rxjs/operators";
 import { ResponseModel } from "./response.model";
 import { User } from "./user.model";
-import { environment } from "src/environments/environment";
 import { MedicalRecord } from "./medical-record.model";
+import { environment } from "src/environments/environment";
 
 @Injectable()
 export class RestDataSource {
@@ -94,12 +94,17 @@ export class RestDataSource {
   getMedicalRecord(): Observable<MedicalRecord[]> {
     return this.http.get<MedicalRecord[]>(
       `${this.baseUrl}/medical-record/list`,
-      this.provideToken());
+      this.provideToken()
+    );
   }
 
   insertMedicalRecord(item: MedicalRecord): Observable<MedicalRecord> {
     return this.http
-      .post<MedicalRecord>(`${this.baseUrl}/medical-record/add`, item, this.provideToken())
+      .post<MedicalRecord>(
+        `${this.baseUrl}/medical-record/add`,
+        item,
+        this.provideToken()
+      )
       .pipe(
         map((response) => {
           return response;
@@ -145,5 +150,4 @@ export class RestDataSource {
         })
       );
   }
-
 }

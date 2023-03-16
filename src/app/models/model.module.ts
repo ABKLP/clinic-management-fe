@@ -7,6 +7,11 @@ import { MedicalRecordRepository } from "./medical-record.repository";
 
 @NgModule({
   imports: [HttpClientModule],
-  providers: [RestDataSource, AuthService, UserRepository,MedicalRecordRepository],
+  providers: [
+    RestDataSource,
+    AuthService,
+    UserRepository,
+    MedicalRecordRepository,
+  ],
 })
 export class ModelModule {}
