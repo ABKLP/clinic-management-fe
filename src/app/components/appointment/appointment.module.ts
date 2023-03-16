@@ -5,10 +5,19 @@ import { RouterModule } from "@angular/router";
 import { SharedModule } from "../shared/shared.module";
 import { AppointmentListComponent } from "./list/list.component";
 import { AppointmentAddEditComponent } from "./add-edit/add-edit.component";
+import { AppointmentShowComponent } from "./show/show.component";
 
 @NgModule({
   imports: [BrowserModule, FormsModule, RouterModule, SharedModule],
-  declarations: [AppointmentListComponent, AppointmentAddEditComponent],
-  exports: [AppointmentListComponent, AppointmentAddEditComponent],
+  declarations: [
+    AppointmentListComponent,
+    AppointmentAddEditComponent,
+    AppointmentShowComponent,
+  ],
+  exports: [
+    AppointmentListComponent,
+    AppointmentAddEditComponent,
+    AppointmentShowComponent,
+  ],
 })
 export class AppointmentModule {}
