@@ -92,7 +92,9 @@ export class RestDataSource {
 
   // Medical Record APIs
   getMedicalRecord(): Observable<MedicalRecord[]> {
-    return this.http.get<MedicalRecord[]>(`${this.baseUrl}/medical-record/list`);
+    return this.http.get<MedicalRecord[]>(
+      `${this.baseUrl}/medical-record/list`,
+      this.provideToken());
   }
 
   insertMedicalRecord(item: MedicalRecord): Observable<MedicalRecord> {
