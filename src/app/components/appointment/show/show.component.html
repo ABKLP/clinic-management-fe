@@ -1,0 +1,36 @@
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <h3 class="mt-2">{{ appointment.name }}</h3>
+
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item">
+            <a [routerLink]="'/'">Home</a>
+          </li>
+          <li class="breadcrumb-item" *ngIf="isOwner">
+            <a [routerLink]="['/appointments', 'list']">Appointments</a>
+          </li>
+          <li class="breadcrumb-item active" aria-current="page">
+            {{ appointment.name }}
+          </li>
+        </ol>
+      </nav>
+
+      <div class="card">
+        <div class="card-header">
+          {{ appointment.name }}
+        </div>
+        <div class="card-body">
+          <p class="card-text">
+            <strong>Description:</strong> {{ appointment.description }}
+          </p>
+          <p class="card-text">
+            <strong>Date & Time:</strong>
+            {{ toLocaleString(appointment.scheduledAt) }}
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

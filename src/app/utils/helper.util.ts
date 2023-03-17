@@ -1,3 +1,12 @@
+/**
+ * it capitalizes a given string
+ * @param {any} value value to be converted
+ * @return {string} the formatted value
+ */
+function toCapitalize(value: any): string {
+  const text = value.toLowerCase();
+  return `${text[0].toUpperCase()}${text.slice(1)}`;
+}
 
 /**
  * it converts a given value to date then format it properly 'YYYY-MM-DD'
@@ -6,9 +15,31 @@
  */
 
 function toDateString(value: any): string {
-  return new Date(value).toLocaleDateString('en-CA', {
-    year: 'numeric', month: '2-digit', day: '2-digit'
-  })
+  return new Date(value).toLocaleDateString("en-CA", {
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+  });
+}
+
+/**
+ * it converts a given value to date & time then format it to local date & time
+ * @param {any} value value to be converted
+ * @return {string} the formatted value
+ */
+
+function toLocaleString(value: any): string {
+  return new Date(value).toLocaleString("en-CA");
+}
+
+/**
+ * it converts a given value to date & time to timestamp
+ * @param {date} value to be set
+ * @return {Number} timestamp
+ */
+
+function toTimestamp(value: string): Number {
+  return Date.parse(value);
 }
 
 /**
@@ -45,7 +76,7 @@ function hasStarted(date: Date): boolean {
 }
 
 /**
- * it sets the time to 0 (zero) 
+ * it sets the time to 0 (zero)
  * @param {date} date to be set
  * @return {date} updated date
  */
@@ -57,9 +88,12 @@ function setTimeToZero(date: Date): Date | any {
 }
 
 export {
+  toCapitalize,
   toDateString,
+  toLocaleString,
+  toTimestamp,
   hasValue,
   isNotEmpty,
   hasStarted,
-  setTimeToZero
-}
+  setTimeToZero,
+};
