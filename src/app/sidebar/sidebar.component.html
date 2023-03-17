@@ -1,0 +1,58 @@
+<div *ngIf="auth.authenticated" class="col-md-12 align-items-center"> 
+  <!--SideBar-->
+  <br>
+  <div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-info border rounded-2" style="width: 280px;">
+        <a  class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+          <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"/></svg>
+          <span class="fs-4">User Profile</span>
+        </a>
+        <hr>
+        <ul class="nav nav-pills flex-column mb-auto">
+          <li class="nav-item">
+              <a class="nav-link text-white"
+                 [class.active]="title == 'Profile'"
+                 [routerLink]="'/user/profile'"
+                 routerLinkActive="active"
+                 RouterLinkActiveOptions="{exact: true}"
+                >
+                <svg class="bi me-2" width="16" height="16"><use xlink:href="#home"/></svg>
+                {{sideTitles[0]}}
+              </a>
+          </li>
+          <li>
+            <a class="nav-link text-white"
+              [class.active]="title == 'Medical Record'"
+              [routerLink]="'/medical-record/list'"
+              routerLinkActive="active"
+            >
+              <svg class="bi me-2" width="16" height="16"><use xlink:href="#speedometer2"/></svg>
+              {{sideTitles[1]}}
+            </a>
+          </li>
+          <li>
+            <!--if not edit mode see this -->
+            <a *ngIf="!editing" class="nav-link text-white"
+              [class.active]="title == 'Add Medical Record'"
+              [routerLink]="'/medical-record/add'"
+              routerLinkActive="active"
+            >
+              <svg class="bi me-2" width="16" height="16"><use xlink:href="#speedometer2"/></svg>
+              {{sideTitles[2]}}
+            </a>
+
+            <!--if edit mode see this -->
+            <a *ngIf="editing" class="nav-link text-white"
+              [class.active]="title == 'Edit Medical Record'"
+              [routerLink]="'/medical-record/edit'"
+              routerLinkActive="active"
+            >
+              <svg class="bi me-2" width="16" height="16"><use xlink:href="#speedometer2"/></svg>
+              Edit Medical Record
+            </a>
+          </li>
+        </ul>
+        <hr>
+  </div>
+</div>
+
+
