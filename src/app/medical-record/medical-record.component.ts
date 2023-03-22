@@ -12,6 +12,7 @@ import { MedicalRecordRepository } from "../models/medical-record.repository";
 export class MedicalRecordComponent implements OnInit {
   title = "Medical Record";
   searching: boolean = false;
+  searchPerson: string
 
   constructor(
     private repository: MedicalRecordRepository,
@@ -25,7 +26,10 @@ export class MedicalRecordComponent implements OnInit {
     this.searching = this.activeRoute.snapshot.params["mode"] === "search";
 
   }
-
+  // IF searching===true
+  // t.owner.id === searchPerson
+  // else
+  // t.owner.id === this.auth.userId
   get medicalRecord(): MedicalRecord[] {
     return this.repository.getMedicalRecord().filter(t => t.owner.id === this.auth.userId);
   }
