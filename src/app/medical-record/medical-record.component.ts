@@ -1,24 +1,29 @@
 import { Component, OnInit } from "@angular/core";
+import { ActivatedRoute } from "@angular/router";
 import { AuthService } from "../models/auth.service";
 import { MedicalRecord } from "../models/medical-record.model";
 import { MedicalRecordRepository } from "../models/medical-record.repository";
 
 @Component({
   selector: 'app-medical-record',
-  templateUrl: './medical-record.component.html',
+  templateUrl:'./medical-record.component.html',
   styleUrls: ['./medical-record.component.scss']
 })
 export class MedicalRecordComponent implements OnInit {
   title = "Medical Record";
- 
+  searching: boolean = false;
+
   constructor(
     private repository: MedicalRecordRepository,
-    private auth: AuthService
+    private auth: AuthService,
+    private activeRoute: ActivatedRoute
   ) {
   }
 
   async ngOnInit(): Promise<void> {
     await this.repository.setMedicalRecord();
+    this.searching = this.activeRoute.snapshot.params["mode"] === "search";
+
   }
 
   get medicalRecord(): MedicalRecord[] {

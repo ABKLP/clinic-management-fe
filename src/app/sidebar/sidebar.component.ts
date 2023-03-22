@@ -13,6 +13,7 @@ import { MedicalRecordRepository } from "../models/medical-record.repository";
 export class SidebarComponent implements OnInit {
   @Input() title?: string;
   editing: boolean = false;
+ 
   _medicalRecord: MedicalRecord = new MedicalRecord();
 
   sideTitles = [
@@ -20,7 +21,10 @@ export class SidebarComponent implements OnInit {
     "Medical Record",
     "Add Medical Record",
   ]
-  constructor(private repository: MedicalRecordRepository,public auth: AuthService,private activeRoute: ActivatedRoute) { }
+  constructor(
+    private repository: MedicalRecordRepository,
+    public auth: AuthService,
+    private activeRoute: ActivatedRoute) { }
 
 
   async ngOnInit(): Promise<void> {

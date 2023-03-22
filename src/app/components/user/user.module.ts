@@ -9,6 +9,7 @@ import { ProfileComponent } from "./profile.component";
 import { SidebarComponent } from "src/app/sidebar/sidebar.component";
 import { MedicalRecordComponent } from "src/app/medical-record/medical-record.component";
 import { AddEditComponent } from "src/app/add-edit/add-edit.component";
+import { SearchPageComponent } from "src/app/search-page/search-page.component";
 
 @NgModule({
   imports: [
@@ -25,6 +26,7 @@ import { AddEditComponent } from "src/app/add-edit/add-edit.component";
     SidebarComponent,
     MedicalRecordComponent,
     AddEditComponent,
+    SearchPageComponent,
   ],
   exports: [UserListComponent],
 })
