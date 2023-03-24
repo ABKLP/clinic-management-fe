@@ -15,6 +15,7 @@ import { AppointmentModule } from "./components/appointment/appointment.module";
 import { AuthGuard } from "./guards/auth.guard";
 import { AdminPermissionGuard } from "./guards/admin-permission.guard";
 import { EmployeePermissionGuard } from "./guards/employee-permission.guard";
+import { DashboardModule } from "./components/dashboard/dashboard.module";
 
 @NgModule({
   declarations: [AppComponent],
@@ -26,6 +27,7 @@ import { EmployeePermissionGuard } from "./guards/employee-permission.guard";
     IndexModule,
     UserModule,
     AppointmentModule,
+    DashboardModule,
     LayoutModule,
     ModelModule,
     SharedModule,
