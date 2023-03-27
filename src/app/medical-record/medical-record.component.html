@@ -1,22 +1,27 @@
 <div class="SbMargin row align-items-md-stretch">
-  <div *ngIf="searching" class="col-md-3 align-items-center">
-    
-    <app-sidebar></app-sidebar>
+  <div class="col-md-3 align-items-center">
+    <div *ngIf="isMedicalRecord">
+      <app-sidebar></app-sidebar>
+    </div>
   </div>
   <div class="col-md-6 align-items-center">
     <br>
     <div class="h-300 p-5 bg-light border rounded-4">
-      <h1 class="headTitle text-center">Medical Record</h1>  
+      <div *ngIf="isMedicalRecord"><h1 class="headTitle text-center">Medical Record</h1></div>
+      
       <!-- begin medical record -->
       <div class="table-responsive">
+        <p>hello {{data}}</p>
+              <br>
+              <br>
         <table class="table table-bordered table-hover">
           <thead>
             <tr>
               <th class="text-center"></th>
-              <th class="text-center">Diagnostic | Findings</th>
+              <th class="text-center">Diagnostic | Findings </th>
               <th class="text-center">Medication</th>
               <th class="text-center">Recorded Date</th>
-              <th class="text-center">Physician</th>
+              <!-- <th class="text-center">Physician</th> -->
               <th class="text-center" colspan="3">Actions</th>
             </tr>
           </thead>
@@ -26,7 +31,7 @@
               <td class="text-center">{{item.findings}}</td>
               <td class="text-center">{{item.medicine}}</td>
               <td class="text-center">{{item.recordedDate}}</td>
-              <td class="text-center">{{item.doctorName}}</td>
+              <!-- <td class="text-center">{{item.doctorName}}</td> -->
 
               <td class="text-center">
                 <button

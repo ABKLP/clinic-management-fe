@@ -1,8 +1,9 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit,Input} from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import { AuthService } from "../models/auth.service";
 import { MedicalRecord } from "../models/medical-record.model";
 import { MedicalRecordRepository } from "../models/medical-record.repository";
+import { SharedModule } from "../components/shared/shared.module";
 
 @Component({
   selector: 'app-medical-record',
@@ -10,8 +11,10 @@ import { MedicalRecordRepository } from "../models/medical-record.repository";
   styleUrls: ['./medical-record.component.scss']
 })
 export class MedicalRecordComponent implements OnInit {
+  @Input() data: string = "this is default MD_record"
+
   title = "Medical Record";
-  searching: boolean = false;
+  isMedicalRecord: boolean = true;
   searchPerson: string
 
   constructor(
@@ -23,9 +26,14 @@ export class MedicalRecordComponent implements OnInit {
 
   async ngOnInit(): Promise<void> {
     await this.repository.setMedicalRecord();
-    this.searching = this.activeRoute.snapshot.params["mode"] === "search";
-
+    if(this.data === "Hello from SearchPage")
+    {
+      this.isMedicalRecord = false;
+    }
   }
+
+  
+
   // IF searching===true
   // t.owner.id === searchPerson
   // else

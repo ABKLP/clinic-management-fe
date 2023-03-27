@@ -52,7 +52,8 @@ export class AddEditComponent implements OnInit {
   async save(form: NgForm) {
     this.isSubmitted = true;
     // TODO: add validations to the form
-    if (this.isDoctorValid && this.isRecordDateValid) {
+    //if (this.isDoctorValid && this.isRecordDateValid) {
+    if (this.isRecordDateValid) {
       if (!this.editing) {
         this._medicalRecord.owner = this.auth.userId;
       }
@@ -77,8 +78,8 @@ export class AddEditComponent implements OnInit {
     return this._medicalRecord.recordedDate !== null && (setTimeToZero(new Date(this._medicalRecord.recordedDate + 'T10:00:00')) >= setTimeToZero(new Date()) || this.editing);
   }
 
-  //CHECK DOCTOR VALIDATION
-  get isDoctorValid(): boolean {
-    return isNotEmpty(this._medicalRecord.medicine);
-  }
+  // //CHECK DOCTOR VALIDATION
+  // get isDoctorValid(): boolean {
+  //   return isNotEmpty(this._medicalRecord.medicine);
+  // }
 }

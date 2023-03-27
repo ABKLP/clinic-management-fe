@@ -13,14 +13,16 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class SearchPageComponent implements OnInit {
   searching: boolean = false;
-  searchText =""
-
+  searchText ="Helo PJ"
+  
   constructor(
     private repository : MedicalRecordRepository,
     private activeRoute : ActivatedRoute,
     private auth: AuthService
   ) { }
   
+  data: string = 'Hello from SearchPage';
+
   async ngOnInit(): Promise<void> {
     await this.repository.setMedicalRecord();
     this.searching = this.activeRoute.snapshot.params["mode"] === "search";
@@ -30,4 +32,18 @@ export class SearchPageComponent implements OnInit {
     return this.repository.getMedicalRecord().filter(t => t.owner.id === this.auth.userId);
   }
 
+
+  
+  async save(form: NgForm) {
+    // this.isSubmitted = true;
+    // // TODO: add validations to the form
+    // if (this.isDoctorValid && this.isRecordDateValid) {
+    //   if (!this.editing) {
+    //     this._medicalRecord.owner = this.auth.userId;
+    //   }
+
+    //   await this.repository.saveMedicalRecord(this._medicalRecord);
+    //   this.router.navigateByUrl("/medical-record/list");
+    // }
+  }
 }
