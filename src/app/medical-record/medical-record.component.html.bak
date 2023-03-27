@@ -8,13 +8,9 @@
     <br>
     <div class="h-300 p-5 bg-light border rounded-4">
       <div *ngIf="isMedicalRecord"><h1 class="headTitle text-center">Medical Record</h1></div>
-      
+      <p hidden>{{dataFromSearchPage.name}}</p>
       <!-- begin medical record -->
       <div class="table-responsive">
-        
-        <p>Input 1: {{ input1 }}</p>
-        <p>Input 2: {{ input2 }}</p>
-
         <table class="table table-bordered table-hover">
           <thead>
             <tr>

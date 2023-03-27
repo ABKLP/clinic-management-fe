@@ -5,8 +5,8 @@
         <div class="col-md-6 align-items-center">
             <br>
             <div class="h-500 p-5 bg-light border rounded-4">
-              <p>{{inputValue1}}</p>
               <h1 class="headTitle text-center">Search Medical Record</h1>
+              <p>{{searchText}}</p>
               <form
                 novalidate
                 #form="ngForm"
@@ -23,7 +23,7 @@
                         name="search"
                         required
                         placeholder="searching.."
-                        [(ngModel)]="inputValue1" 
+                        [(ngModel)]="searchText"
                       />
                     </div>
                   </div>
@@ -49,10 +49,8 @@
         <div class="col-md-3 align-items-center">
         </div>
     </div>
-
-    <!--CALLING MEDICAL-RECORD COMPONENT-->
     <div class="row">
-          <app-medical-record [input1]="inputValue1" [input2]="inputValue2"></app-medical-record>
+          <app-medical-record [dataFromSearchPage]="data"></app-medical-record>
     </div>
     
 </div>
