@@ -11,7 +11,9 @@ import { SharedModule } from "../components/shared/shared.module";
   styleUrls: ['./medical-record.component.scss']
 })
 export class MedicalRecordComponent implements OnInit {
-  @Input() data: string = "this is default MD_record"
+  @Input() dataFromSearchPage: any;
+  
+  searchText: string = "this is default MD_record 2";
 
   title = "Medical Record";
   isMedicalRecord: boolean = true;
@@ -26,13 +28,14 @@ export class MedicalRecordComponent implements OnInit {
 
   async ngOnInit(): Promise<void> {
     await this.repository.setMedicalRecord();
-    if(this.data === "Hello from SearchPage")
+    
+    if(this.dataFromSearchPage.name === "searchPage")
     {
       this.isMedicalRecord = false;
     }
   }
 
-  
+
 
   // IF searching===true
   // t.owner.id === searchPerson

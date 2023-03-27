@@ -6,6 +6,7 @@
             <br>
             <div class="h-500 p-5 bg-light border rounded-4">
               <h1 class="headTitle text-center">Search Medical Record</h1>
+              <p>{{searchText}}</p>
               <form
                 novalidate
                 #form="ngForm"
@@ -49,7 +50,7 @@
         </div>
     </div>
     <div class="row">
-          <app-medical-record [data]="data"></app-medical-record>
+          <app-medical-record [dataFromSearchPage]="data"></app-medical-record>
     </div>
     
 </div>

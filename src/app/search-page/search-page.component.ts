@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { MedicalRecordRepository } from '../models/medical-record.repository';
 import { MedicalRecord } from '../models/medical-record.model';
 import { AuthService } from '../models/auth.service';
 import { ActivatedRoute } from '@angular/router';
+import { RestDataSource } from '../models/rest.datasource';
 
 
 @Component({
@@ -13,27 +14,28 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class SearchPageComponent implements OnInit {
   searching: boolean = false;
-  searchText ="Helo PJ"
+  searchText =""
+  searchData2: string
   
   constructor(
     private repository : MedicalRecordRepository,
     private activeRoute : ActivatedRoute,
-    private auth: AuthService
+    private auth: AuthService,
+    private rest: RestDataSource
   ) { }
   
-  data: string = 'Hello from SearchPage';
+  data = {
+    name: 'searchPage',
+  }
 
   async ngOnInit(): Promise<void> {
-    await this.repository.setMedicalRecord();
-    this.searching = this.activeRoute.snapshot.params["mode"] === "search";
+    //await this.repository.setMedicalRecord();
   }
 
-  get medicalRecord(): MedicalRecord[] {
-    return this.repository.getMedicalRecord().filter(t => t.owner.id === this.auth.userId);
-  }
-
-
-  
+  // get medicalRecord(): MedicalRecord[] {
+  //   return this.repository.getMedicalRecord().filter(t => t.owner.id === this.auth.userId);
+  // }
+ 
   async save(form: NgForm) {
     // this.isSubmitted = true;
     // // TODO: add validations to the form
