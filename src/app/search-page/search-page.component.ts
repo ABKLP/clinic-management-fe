@@ -1,12 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms';
-import { MedicalRecordRepository } from '../models/medical-record.repository';
-import { MedicalRecord } from '../models/medical-record.model';
-import { AuthService } from '../models/auth.service';
-import { ActivatedRoute } from '@angular/router';
-import { UserRepository } from '../models/user.repository';
+import { Component, OnInit ,ViewChild} from '@angular/core';
 import { RestDataSource } from '../models/rest.datasource';
-
+import { MedicalRecordComponent } from '../medical-record/medical-record.component';
+import { isNotEmpty } from '../utils/helper.util';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-search-page',
@@ -18,29 +14,31 @@ export class SearchPageComponent implements OnInit {
   inputValue2 = true;
   data: any;
 
-  constructor(private dataSource: RestDataSource) { }
-  
-  
-  searchData() {
-    this.dataSource.getUser().subscribe((data) => {
-      this.data = data;
-    });
+  @ViewChild(MedicalRecordComponent) childComponent: MedicalRecordComponent;
+  isSubmitted: boolean;
+
+  reloadChildComponent() {
+    this.isSearchValid;
+    this.childComponent.reloadComponent();
   }
- 
+
+  constructor(private dataSource: RestDataSource) { }
   
   async ngOnInit(): Promise<void> {
   }
-  
-  async save(form: NgForm) {
-    // this.isSubmitted = true;
-    // // TODO: add validations to the form
-    // if (this.isDoctorValid && this.isRecordDateValid) {
-    //   if (!this.editing) {
-    //     this._medicalRecord.owner = this.auth.userId;
-    //   }
 
-    //   await this.repository.saveMedicalRecord(this._medicalRecord);
-    //   this.router.navigateByUrl("/medical-record/list");
-    // }
+  //CHECK SEARCH FIELD IF EMPTY
+  get isSearchValid(): boolean {
+    return isNotEmpty(this.inputValue1);
+  }
+
+  submit(form: NgForm) 
+  {
+    this.isSubmitted = true;
+    if (!form.valid) {
+      //alert('Please enter a value');
+      return;
+    }
+    console.log(`The input field has the value: ${this.inputValue1}`);
   }
 }

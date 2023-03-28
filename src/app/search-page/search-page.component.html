@@ -5,15 +5,13 @@
         <div class="col-md-6 align-items-center">
             <br>
             <div class="h-500 p-5 bg-light border rounded-4">
-              <p>{{inputValue1}}</p>
               <h1 class="headTitle text-center">Search Medical Record</h1>
-              <form
-                novalidate
-                #form="ngForm"
-                (ngSubmit)="save(form)"
-              >
+
+              <!--Begin SEARCH PAGE -->
+              <form #myForm="ngForm">
+                
                 <div class="row">
-                  <!-- begin search -->
+                  <!-- begin search field -->
                   <div class="col-12">
                     <div class="form-group mb-2">
                       <input
@@ -22,18 +20,28 @@
                         id="search"
                         name="search"
                         required
-                        placeholder="searching.."
+                        placeholder="search patient record using email address"
                         [(ngModel)]="inputValue1" 
                       />
                     </div>
                   </div>
-                  <!-- end search -->
+                  <!-- end search field -->
+
+                  <!-- start validation -->
+                  <div *ngIf="isSubmitted" class="text-danger">
+                    <div [hidden]="isSearchValid">
+                      Please enter valid email address
+                    </div>
+                  </div>
+                  <!-- end validation -->
 
                   <!-- begin form controls -->
                   <div class="col-12">
                     <button
                       class="btn btn-primary"
-                      type="button"
+                      type="submit" 
+                      (click)="reloadChildComponent()"
+                      (click)="submit(myForm)"
                     >
                       <i class="fa-solid fa-magnifying-glass"></i>
                       Search
@@ -42,8 +50,9 @@
                   </div>
                   <!-- end form controls -->
                 </div>
+
               </form>
-              <!-- end profile form -->
+              <!--END SEARCH PAGE -->
             </div>
         </div>
         <div class="col-md-3 align-items-center">

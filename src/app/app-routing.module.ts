@@ -33,7 +33,7 @@ const routesDefaultLayout: Routes = [
   {
     path: "search-page",
     component: SearchPageComponent,
-    // canActivate: [AuthGuard],
+    canActivate: [AuthGuard, AdminPermissionGuard],
   },
   {
     path: "medical-record/:mode/:id",
