@@ -4,4 +4,5 @@ export interface PaginatedResponse<T> {
   page: number;
   nextPage: number;
   prevPage: number;
+  totalPage: number;
 }
