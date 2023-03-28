@@ -7,6 +7,11 @@ import { User } from "./user.model";
 export class UserRepository {
   private _users: User[] = [];
   private user: User = new User();
+  page: number = 1;
+  limit: number = 10;
+  nextPage: number;
+  prevPage: number;
+  totalPage: number;
   listReady: boolean = false;
   profileReady: boolean = false;
 
@@ -18,7 +23,14 @@ export class UserRepository {
 
   async setUsers() {
     this.listReady = false;
-    this._users = await this.dataSource.getUserList().toPromise();
+    this.dataSource.getUserList(this.page, this.limit).subscribe((response) => {
+      this._users = response.data;
+      this.page = response.page;
+      this.limit = response.limit;
+      this.nextPage = response.nextPage;
+      this.prevPage = response.prevPage;
+      this.totalPage = response.totalPage;
+    });
     this.listReady = true;
   }
 

@@ -15,12 +15,13 @@ import { AppointmentAddEditComponent } from "./components/appointment/add-edit/a
 import { AppointmentShowComponent } from "./components/appointment/show/show.component";
 import { AuthGuard } from "./guards/auth.guard";
 import { AdminPermissionGuard } from "./guards/admin-permission.guard";
+import { DashboardComponent } from "./components/dashboard/dashboard.component";
 
 const routesDefaultLayout: Routes = [
   { path: "", component: IndexComponent },
   {
-    path: "users/list",
-    component: UserListComponent,
+    path: "admin/dashboard",
+    component: DashboardComponent,
     canActivate: [AuthGuard, AdminPermissionGuard],
   },
   {

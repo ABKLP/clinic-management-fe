@@ -31,7 +31,39 @@ export class UserListComponent implements OnInit {
     return this.repository.listReady;
   }
 
+  get currentPage(): number {
+    return this.repository.page;
+  }
+
+  set currentPage(page: number) {
+    this.repository.page = page;
+  }
+
+  get nextPage(): number {
+    return this.repository.nextPage;
+  }
+
+  get totalPage(): number {
+    return this.repository.totalPage;
+  }
+
   toCapitalize(value: string) {
     return toCapitalize(value);
+  }
+
+  async loadNextPage() {
+    console.log("Next");
+    if (this.currentPage < this.nextPage) {
+      this.currentPage += 1;
+      await this.repository.setUsers();
+    }
+  }
+
+  async loadPrevPage() {
+    console.log("Previous");
+    if (this.currentPage > 1) {
+      this.currentPage -= 1;
+      await this.repository.setUsers();
+    }
   }
 }
