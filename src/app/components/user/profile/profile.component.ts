@@ -4,13 +4,12 @@ import { Router } from "@angular/router";
 import { User } from "src/app/models/user.model";
 import { UserRepository } from "src/app/models/user.repository";
 
-
 @Component({
   selector: "app-user-profile",
   templateUrl: "./profile.component.html",
   styleUrls: ["./profile.component.scss"],
 })
-export class ProfileComponent implements OnInit {
+export class UserProfileComponent implements OnInit {
   public user: User;
   public message: string;
   isPasswordVisible: boolean = false;
@@ -20,7 +19,11 @@ export class ProfileComponent implements OnInit {
     this.repository.setUser();
   }
 
-  ngOnInit(): void { }
+  ngOnInit(): void {}
+
+  get profileReady(): boolean {
+    return this.repository.profileReady;
+  }
 
   get userProfile(): User {
     this.user = this.repository.getUser;

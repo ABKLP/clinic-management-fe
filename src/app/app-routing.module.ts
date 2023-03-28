@@ -6,15 +6,14 @@ import { RegisterComponent } from "./components/auth/register.component";
 import { IndexComponent } from "./components/index/index.component";
 import { DefaultLayoutComponent } from "./components/layout/default/default.component";
 import { EmptyLayoutComponent } from "./components/layout/empty/empty.component";
-import { UserListComponent } from "./components/user/list/list.component";
-import { ProfileComponent } from "./components/user/profile.component";
+import { DashboardComponent } from "./components/dashboard/dashboard.component";
+import { UserProfileComponent } from "./components/user/profile/profile.component";
 import { MedicalRecordComponent } from "./medical-record/medical-record.component";
+import { SearchPageComponent } from "./search-page/search-page.component";
 import { AddEditComponent } from "./add-edit/add-edit.component";
 import { AppointmentListComponent } from "./components/appointment/list/list.component";
 import { AppointmentAddEditComponent } from "./components/appointment/add-edit/add-edit.component";
 import { AppointmentShowComponent } from "./components/appointment/show/show.component";
-import { DashboardComponent } from "./components/dashboard/dashboard.component";
-import { SearchPageComponent } from "./search-page/search-page.component";
 import { AuthGuard } from "./guards/auth.guard";
 import { AdminPermissionGuard } from "./guards/admin-permission.guard";
 
@@ -27,7 +26,7 @@ const routesDefaultLayout: Routes = [
   },
   {
     path: "user/profile",
-    component: ProfileComponent,
+    component: UserProfileComponent,
     canActivate: [AuthGuard],
   },
   {
