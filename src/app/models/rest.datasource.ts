@@ -2,10 +2,11 @@ import { Injectable } from "@angular/core";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Observable, of } from "rxjs";
 import { catchError, map } from "rxjs/operators";
-import { ResponseModel } from "./response.model";
 import { User } from "./user.model";
 import { MedicalRecord } from "./medical-record.model";
 import { Appointment } from "./appointment.model";
+import { ResponseModel } from "./response.model";
+import { PaginatedResponse } from "../interfaces/paginated.interface";
 import { environment } from "src/environments/environment";
 
 @Injectable()
@@ -113,9 +114,12 @@ export class RestDataSource {
       );
   }
 
-  getUserList(): Observable<User[]> {
-    return this.http.get<User[]>(
-      `${this.baseUrl}/users/list`,
+  getUserList(
+    page: number,
+    limit: number
+  ): Observable<PaginatedResponse<User>> {
+    return this.http.get<PaginatedResponse<User>>(
+      `${this.baseUrl}/users/list?page=${page}&limit=${limit}`,
       this.provideToken()
     );
   }
