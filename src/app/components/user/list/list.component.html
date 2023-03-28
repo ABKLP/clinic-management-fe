@@ -48,6 +48,28 @@
           </tbody>
           <!-- end empty table -->
         </table>
+
+        <nav aria-label="list-pagination">
+          <ul class="pagination justify-content-center">
+            <li class="page-item" [class.disabled]="currentPage === 1">
+              <a
+                class="page-link"
+                aria-label="previous"
+                (click)="loadPrevPage()"
+              >
+                <span aria-hidden="true">&laquo;</span>
+              </a>
+            </li>
+            <li class="page-item">
+              <a class="page-link">{{ currentPage }}</a>
+            </li>
+            <li class="page-item" [class.disabled]="currentPage === totalPage">
+              <a class="page-link" aria-label="next" (click)="loadNextPage()">
+                <span>&raquo;</span>
+              </a>
+            </li>
+          </ul>
+        </nav>
       </div>
       <!-- end list user -->
     </div>
