@@ -153,9 +153,12 @@ export class RestDataSource {
     );
   }
 
-  searchMedicalRecord(query: string): Observable<MedicalRecord[]> {
+  searchMedicalRecord(
+    filter: string,
+    query: string
+  ): Observable<MedicalRecord[]> {
     return this.http.get<MedicalRecord[]>(
-      `${this.baseUrl}/medical-record/search?email=${query}`,
+      `${this.baseUrl}/medical-record/search?${filter}=${query}`,
       this.provideToken()
     );
   }

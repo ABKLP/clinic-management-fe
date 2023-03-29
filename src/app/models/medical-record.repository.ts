@@ -14,11 +14,11 @@ export class MedicalRecordRepository {
     return this._medicalRecord;
   }
 
-  async setMedicalRecord(query?: string) {
+  async setMedicalRecord(filter?: string, query?: string) {
     this.listReady = false;
     if (query) {
       this._medicalRecord = await this.dataSource
-        .searchMedicalRecord(query)
+        .searchMedicalRecord(filter, query)
         .toPromise();
     } else {
       this._medicalRecord = await this.dataSource
