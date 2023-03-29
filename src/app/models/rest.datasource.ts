@@ -153,6 +153,13 @@ export class RestDataSource {
     );
   }
 
+  searchMedicalRecord(query: string): Observable<MedicalRecord[]> {
+    return this.http.get<MedicalRecord[]>(
+      `${this.baseUrl}/medical-record/search?email=${query}`,
+      this.provideToken()
+    );
+  }
+
   insertMedicalRecord(item: MedicalRecord): Observable<MedicalRecord> {
     return this.http
       .post<MedicalRecord>(
