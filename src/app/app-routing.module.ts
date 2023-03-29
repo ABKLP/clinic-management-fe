@@ -8,7 +8,7 @@ import { DefaultLayoutComponent } from "./components/layout/default/default.comp
 import { EmptyLayoutComponent } from "./components/layout/empty/empty.component";
 import { DashboardComponent } from "./components/dashboard/dashboard.component";
 import { UserProfileComponent } from "./components/user/profile/profile.component";
-import { MedicalRecordComponent } from "./medical-record/medical-record.component";
+import { MedicalRecordListComponent } from "./components/medical-record/list/list.component";
 import { SearchPageComponent } from "./search-page/search-page.component";
 import { MedicalRecordAddEditComponent } from "./components/medical-record/add-edit/add-edit.component";
 import { AppointmentListComponent } from "./components/appointment/list/list.component";
@@ -36,7 +36,7 @@ const routesDefaultLayout: Routes = [
   },
   {
     path: "medical-record/list",
-    component: MedicalRecordComponent,
+    component: MedicalRecordListComponent,
     canActivate: [AuthGuard],
   },
   {
