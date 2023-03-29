@@ -1,8 +1,6 @@
 <div class="container">
   <div class="row">
-    <div class="col-md-3 align-items-center"></div>
-    <div class="col-md-6 align-items-center">
-      <br />
+    <div class="col-12">
       <div class="h-500 p-5 bg-light border rounded-4">
         <h1 class="headTitle text-center">Search Medical Record</h1>
 
@@ -10,33 +8,51 @@
         <form #form="ngForm" (ngSubmit)="submit(form)">
           <div class="row">
             <!-- begin search field -->
-            <div class="col-12">
+            <div class="col-md-8">
               <div class="form-group mb-2">
                 <input
                   type="search"
                   class="form-control"
-                  id="search"
-                  name="search"
+                  id="searchQuery"
+                  name="searchQuery"
                   required
-                  placeholder="search patient record using email address"
+                  placeholder="Enter email or phone number of patient to search"
                   [(ngModel)]="searchQuery"
                 />
               </div>
+              <!-- start validation -->
+              <div *ngIf="isSubmitted" class="text-danger">
+                <div [hidden]="isSearchValid">
+                  Please enter valid email address
+                </div>
+              </div>
+              <!-- end validation -->
             </div>
             <!-- end search field -->
 
-            <!-- start validation -->
-            <div *ngIf="isSubmitted" class="text-danger">
-              <div [hidden]="isSearchValid">
-                Please enter valid email address
-              </div>
+            <div class="col-md-2">
+              <select
+                class="form-select"
+                name="searchFilter"
+                id="searchFilter"
+                required
+                [(ngModel)]="searchFilter"
+              >
+                <option
+                  *ngFor="let filter of searchFilters | keyvalue"
+                  [value]="filter.key"
+                >
+                  {{ filter.value }}
+                </option>
+              </select>
             </div>
-            <!-- end validation -->
 
-            <button class="btn btn-primary" type="submit">
-              <i class="fa-solid fa-magnifying-glass"></i>
-              Search
-            </button>
+            <div class="col-md-2">
+              <button class="btn btn-primary" type="submit">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                Search
+              </button>
+            </div>
           </div>
         </form>
         <!--END SEARCH PAGE -->
@@ -46,8 +62,7 @@
   </div>
 
   <div class="row">
-    <div class="col-md-3 align-items-center"></div>
-    <div class="col-md-6 align-items-center">
+    <div class="col-12 align-items-center">
       <div class="h-300 p-5 bg-light border rounded-4">
         <h3 class="headTitleSP text-right">Patient Name: {{ patientName }}</h3>
         <!-- begin medical record -->
@@ -102,6 +117,5 @@
         <!-- end medical record -->
       </div>
     </div>
-    <div class="col-md-3 align-items-center"></div>
   </div>
 </div>
