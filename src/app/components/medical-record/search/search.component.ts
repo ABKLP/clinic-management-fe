@@ -11,6 +11,8 @@ import { isNotEmpty } from "src/app/utils";
 })
 export class MedicalRecordSearchComponent implements OnInit {
   searchQuery: string;
+  searchFilters: object = { email: "Email", phoneNumber: "Phone Number" };
+  searchFilter: string = Object.keys(this.searchFilters)[0];
   isSubmitted: boolean;
   patientName: string;
 
@@ -26,7 +28,7 @@ export class MedicalRecordSearchComponent implements OnInit {
   async submit(form: NgForm): Promise<void> {
     this.isSubmitted = true;
     if (!form.valid) return;
-    await this.repository.setMedicalRecord(this.searchQuery);
+    await this.repository.setMedicalRecord(this.searchFilter, this.searchQuery);
   }
 
   get medicalRecord(): MedicalRecord[] {
