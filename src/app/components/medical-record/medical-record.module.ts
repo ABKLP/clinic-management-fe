@@ -9,6 +9,7 @@ import { MedicalRecordComponent } from "src/app/medical-record/medical-record.co
 import { SearchPageComponent } from "src/app/search-page/search-page.component";
 import { MedicalRecordAddEditComponent } from "./add-edit/add-edit.component";
 import { AddEditComponent } from "src/app/add-edit/add-edit.component";
+import { MedicalRecordSearchComponent } from "./search/search.component";
 
 @NgModule({
   imports: [
@@ -21,6 +22,7 @@ import { AddEditComponent } from "src/app/add-edit/add-edit.component";
   declarations: [
     MedicalRecordListComponent,
     MedicalRecordComponent,
+    MedicalRecordSearchComponent,
     SearchPageComponent,
     MedicalRecordAddEditComponent,
     AddEditComponent,
@@ -28,6 +30,7 @@ import { AddEditComponent } from "src/app/add-edit/add-edit.component";
   exports: [
     MedicalRecordListComponent,
     MedicalRecordComponent,
+    MedicalRecordSearchComponent,
     SearchPageComponent,
     MedicalRecordAddEditComponent,
     AddEditComponent,

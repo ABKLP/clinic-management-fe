@@ -9,13 +9,14 @@ import { EmptyLayoutComponent } from "./components/layout/empty/empty.component"
 import { DashboardComponent } from "./components/dashboard/dashboard.component";
 import { UserProfileComponent } from "./components/user/profile/profile.component";
 import { MedicalRecordListComponent } from "./components/medical-record/list/list.component";
-import { SearchPageComponent } from "./search-page/search-page.component";
+import { MedicalRecordSearchComponent } from "./components/medical-record/search/search.component";
 import { MedicalRecordAddEditComponent } from "./components/medical-record/add-edit/add-edit.component";
 import { AppointmentListComponent } from "./components/appointment/list/list.component";
 import { AppointmentAddEditComponent } from "./components/appointment/add-edit/add-edit.component";
 import { AppointmentShowComponent } from "./components/appointment/show/show.component";
 import { AuthGuard } from "./guards/auth.guard";
 import { AdminPermissionGuard } from "./guards/admin-permission.guard";
+import { EmployeePermissionGuard } from "./guards/employee-permission.guard";
 
 const routesDefaultLayout: Routes = [
   { path: "", component: IndexComponent },
@@ -30,9 +31,9 @@ const routesDefaultLayout: Routes = [
     canActivate: [AuthGuard],
   },
   {
-    path: "search-page",
-    component: SearchPageComponent,
-    canActivate: [AuthGuard, AdminPermissionGuard],
+    path: "medical-record/search",
+    component: MedicalRecordSearchComponent,
+    canActivate: [AuthGuard, EmployeePermissionGuard],
   },
   {
     path: "medical-record/list",
