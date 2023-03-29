@@ -65,7 +65,7 @@
         <br />
 
         <!-- 02 recorded date field -->
-        <div class="form-group">
+        <!-- <div class="form-group">
           <label for="createdAtTextField"
             ><strong>Recorded Date</strong>
           </label>
@@ -77,14 +77,14 @@
             [(ngModel)]="_medicalRecord.createdAt"
             required
           />
-        </div>
+        </div> -->
 
         <!-- recorded date validation -->
-        <div *ngIf="isSubmitted" class="text-danger">
+        <!-- <div *ngIf="isSubmitted" class="text-danger">
           <div [hidden]="isRecordDateValid">
             The start date must be greater or equals to than today's date.
           </div>
-        </div>
+        </div> -->
         <!-- end validation -->
         <!-- 02 END recorded date field -->
 
@@ -124,9 +124,9 @@
           Submit
         </button>
         <span>&nbsp;</span>
-        <a [routerLink]="'/user/medical-record/list'" class="btn btn-secondary">
+        <a [routerLink]="['/medical-record', 'list']" class="btn btn-secondary">
           <i class="fa-solid fa-rotate-left"></i>
-          Cancel
+          Back
         </a>
         <!-- end actions -->
 

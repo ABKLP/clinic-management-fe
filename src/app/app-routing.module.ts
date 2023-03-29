@@ -6,16 +6,17 @@ import { RegisterComponent } from "./components/auth/register.component";
 import { IndexComponent } from "./components/index/index.component";
 import { DefaultLayoutComponent } from "./components/layout/default/default.component";
 import { EmptyLayoutComponent } from "./components/layout/empty/empty.component";
-import { UserListComponent } from "./components/user/list/list.component";
-import { ProfileComponent } from "./components/user/profile.component";
-import { MedicalRecordComponent } from "./medical-record/medical-record.component";
-import { AddEditComponent } from "./add-edit/add-edit.component";
+import { DashboardComponent } from "./components/dashboard/dashboard.component";
+import { UserProfileComponent } from "./components/user/profile/profile.component";
+import { MedicalRecordListComponent } from "./components/medical-record/list/list.component";
+import { MedicalRecordSearchComponent } from "./components/medical-record/search/search.component";
+import { MedicalRecordAddEditComponent } from "./components/medical-record/add-edit/add-edit.component";
 import { AppointmentListComponent } from "./components/appointment/list/list.component";
 import { AppointmentAddEditComponent } from "./components/appointment/add-edit/add-edit.component";
 import { AppointmentShowComponent } from "./components/appointment/show/show.component";
 import { AuthGuard } from "./guards/auth.guard";
 import { AdminPermissionGuard } from "./guards/admin-permission.guard";
-import { DashboardComponent } from "./components/dashboard/dashboard.component";
+import { EmployeePermissionGuard } from "./guards/employee-permission.guard";
 
 const routesDefaultLayout: Routes = [
   { path: "", component: IndexComponent },
@@ -26,22 +27,27 @@ const routesDefaultLayout: Routes = [
   },
   {
     path: "user/profile",
-    component: ProfileComponent,
+    component: UserProfileComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: "medical-record/search",
+    component: MedicalRecordSearchComponent,
+    canActivate: [AuthGuard, EmployeePermissionGuard],
+  },
+  {
+    path: "medical-record/list",
+    component: MedicalRecordListComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: "medical-record/:mode",
+    component: MedicalRecordAddEditComponent,
     canActivate: [AuthGuard],
   },
   {
     path: "medical-record/:mode/:id",
-    component: AddEditComponent,
-    canActivate: [AuthGuard],
-  },
-  {
-    path: "medical-record/list",
-    component: MedicalRecordComponent,
-    canActivate: [AuthGuard],
-  },
-  {
-    path: "medical-record/add",
-    component: AddEditComponent,
+    component: MedicalRecordAddEditComponent,
     canActivate: [AuthGuard],
   },
   {

@@ -1,40 +1,40 @@
-
 <div class="SbMargin row align-items-md-stretch">
   <div class="col-md-3 align-items-center">
     <app-sidebar></app-sidebar>
   </div>
   <div class="col-md-6 align-items-center">
-    <br>
+    <br />
     <div class="h-500 p-5 bg-light border rounded-4">
       <h1 class="headTitle text-center">Account Information</h1>
+      <br />
       <form
         novalidate
         #form="ngForm"
-        *ngIf="this.repository.profileReady && userProfile"
+        *ngIf="profileReady && userProfile"
         (ngSubmit)="save(form)"
       >
         <div class="row">
           <!-- begin first name -->
           <div class="col col-sm-6">
             <div class="form-group mb-2">
-              <label for="firstName" class="form-label"> First Name </label>
-                <input
-                  type="text"
-                  class="form-control"
-                  [disabled]="!isEditing"
-                  id="firstName"
-                  name="firstName"
-                  required
-                  placeholder="e.g. Richard"
-                  [(ngModel)]="user.firstName"
-                />
+              <label for="firstName" class="form-label">First Name</label>
+              <input
+                type="text"
+                class="form-control"
+                [disabled]="!isEditing"
+                id="firstName"
+                name="firstName"
+                required
+                placeholder="e.g. Lukas"
+                [(ngModel)]="user.firstName"
+              />
             </div>
           </div>
           <!-- end first name -->
           <!-- begin last name -->
           <div class="col col-sm-6">
             <div class="form-group mb-2">
-              <label for="lastName" class="form-label"> Last Name </label>
+              <label for="lastName" class="form-label">Last Name</label>
               <input
                 type="text"
                 class="form-control"
@@ -42,16 +42,16 @@
                 id="lastName"
                 name="lastName"
                 required
-                placeholder="e.g. Gomez"
+                placeholder="e.g. Hoang"
                 [(ngModel)]="user.lastName"
               />
             </div>
           </div>
           <!-- end last name -->
           <!-- begin email -->
-          <div class="col-12">
+          <div class="col col-sm-6">
             <div class="form-group mb-2">
-              <label for="email" class="form-label"> Email </label>
+              <label for="email" class="form-label">Email</label>
               <input
                 type="email"
                 class="form-control"
@@ -65,10 +65,27 @@
             </div>
           </div>
           <!-- end email -->
-          <!-- begin username -->
-          <div class="col-12">
+          <!-- begin phone number -->
+          <div class="col col-sm-6">
             <div class="form-group mb-2">
-              <label for="username" class="form-label">Username:</label>
+              <label for="phone" class="form-label">Phone Number</label>
+              <input
+                type="tel"
+                class="form-control"
+                [disabled]="!isEditing"
+                id="phone"
+                name="phone"
+                required
+                placeholder="6471234567"
+                [(ngModel)]="user.phoneNumber"
+              />
+            </div>
+          </div>
+          <!-- end phone number -->
+          <!-- begin username -->
+          <div class="col col-sm-6">
+            <div class="form-group mb-2">
+              <label for="username" class="form-label">Username</label>
               <input
                 type="text"
                 class="form-control"
@@ -76,14 +93,14 @@
                 id="username"
                 name="username"
                 required
-                placeholder="e.g. lucas1, richard3"
+                placeholder="e.g. lukas"
                 [(ngModel)]="user.username"
               />
             </div>
           </div>
           <!-- end username -->
           <!-- begin password -->
-          <!-- <div class="col-12">
+          <div class="col col-sm-6">
             <div class="form-group">
               <label for="password" class="form-label"> Password </label>
               <div class="input-group mb-3">
@@ -94,10 +111,13 @@
                   id="password"
                   name="password"
                   required
-                  placeholder="e.g. abDe12%3"
                   [(ngModel)]="user.password"
                 />
-                <span class="input-group-text" (click)="togglePassword()">
+                <span
+                  *ngIf="isEditing"
+                  class="input-group-text"
+                  (click)="togglePassword()"
+                >
                   <i
                     class="fas"
                     [class.fa-eye]="!isPasswordVisible"
@@ -106,7 +126,7 @@
                 </span>
               </div>
             </div>
-          </div> -->
+          </div>
           <!-- end password -->
           <!-- begin form controls -->
           <div class="col-12">
@@ -132,7 +152,7 @@
               (click)="toggleEditMode()"
             >
               <i class="fa-solid fa-rotate-left"></i>
-              Cancel
+              Back
             </button>
           </div>
           <!-- end form controls -->
@@ -141,7 +161,5 @@
       <!-- end profile form -->
     </div>
   </div>
-  <div class="col-md-3 align-items-center">
-
-  </div>
+  <div class="col-md-3 align-items-center"></div>
 </div>

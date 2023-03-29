@@ -1,41 +1,32 @@
 <div class="SbMargin row align-items-md-stretch">
   <div class="col-md-3 align-items-center">
-    <div *ngIf="isMedicalRecord">
-      <app-sidebar></app-sidebar>
-    </div>
+    <app-sidebar></app-sidebar>
   </div>
   <div class="col-md-6 align-items-center">
     <br />
     <div class="h-300 p-5 bg-light border rounded-4">
-      <div *ngIf="isMedicalRecord">
-        <h1 class="headTitle text-center">Medical Record</h1>
-      </div>
+      <h1 class="headTitle text-center">{{ title }}</h1>
 
-      <div *ngIf="!isMedicalRecord">
-        <h3 class="headTitleSP text-right">Patient Name: {{ patientName }}</h3>
-        <br />
-      </div>
+      <loading-placeholder *ngIf="!this.isReady"></loading-placeholder>
+
       <!-- begin medical record -->
       <div class="table-responsive">
         <table class="table table-bordered table-hover">
           <thead>
             <tr>
-              <th class="text-center"></th>
-              <th class="text-center">Diagnostic | Findings</th>
+              <th class="text-center">#</th>
+              <th class="text-center">Diagnostic</th>
               <th class="text-center">Medication</th>
               <th class="text-center">Recorded Date</th>
-              <!-- <th class="text-center">Physician</th> -->
               <th class="text-center" colspan="3">Actions</th>
             </tr>
           </thead>
-          <tbody *ngIf="medicalRecord.length > 0">
-            <tr *ngFor="let item of medicalRecord; let i = index">
+          <tbody *ngIf="medicalRecordList.length > 0">
+            <tr *ngFor="let item of medicalRecordList; let i = index">
               <td class="text-center">#{{ i + 1 }}</td>
               <td class="text-center">{{ item.diagnostic }}</td>
               <td class="text-center">{{ item.medicine }}</td>
-              <td class="text-center">{{ item.createdAt }}</td>
-              <!-- <td class="text-center">{{item.doctorName}}</td> -->
-
+              <td class="text-center">{{ toLocaleString(item.createdAt) }}</td>
               <td class="text-center">
                 <button
                   [routerLink]="['/medical-record', 'edit', item._id]"
@@ -56,7 +47,7 @@
           </tbody>
 
           <!-- begin empty table -->
-          <tbody *ngIf="medicalRecord.length === 0">
+          <tbody *ngIf="medicalRecordList.length === 0">
             <tr>
               <td class="text-center" colspan="6">No records to display :(</td>
             </tr>

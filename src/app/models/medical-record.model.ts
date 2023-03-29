@@ -1,10 +1,10 @@
 export class MedicalRecord {
   constructor(
     public _id?: string,
-    public findings?: string,
+    public diagnostic?: string,
     public medicine?: string,
-    public recordedDate?: string,
-    public doctorName?: string,
-    public owner?: any, // TODO: assign proper type
-  ) { }
+    public patient?: any, // TODO: assign proper type
+    public doctor?: any, // TODO: assign proper type
+    public createdAt?: string
+  ) {}
 }
