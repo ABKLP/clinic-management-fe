@@ -8,15 +8,23 @@ export class MedicalRecordRepository {
   private _medicalRecord: MedicalRecord[] = [];
   listReady: boolean = false;
 
-  constructor(private dataSource: RestDataSource) { }
+  constructor(private dataSource: RestDataSource) {}
 
   getMedicalRecord(): MedicalRecord[] {
     return this._medicalRecord;
   }
 
-  async setMedicalRecord() {
+  async setMedicalRecord(query?: string) {
     this.listReady = false;
-    this._medicalRecord = await this.dataSource.getMedicalRecord().toPromise();
+    if (query) {
+      this._medicalRecord = await this.dataSource
+        .searchMedicalRecord(query)
+        .toPromise();
+    } else {
+      this._medicalRecord = await this.dataSource
+        .getMedicalRecord()
+        .toPromise();
+    }
     this.listReady = true;
   }
 
@@ -27,7 +35,9 @@ export class MedicalRecordRepository {
   async saveMedicalRecord(item: MedicalRecord) {
     // If it does not have id, then create a new item
     if (item._id === null || item._id === "" || item._id === undefined) {
-      const response = await this.dataSource.insertMedicalRecord(item).toPromise();
+      const response = await this.dataSource
+        .insertMedicalRecord(item)
+        .toPromise();
       if (response._id) {
         this._medicalRecord.push(response);
       } else {
@@ -35,7 +45,9 @@ export class MedicalRecordRepository {
         alert(`Error: ${error.message}`);
       }
     } else {
-      const response: ResponseModel = await this.dataSource.updateMedicalRecord(item).toPromise();
+      const response: ResponseModel = await this.dataSource
+        .updateMedicalRecord(item)
+        .toPromise();
       if (response.success === true) {
         this._medicalRecord.splice(
           this._medicalRecord.findIndex((trn) => trn._id === item._id),
