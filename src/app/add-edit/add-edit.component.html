@@ -15,18 +15,18 @@
           <input type="hidden" name="id" [(ngModel)]="_medicalRecord._id" />
         </div>
 
-        <!-- 00 begin findings | diagnostic field -->
+        <!-- 00 begin diagnostic | diagnostic field -->
         <div class="form-group">
-          <label for="findingsTextField"
+          <label for="diagnosticTextField"
             ><strong>Findings | Diagnostic</strong></label
           >
           <textarea
             type="text"
             class="form-control"
-            id="findingsTextField"
+            id="diagnosticTextField"
             placeholder="Enter Patient Diagnotics & Findings e.g. Fever"
-            name="findings"
-            [(ngModel)]="_medicalRecord.findings"
+            name="diagnostic"
+            [(ngModel)]="_medicalRecord.diagnostic"
           >
           </textarea>
         </div>
@@ -38,7 +38,7 @@
           </div>
         </div>
         <!-- end validation -->
-        <!-- 00 end findings | diagnostic field -->
+        <!-- 00 end diagnostic | diagnostic field -->
         <br />
         <!-- 01 begin note for medication-->
         <div class="form-group">
@@ -66,15 +66,15 @@
 
         <!-- 02 recorded date field -->
         <div class="form-group">
-          <label for="recordedDateTextField"
+          <label for="createdAtTextField"
             ><strong>Recorded Date</strong>
           </label>
           <input
             type="date"
             class="form-control"
-            id="recordedDateTextField"
-            name="recordedDate"
-            [(ngModel)]="_medicalRecord.recordedDate"
+            id="createdAtTextField"
+            name="createdAt"
+            [(ngModel)]="_medicalRecord.createdAt"
             required
           />
         </div>
