@@ -1,7 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { NgForm } from "@angular/forms";
 import { ActivatedRoute, Router } from "@angular/router";
-import { ConnectableObservable } from "rxjs";
 import { Appointment } from "src/app/models/appointment.model";
 import { AppointmentRepository } from "src/app/models/appointment.repository";
 import { AuthService } from "src/app/models/auth.service";

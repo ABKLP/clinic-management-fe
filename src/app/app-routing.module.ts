@@ -10,7 +10,7 @@ import { DashboardComponent } from "./components/dashboard/dashboard.component";
 import { UserProfileComponent } from "./components/user/profile/profile.component";
 import { MedicalRecordComponent } from "./medical-record/medical-record.component";
 import { SearchPageComponent } from "./search-page/search-page.component";
-import { AddEditComponent } from "./add-edit/add-edit.component";
+import { MedicalRecordAddEditComponent } from "./components/medical-record/add-edit/add-edit.component";
 import { AppointmentListComponent } from "./components/appointment/list/list.component";
 import { AppointmentAddEditComponent } from "./components/appointment/add-edit/add-edit.component";
 import { AppointmentShowComponent } from "./components/appointment/show/show.component";
@@ -35,18 +35,18 @@ const routesDefaultLayout: Routes = [
     canActivate: [AuthGuard, AdminPermissionGuard],
   },
   {
-    path: "medical-record/:mode/:id",
-    component: AddEditComponent,
-    canActivate: [AuthGuard],
-  },
-  {
     path: "medical-record/list",
     component: MedicalRecordComponent,
     canActivate: [AuthGuard],
   },
   {
     path: "medical-record/:mode",
-    component: AddEditComponent,
+    component: MedicalRecordAddEditComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: "medical-record/:mode/:id",
+    component: MedicalRecordAddEditComponent,
     canActivate: [AuthGuard],
   },
   {

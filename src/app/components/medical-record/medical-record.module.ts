@@ -6,6 +6,7 @@ import { LayoutModule } from "../layout/layout.module";
 import { SharedModule } from "../shared/shared.module";
 import { MedicalRecordComponent } from "src/app/medical-record/medical-record.component";
 import { SearchPageComponent } from "src/app/search-page/search-page.component";
+import { MedicalRecordAddEditComponent } from "./add-edit/add-edit.component";
 import { AddEditComponent } from "src/app/add-edit/add-edit.component";
 
 @NgModule({
@@ -16,7 +17,17 @@ import { AddEditComponent } from "src/app/add-edit/add-edit.component";
     SharedModule,
     LayoutModule,
   ],
-  declarations: [MedicalRecordComponent, SearchPageComponent, AddEditComponent],
-  exports: [MedicalRecordComponent, SearchPageComponent, AddEditComponent],
+  declarations: [
+    MedicalRecordComponent,
+    SearchPageComponent,
+    MedicalRecordAddEditComponent,
+    AddEditComponent,
+  ],
+  exports: [
+    MedicalRecordComponent,
+    SearchPageComponent,
+    MedicalRecordAddEditComponent,
+    AddEditComponent,
+  ],
 })
 export class MedicalRecordModule {}
