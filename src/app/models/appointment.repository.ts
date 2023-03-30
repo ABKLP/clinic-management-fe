@@ -54,6 +54,22 @@ export class AppointmentRepository {
     return item._id;
   }
 
+  async cancelAppointment(item: Appointment) {
+    const response: ResponseModel = await this.dataSource
+      .cancelAppointment(item)
+      .toPromise();
+    if (response.success) {
+      item.status = "cancelled";
+      this._appointments.splice(
+        this._appointments.findIndex((appt) => appt._id === item._id),
+        1,
+        item
+      );
+    } else {
+      alert(`Error: ${response.message}`);
+    }
+  }
+
   async deleteAppointment(id: string) {
     const response: ResponseModel = await this.dataSource
       .deleteAppointment(id)

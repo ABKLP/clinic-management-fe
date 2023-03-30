@@ -28,7 +28,7 @@
             <th class="text-center">Name</th>
             <th class="text-center">Date & Time</th>
             <th class="text-center">Status</th>
-            <th class="text-center" colspan="3">Actions</th>
+            <th class="text-center" colspan="4">Actions</th>
           </tr>
         </thead>
 
@@ -52,6 +52,14 @@
                 class="btn bg-primary btn-primary btn-sm"
               >
                 <i class="fas fa-pencil-alt"></i>
+              </button>
+            </td>
+            <td class="text-center">
+              <button
+                (click)="cancelMethod(item)"
+                class="btn bg-warning btn-warning btn-sm"
+              >
+                <i class="fa-solid fa-handshake-slash"></i>
               </button>
             </td>
             <td class="text-center">

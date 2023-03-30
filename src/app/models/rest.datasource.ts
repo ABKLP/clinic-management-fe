@@ -66,6 +66,24 @@ export class RestDataSource {
       );
   }
 
+  cancelAppointment(item: Appointment): Observable<ResponseModel> {
+    return this.http
+      .put<ResponseModel>(
+        `${this.baseUrl}/appointments/cancel/${item._id}`,
+        item,
+        this.provideToken()
+      )
+      .pipe(
+        map((response) => {
+          return response;
+        }),
+        catchError((error) => {
+          console.error(error.error);
+          return of(error.error);
+        })
+      );
+  }
+
   deleteAppointment(id: string): Observable<ResponseModel> {
     return this.http
       .delete<ResponseModel>(
