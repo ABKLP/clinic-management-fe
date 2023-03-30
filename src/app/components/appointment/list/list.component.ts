@@ -33,6 +33,12 @@ export class AppointmentListComponent implements OnInit {
     return toLocaleString(value);
   }
 
+  cancelMethod(item: Appointment) {
+    if (confirm("Are you sure?")) {
+      this.repository.cancelAppointment(item);
+    }
+  }
+
   deleteMethod(id: string) {
     if (confirm("Are you sure?")) {
       this.repository.deleteAppointment(id);
