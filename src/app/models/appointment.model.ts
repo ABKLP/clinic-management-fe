@@ -5,6 +5,6 @@ export class Appointment {
     public description?: string,
     public scheduledAt?: string,
     public status?: string,
-    public patient?: any
+    public owner?: any
   ) {}
 }

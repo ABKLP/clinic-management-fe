@@ -60,7 +60,7 @@ export class AppointmentAddEditComponent implements OnInit {
 
     if (this.isNameValid && this.isScheduledAtValid) {
       if (!this.editing) {
-        this.appointment.patient = this.auth.userId;
+        this.appointment.owner = this.auth.userId;
       }
 
       const id = await this.repository.saveAppointment(this.appointment);

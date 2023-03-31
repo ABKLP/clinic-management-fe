@@ -33,8 +33,7 @@ export class AppointmentShowComponent implements OnInit {
 
   get isOwner(): boolean {
     return (
-      this.auth.authenticated &&
-      this.auth.userId === this.appointment.patient?.id
+      this.auth.authenticated && this.auth.userId === this.appointment.owner?.id
     );
   }
 
