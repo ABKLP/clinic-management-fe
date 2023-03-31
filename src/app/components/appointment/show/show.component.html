@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row">
     <div class="col-12">
-      <h3 class="mt-2">{{ appointment.name }}</h3>
+      <h3 class="mt-2">{{ appointment.purpose }}</h3>
 
       <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
@@ -12,14 +12,14 @@
             <a [routerLink]="['/appointments', 'list']">Appointments</a>
           </li>
           <li class="breadcrumb-item active" aria-current="page">
-            {{ appointment.name }}
+            {{ appointment.purpose }}
           </li>
         </ol>
       </nav>
 
       <div class="card">
         <div class="card-header">
-          {{ appointment.name }}
+          {{ appointment.purpose }}
         </div>
         <div class="card-body">
           <p class="card-text">

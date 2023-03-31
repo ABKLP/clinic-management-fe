@@ -42,8 +42,8 @@ export class AppointmentAddEditComponent implements OnInit {
     }
   }
 
-  get isNameValid(): boolean {
-    return isNotEmpty(this.appointment.name);
+  get isPurposeValid(): boolean {
+    return isNotEmpty(this.appointment.purpose);
   }
 
   get isScheduledAtValid(): boolean {
@@ -58,7 +58,7 @@ export class AppointmentAddEditComponent implements OnInit {
   async save(form: NgForm) {
     this.isSubmitted = true;
 
-    if (this.isNameValid && this.isScheduledAtValid) {
+    if (this.isPurposeValid && this.isScheduledAtValid) {
       if (!this.editing) {
         this.appointment.owner = this.auth.userId;
       }
