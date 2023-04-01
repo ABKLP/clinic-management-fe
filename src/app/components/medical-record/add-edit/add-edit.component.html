@@ -88,7 +88,7 @@
         <!-- end validation -->
         <!-- 02 END recorded date field -->
 
-        <br />
+        <!-- <br /> -->
         <!-- <div class="form-group">
           <label for="doctor"><strong>Physician</strong></label>
           <select
@@ -117,17 +117,19 @@
         </div> -->
         <!-- end validation -->
 
-        <br />
+        <!-- <br /> -->
         <!-- begin actions -->
-        <button class="btn btn-primary">
-          <i class="fa-solid fa-pen-to-square"></i>
-          Submit
-        </button>
-        <span>&nbsp;</span>
-        <a [routerLink]="['/medical-record', 'list']" class="btn btn-secondary">
-          <i class="fa-solid fa-rotate-left"></i>
-          Back
-        </a>
+        <div class="d-flex justify-content-end">
+          <button class="btn btn-primary">
+            <i class="fa-solid fa-pen-to-square"></i>
+            Submit
+          </button>
+          <span>&nbsp;</span>
+          <a [routerLink]="['/medical-record', 'list']" class="btn btn-secondary">
+            <i class="fa-solid fa-rotate-left"></i>
+            Back
+          </a>
+        </div>
         <!-- end actions -->
 
         <!-- end description -->
