@@ -1,4 +1,5 @@
 import { Injectable } from "@angular/core";
+import { lastValueFrom } from "rxjs";
 import { ResponseModel } from "./response.model";
 import { RestDataSource } from "./rest.datasource";
 import { MedicalRecord as MedicalRecord } from "./medical-record.model";
@@ -14,17 +15,23 @@ export class MedicalRecordRepository {
     return this._medicalRecord;
   }
 
-  async setMedicalRecord(filter?: string, query?: string) {
+  setEmptyMedicalRecord() {
+    this._medicalRecord = [];
+  }
+
+  async setSearchedMedicalRecord(filter?: string, query?: string) {
     this.listReady = false;
-    if (query) {
-      this._medicalRecord = await this.dataSource
-        .searchMedicalRecord(filter, query)
-        .toPromise();
-    } else {
-      this._medicalRecord = await this.dataSource
-        .getMedicalRecord()
-        .toPromise();
-    }
+    this._medicalRecord = await lastValueFrom(
+      this.dataSource.searchMedicalRecord(filter, query)
+    );
+    this.listReady = true;
+  }
+
+  async setMedicalRecord(userId?: string) {
+    this.listReady = false;
+    this._medicalRecord = await lastValueFrom(
+      this.dataSource.getMedicalRecord(userId)
+    );
     this.listReady = true;
   }
 

@@ -169,21 +169,31 @@ export class RestDataSource {
   }
 
   // Medical Record APIs
-  getMedicalRecord(): Observable<MedicalRecord[]> {
-    return this.http.get<MedicalRecord[]>(
-      `${this.baseUrl}/medical-record/list`,
-      this.provideToken()
-    );
+  getMedicalRecord(userId?: string): Observable<MedicalRecord[]> {
+    const url = `${this.baseUrl}/medical-record/list`;
+    let params = new HttpParams();
+    if (userId) {
+      params = params.set("userId", userId);
+    }
+    return this.http.get<MedicalRecord[]>(url, {
+      params: params,
+      ...this.provideToken(),
+    });
   }
 
   searchMedicalRecord(
     filter: string,
     query: string
   ): Observable<MedicalRecord[]> {
-    return this.http.get<MedicalRecord[]>(
-      `${this.baseUrl}/medical-record/search?${filter}=${query}`,
-      this.provideToken()
-    );
+    const url = `${this.baseUrl}/medical-record/search`;
+    let params = new HttpParams();
+    if (filter && query) {
+      params = params.set(filter, query);
+    }
+    return this.http.get<MedicalRecord[]>(url, {
+      params: params,
+      ...this.provideToken(),
+    });
   }
 
   insertMedicalRecord(item: MedicalRecord): Observable<MedicalRecord> {
