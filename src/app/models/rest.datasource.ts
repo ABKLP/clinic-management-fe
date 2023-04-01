@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { HttpClient, HttpHeaders, HttpParams } from "@angular/common/http";
 import { Observable, of } from "rxjs";
 import { catchError, map } from "rxjs/operators";
 import { User } from "./user.model";
@@ -26,8 +26,13 @@ export class RestDataSource {
   }
 
   // Appointment APIs
-  getAppointmentList(): Observable<Appointment[]> {
-    return this.http.get<Appointment[]>(`${this.baseUrl}/appointments/list`);
+  getAppointmentList(userId?: string): Observable<Appointment[]> {
+    const url = `${this.baseUrl}/appointments/list`;
+    let params = new HttpParams();
+    if (userId) {
+      params = params.set("userId", userId);
+    }
+    return this.http.get<Appointment[]>(url, { params: params });
   }
 
   insertAppointment(item: Appointment): Observable<Appointment> {
