@@ -18,7 +18,9 @@ export class MedicalRecordListComponent implements OnInit {
   ) {}
 
   async ngOnInit(): Promise<void> {
-    await this.repository.setMedicalRecord();
+    console.log("sessionUserID = " + sessionStorage.getItem("userId")),
+    console.log("authUserID = " + this.auth.userId);
+    await this.repository.setMedicalRecord('id', this.auth.userId);
   }
 
   get medicalRecordList(): MedicalRecord[] {
@@ -37,5 +39,9 @@ export class MedicalRecordListComponent implements OnInit {
     if (confirm("Are you sure?")) {
       this.repository.deleteMedicalRecord(id);
     }
+  }
+
+  get isPatient() : boolean{
+    return sessionStorage.getItem("userRole") === "patient" ? true : false;
   }
 }

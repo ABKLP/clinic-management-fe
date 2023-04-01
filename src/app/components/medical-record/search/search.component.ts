@@ -28,6 +28,7 @@ export class MedicalRecordSearchComponent implements OnInit {
   async submit(form: NgForm): Promise<void> {
     this.isSubmitted = true;
     if (!form.valid) return;
+    console.log("filter = " + this.searchFilter)
     await this.repository.setMedicalRecord(this.searchFilter, this.searchQuery);
   }
 
