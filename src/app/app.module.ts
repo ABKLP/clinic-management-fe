@@ -17,6 +17,7 @@ import { AdminPermissionGuard } from "./guards/admin-permission.guard";
 import { EmployeePermissionGuard } from "./guards/employee-permission.guard";
 import { DashboardModule } from "./components/dashboard/dashboard.module";
 import { MedicalRecordModule } from "./components/medical-record/medical-record.module";
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [AppComponent],
@@ -33,6 +34,7 @@ import { MedicalRecordModule } from "./components/medical-record/medical-record.
     LayoutModule,
     ModelModule,
     SharedModule,
+    NgbModule,
   ],
   providers: [AuthGuard, AdminPermissionGuard, EmployeePermissionGuard],
   bootstrap: [AppComponent],
