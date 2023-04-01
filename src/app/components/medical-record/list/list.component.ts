@@ -13,12 +13,12 @@ export class MedicalRecordListComponent implements OnInit {
   title = "Medical Record List";
 
   constructor(
-    private repository: MedicalRecordRepository,
-    private auth: AuthService
+    private auth: AuthService,
+    private repository: MedicalRecordRepository
   ) {}
 
   async ngOnInit(): Promise<void> {
-    await this.repository.setMedicalRecord();
+    await this.repository.setMedicalRecord(this.auth.userId);
   }
 
   get medicalRecordList(): MedicalRecord[] {
