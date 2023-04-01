@@ -28,12 +28,15 @@ export class AuthService {
   }
 
   get userRole(): string | null {
-    return sessionStorage.getItem("userRole");
+    const {
+      payload: { role },
+    } = JSON.parse(window.atob(this.dataSource.authToken.split(".")[1]));
+    return role;
   }
 
-  set userRole(value: string | null) {
-    sessionStorage.setItem("userRole", value);
-  }
+  // set userRole(value: string | null) {
+  //   sessionStorage.setItem("userRole", value);
+  // }
 
   authenticate(username: string, password: string): Observable<ResponseModel> {
     return this.dataSource.authenticate(username, password).pipe(
@@ -51,7 +54,7 @@ export class AuthService {
   getUser(): void {
     this.dataSource.getUser().subscribe((response) => {
       this.userId = response._id;
-      this.userRole = response.role;
+      // this.userRole = response.role;
     });
   }
 
