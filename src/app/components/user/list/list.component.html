@@ -1,14 +1,7 @@
 <div class="container">
   <div class="row">
     <div class="col-12">
-      <!-- begin breadcrumb -->
-      <nav aria-label="breadcrumb">
-        <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a [routerLink]="'/'">Home</a></li>
-          <li class="breadcrumb-item active" aria-current="page">Users</li>
-        </ol>
-      </nav>
-      <!-- end breadcrumb -->
+      <h3>Users</h3>
 
       <!-- begin loading -->
       <loading-placeholder *ngIf="!this.isReady"></loading-placeholder>
@@ -48,29 +41,13 @@
           </tbody>
           <!-- end empty table -->
         </table>
-
-        <nav aria-label="list-pagination">
-          <ul class="pagination justify-content-center">
-            <li class="page-item" [class.disabled]="currentPage === 1">
-              <a
-                class="page-link"
-                aria-label="previous"
-                (click)="loadPrevPage()"
-              >
-                <span aria-hidden="true">&laquo;</span>
-              </a>
-            </li>
-            <li class="page-item">
-              <a class="page-link">{{ currentPage }}</a>
-            </li>
-            <li class="page-item" [class.disabled]="currentPage === totalPage">
-              <a class="page-link" aria-label="next" (click)="loadNextPage()">
-                <span>&raquo;</span>
-              </a>
-            </li>
-          </ul>
-        </nav>
       </div>
+
+      <app-pagination
+        [currentPage]="currentPage"
+        [totalPage]="totalPage"
+        (pageChanged)="onPageChanged($event)"
+      ></app-pagination>
       <!-- end list user -->
     </div>
   </div>
