@@ -18,7 +18,9 @@ export class MedicalRecordSearchComponent implements OnInit {
 
   constructor(private repository: MedicalRecordRepository) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.repository.setEmptyMedicalRecord();
+  }
 
   //CHECK SEARCH FIELD IF EMPTY
   get isSearchValid(): boolean {
@@ -28,7 +30,10 @@ export class MedicalRecordSearchComponent implements OnInit {
   async submit(form: NgForm): Promise<void> {
     this.isSubmitted = true;
     if (!form.valid) return;
-    await this.repository.setMedicalRecord(this.searchFilter, this.searchQuery);
+    await this.repository.setSearchedMedicalRecord(
+      this.searchFilter,
+      this.searchQuery
+    );
   }
 
   get medicalRecord(): MedicalRecord[] {
