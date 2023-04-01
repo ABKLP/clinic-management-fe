@@ -1,4 +1,5 @@
 import { Injectable } from "@angular/core";
+import { lastValueFrom } from "rxjs";
 import { Appointment } from "./appointment.model";
 import { ResponseModel } from "./response.model";
 import { RestDataSource } from "./rest.datasource";
@@ -14,9 +15,11 @@ export class AppointmentRepository {
     return this._appointments;
   }
 
-  async setAppointments() {
+  async setAppointments(userId?: string) {
     this.listReady = false;
-    this._appointments = await this.dataSource.getAppointmentList().toPromise();
+    this._appointments = await lastValueFrom(
+      this.dataSource.getAppointmentList(userId)
+    );
     this.listReady = true;
   }
 

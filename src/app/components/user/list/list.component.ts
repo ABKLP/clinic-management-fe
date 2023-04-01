@@ -1,6 +1,4 @@
 import { Component, OnInit } from "@angular/core";
-import { Router } from "@angular/router";
-import { AuthService } from "src/app/models/auth.service";
 import { User } from "src/app/models/user.model";
 import { UserRepository } from "src/app/models/user.repository";
 import { toCapitalize } from "src/app/utils";
@@ -11,13 +9,9 @@ import { toCapitalize } from "src/app/utils";
   styleUrls: ["./list.component.scss"],
 })
 export class UserListComponent implements OnInit {
-  title = "User List";
+  title: string = "User List";
 
-  constructor(
-    private repository: UserRepository,
-    private auth: AuthService,
-    private router: Router
-  ) {}
+  constructor(private repository: UserRepository) {}
 
   async ngOnInit(): Promise<void> {
     await this.repository.setUsers();
@@ -39,10 +33,6 @@ export class UserListComponent implements OnInit {
     this.repository.page = page;
   }
 
-  get nextPage(): number {
-    return this.repository.nextPage;
-  }
-
   get totalPage(): number {
     return this.repository.totalPage;
   }
@@ -51,19 +41,8 @@ export class UserListComponent implements OnInit {
     return toCapitalize(value);
   }
 
-  async loadNextPage() {
-    console.log("Next");
-    if (this.currentPage < this.nextPage) {
-      this.currentPage += 1;
-      await this.repository.setUsers();
-    }
-  }
-
-  async loadPrevPage() {
-    console.log("Previous");
-    if (this.currentPage > 1) {
-      this.currentPage -= 1;
-      await this.repository.setUsers();
-    }
+  async onPageChanged(page: number) {
+    this.currentPage = page;
+    await this.repository.setUsers();
   }
 }

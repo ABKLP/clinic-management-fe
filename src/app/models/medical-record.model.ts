@@ -3,8 +3,7 @@ export class MedicalRecord {
     public _id?: string,
     public diagnostic?: string,
     public medicine?: string,
-    public patient?: any, // TODO: assign proper type
-    public doctor?: any, // TODO: assign proper type
+    public owner?: any, // TODO: assign proper type
     public createdAt?: string
   ) {}
 }

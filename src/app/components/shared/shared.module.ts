@@ -4,10 +4,21 @@ import { RouterModule } from "@angular/router";
 
 import { FeedbackComponent } from "./feedback";
 import { LoadingComponent, NoRecordComponent } from "./placeholder";
+import { PaginationComponent } from "./pagination";
 
 @NgModule({
   imports: [CommonModule, RouterModule],
-  declarations: [FeedbackComponent, NoRecordComponent, LoadingComponent],
-  exports: [FeedbackComponent, NoRecordComponent, LoadingComponent],
+  declarations: [
+    FeedbackComponent,
+    NoRecordComponent,
+    LoadingComponent,
+    PaginationComponent,
+  ],
+  exports: [
+    FeedbackComponent,
+    NoRecordComponent,
+    LoadingComponent,
+    PaginationComponent,
+  ],
 })
 export class SharedModule {}

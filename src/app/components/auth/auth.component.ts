@@ -26,6 +26,13 @@ export class AuthComponent implements OnInit {
     this.isPasswordVisible = !this.isPasswordVisible;
   }
 
+  get defaultRedirectUrl(): string[] {
+    console.log(this.auth.userRole);
+    return this.auth.userRole == "patient"
+      ? ["user", "profile"]
+      : ["employee", "profile"];
+  }
+
   authenticate(form: NgForm) {
     if (form.valid) {
       // perform authentication
@@ -33,7 +40,7 @@ export class AuthComponent implements OnInit {
         .authenticate(this.username, this.password)
         .subscribe((response) => {
           if (response.success) {
-            this.router.navigateByUrl(this.auth.redirectUrl || "");
+            this.router.navigate(this.defaultRedirectUrl);
           }
           this.message = response.message;
         });

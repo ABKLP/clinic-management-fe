@@ -16,7 +16,7 @@
           role="button"
           data-bs-toggle="dropdown"
         >
-          <i class="fa-solid fa-chess-clock-flip"></i> Appointment
+          Schedule
         </a>
         <ng-template #deactiveList>
           <a
@@ -25,19 +25,17 @@
             role="button"
             data-bs-toggle="dropdown"
           >
-            <i class="fa-solid fa-chess-clock-flip"></i> Appointment
+            Schedule
           </a>
         </ng-template>
         <ul class="dropdown-menu">
           <li>
             <a class="dropdown-item" [routerLink]="['/appointments', 'list']">
-              <i class="fa-regular fa-rectangle-list"></i>
               Appointment List
             </a>
           </li>
           <li>
             <a class="dropdown-item" [routerLink]="['/appointments', 'add']">
-              <i class="fa-solid fa-square-plus"></i>
               Create Appointment
             </a>
           </li>

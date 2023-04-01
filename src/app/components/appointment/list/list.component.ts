@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { Appointment } from "src/app/models/appointment.model";
 import { AppointmentRepository } from "src/app/models/appointment.repository";
+import { AuthService } from "src/app/models/auth.service";
 import { toCapitalize, toLocaleString } from "src/app/utils";
 
 @Component({
@@ -11,10 +12,13 @@ import { toCapitalize, toLocaleString } from "src/app/utils";
 export class AppointmentListComponent implements OnInit {
   title = "Appointment List";
 
-  constructor(private repository: AppointmentRepository) {}
+  constructor(
+    private auth: AuthService,
+    private repository: AppointmentRepository
+  ) {}
 
   async ngOnInit(): Promise<void> {
-    await this.repository.setAppointments();
+    await this.repository.setAppointments(this.auth.userId);
   }
 
   get appointmentList(): Appointment[] {

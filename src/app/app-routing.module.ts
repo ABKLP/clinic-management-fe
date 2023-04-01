@@ -26,6 +26,11 @@ const routesDefaultLayout: Routes = [
     canActivate: [AuthGuard, AdminPermissionGuard],
   },
   {
+    path: "employee/profile",
+    component: UserProfileComponent,
+    canActivate: [AuthGuard, EmployeePermissionGuard],
+  },
+  {
     path: "user/profile",
     component: UserProfileComponent,
     canActivate: [AuthGuard],

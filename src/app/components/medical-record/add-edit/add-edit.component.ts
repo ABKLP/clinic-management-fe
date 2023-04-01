@@ -55,7 +55,8 @@ export class MedicalRecordAddEditComponent implements OnInit {
     // TODO: add validations to the form
     if (this.isFindingsValid && this.isMedicationValid) {
       if (!this.editing) {
-        this._medicalRecord.doctor = this.auth.userId;
+        // TODO: Assign ID of patient
+        // this._medicalRecord.owner = this.auth.userId;
       }
 
       await this.repository.saveMedicalRecord(this._medicalRecord);

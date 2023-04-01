@@ -56,7 +56,8 @@ export class AddEditComponent implements OnInit {
     //if (this.isDoctorValid && this.isRecordDateValid) {
     if (this.isRecordDateValid) {
       if (!this.editing) {
-        this._medicalRecord.patient = this.auth.userId;
+        // TODO: Assign ID of patient
+        // this._medicalRecord.owner = this.auth.userId;
       }
 
       await this.repository.saveMedicalRecord(this._medicalRecord);

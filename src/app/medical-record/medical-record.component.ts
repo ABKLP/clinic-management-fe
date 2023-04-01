@@ -60,11 +60,11 @@ export class MedicalRecordComponent implements OnInit {
     if (this.input2 === true) {
       return this.repository
         .getMedicalRecord()
-        .filter((t) => t.patient.id === this.filterID);
+        .filter((t) => t.owner.id === this.filterID);
     } else {
       return this.repository
         .getMedicalRecord()
-        .filter((t) => t.patient.id === this.auth.userId);
+        .filter((t) => t.owner.id === this.auth.userId);
     }
   }
 
