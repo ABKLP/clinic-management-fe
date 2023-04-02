@@ -4,7 +4,8 @@
   <div class="SbMargin d-flex flex-column flex-shrink-0 p-3 text-white bg-info border rounded-2" style="width: 280px;">
         <a  class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
           <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"/></svg>
-          <span class="fs-4">User Profile</span>
+          <span class="fs-4" *ngIf="this.isPatient">User Profile</span>
+          <span class="fs-4" *ngIf="!this.isPatient">Employee Profile</span>
         </a>
         <hr>
         <ul class="nav nav-pills flex-column mb-auto">
@@ -19,7 +20,7 @@
                 {{sideTitles[0]}}
               </a>
           </li>
-          <li>
+          <li *ngIf="this.isPatient">
             <a class="nav-link text-white"
               [class.active]="title == 'Medical Record'"
               [routerLink]="'/medical-record/list'"
@@ -29,27 +30,39 @@
               {{sideTitles[1]}}
             </a>
           </li>
-          <li>
-            <!--if not edit mode see this -->
-            <a *ngIf="!editing" class="nav-link text-white"
-              [class.active]="title == 'Add Medical Record'"
-              [routerLink]="'/medical-record/add'"
-              routerLinkActive="active"
-            >
-              <svg class="bi me-2" width="16" height="16"><use xlink:href="#speedometer2"/></svg>
-              {{sideTitles[2]}}
-            </a>
-
-            <!--if edit mode see this -->
-            <a *ngIf="editing" class="nav-link text-white"
-              [class.active]="title == 'Edit Medical Record'"
-              [routerLink]="'/medical-record/edit'"
-              routerLinkActive="active"
-            >
-              <svg class="bi me-2" width="16" height="16"><use xlink:href="#speedometer2"/></svg>
-              Edit Medical Record
-            </a>
-          </li>
+          <div *ngIf="!this.isPatient">
+            <li>
+              <!--if not edit mode see this -->
+              <a *ngIf="!editing" class="nav-link text-white"
+                [class.active]="title == 'Add Medical Record'"
+                [routerLink]="'/medical-record/add'"
+                routerLinkActive="active"
+              >
+                <svg class="bi me-2" width="16" height="16"><use xlink:href="#speedometer2"/></svg>
+                {{sideTitles[2]}}
+              </a>
+  
+              <!--if edit mode see this -->
+              <a *ngIf="editing" class="nav-link text-white"
+                [class.active]="title == 'Edit Medical Record'"
+                [routerLink]="'/medical-record/edit'"
+                routerLinkActive="active"
+              >
+                <svg class="bi me-2" width="16" height="16"><use xlink:href="#speedometer2"/></svg>
+                Edit Medical Record
+              </a>
+            </li>
+            <li>
+              <a class="nav-link text-white"
+                [class.active]="title == 'Search Medical Record'"
+                [routerLink]="['/medical-record', 'search']"
+                routerLinkActive="active"
+              >
+                <svg class="bi me-2" width="16" height="16"><use xlink:href="#speedometer2"/></svg>
+                {{sideTitles[3]}}
+              </a>
+            </li>
+          </div>
         </ul>
         <hr>
   </div>

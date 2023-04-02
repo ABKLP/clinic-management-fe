@@ -40,6 +40,7 @@ export class MedicalRecordListComponent implements OnInit {
   }
 
   get isPatient() : boolean{
-    return sessionStorage.getItem("userRole") === "patient" ? true : false;
+    console.log("role =---- " + this.auth.userRole);
+    return this.auth.userRole === "patient" ? true : false;
   }
 }

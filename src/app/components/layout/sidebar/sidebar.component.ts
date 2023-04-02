@@ -13,25 +13,18 @@ export class SidebarComponent implements OnInit {
   @Input() title?: string;
   editing: boolean = false;
 
-  _medicalRecord: MedicalRecord = new MedicalRecord();
-
-  sideTitles = ["Account Information", "Medical Record", "Add Medical Record"];
+  sideTitles = ["Account Information", "Medical Record", "Add Medical Record","Search Medical Record"];
   constructor(
-    private repository: MedicalRecordRepository,
     public auth: AuthService,
     private activeRoute: ActivatedRoute
   ) {}
 
   async ngOnInit(): Promise<void> {
-    await this.repository.setMedicalRecord();
-
     this.editing = this.activeRoute.snapshot.params["mode"] === "edit";
+  }
 
-    // Edit
-    if (this.editing) {
-      this._medicalRecord = this.repository.getItem(
-        this.activeRoute.snapshot.params["id"]
-      );
-    }
+  get isPatient() : boolean{
+    console.log("role =---- " + this.auth.userRole);
+    return this.auth.userRole === "patient" ? true : false;
   }
 }
