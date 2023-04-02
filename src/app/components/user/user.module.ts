@@ -7,6 +7,7 @@ import { LayoutModule } from "../layout/layout.module";
 import { SharedModule } from "../shared/shared.module";
 import { UserListComponent } from "./list/list.component";
 import { UserProfileComponent } from "./profile/profile.component";
+import { UserAddEditComponent } from "./add-edit/add-edit.component";
 
 @NgModule({
   imports: [
@@ -17,7 +18,7 @@ import { UserProfileComponent } from "./profile/profile.component";
     LayoutModule,
     SharedModule,
   ],
-  declarations: [UserListComponent, UserProfileComponent],
-  exports: [UserListComponent],
+  declarations: [UserListComponent, UserProfileComponent, UserAddEditComponent],
+  exports: [UserListComponent, UserProfileComponent, UserAddEditComponent],
 })
 export class UserModule {}

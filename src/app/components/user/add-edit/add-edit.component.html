@@ -1,0 +1,157 @@
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <h3 class="mt-2">{{ editing ? "Edit" : "Create" }} User</h3>
+    </div>
+
+    <div class="form">
+      <!-- begin error message -->
+      <feedback-message [message]="message" [error]="true"></feedback-message>
+      <!-- end error message -->
+      <!-- begin registration form -->
+      <form novalidate #form="ngForm" (ngSubmit)="signup(form)">
+        <div class="row">
+          <!-- begin first name -->
+          <div class="col-6">
+            <div class="form-group mb-2">
+              <label for="firstName" class="form-label"> First Name </label>
+              <input
+                type="text"
+                class="form-control"
+                id="firstName"
+                name="firstName"
+                required
+                placeholder="First Name"
+                [(ngModel)]="user.firstName"
+              />
+            </div>
+          </div>
+          <!-- end first name -->
+          <!-- begin last name -->
+          <div class="col-6">
+            <div class="form-group mb-2">
+              <label for="lastName" class="form-label"> Last Name </label>
+              <input
+                type="text"
+                class="form-control"
+                id="lastName"
+                name="lastName"
+                required
+                placeholder="Last Name"
+                [(ngModel)]="user.lastName"
+              />
+            </div>
+          </div>
+          <!-- end last name -->
+          <!-- begin email -->
+          <div class="col-6">
+            <div class="form-group mb-2">
+              <label for="email" class="form-label"> Email </label>
+              <input
+                type="email"
+                class="form-control"
+                id="email"
+                name="email"
+                required
+                placeholder="e.g. behnaz@gmail.com"
+                [(ngModel)]="user.email"
+              />
+            </div>
+          </div>
+          <!-- end email -->
+          <!-- begin phone number -->
+          <div class="col-6">
+            <div class="form-group mb-2">
+              <label for="phone" class="form-label"> Phone Number </label>
+              <input
+                type="tel"
+                class="form-control"
+                id="phone"
+                name="phone"
+                placeholder="6471234567"
+                [(ngModel)]="user.phoneNumber"
+              />
+            </div>
+          </div>
+          <!-- end phone number -->
+          <!-- begin username -->
+          <div class="col-6">
+            <div class="form-group mb-2">
+              <label for="username" class="form-label"> Username </label>
+              <input
+                type="text"
+                class="form-control"
+                id="username"
+                name="username"
+                required
+                placeholder="e.g. lukas, peter"
+                [(ngModel)]="user.username"
+              />
+            </div>
+          </div>
+          <!-- end username -->
+          <!-- begin role -->
+          <div class="col-6">
+            <div class="mb-2">
+              <label for="role" class="form-label"> Role </label>
+              <select
+                class="form-select"
+                name="role"
+                id="role"
+                required
+                [(ngModel)]="user.role"
+              >
+                <option
+                  *ngFor="let role of userRoles | keyvalue"
+                  [value]="role.key"
+                >
+                  {{ role.value }}
+                </option>
+              </select>
+            </div>
+          </div>
+          <!-- end username -->
+          <!-- begin password -->
+          <div class="col-12">
+            <div class="form-group">
+              <label for="password" class="form-label"> Password </label>
+              <div class="input-group mb-3">
+                <input
+                  [type]="passwordType"
+                  class="form-control"
+                  id="password"
+                  name="password"
+                  required
+                  placeholder="e.g. abDe12%3"
+                  [(ngModel)]="user.password"
+                />
+                <span class="input-group-text" (click)="togglePassword()">
+                  <i
+                    class="fas"
+                    [class.fa-eye]="!isPasswordVisible"
+                    [class.fa-eye-slash]="isPasswordVisible"
+                  ></i>
+                </span>
+              </div>
+            </div>
+          </div>
+          <!-- end password -->
+          <!-- begin form controls -->
+          <div class="col-12">
+            <button class="btn btn-primary" type="submit">
+              <i class="fa-solid fa-pen-to-square"></i>
+              Submit
+            </button>
+            <span>&nbsp;</span>
+            <a [routerLink]="['/dashboard']" class="btn btn-secondary">
+              <i class="fa-solid fa-rotate-left"></i>
+              Back
+            </a>
+          </div>
+          <!-- end form controls -->
+        </div>
+      </form>
+      <!-- end registration form -->
+    </div>
+  </div>
+</div>
