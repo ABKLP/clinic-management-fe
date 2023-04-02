@@ -3,13 +3,17 @@ import { lastValueFrom } from "rxjs";
 import { ResponseModel } from "./response.model";
 import { RestDataSource } from "./rest.datasource";
 import { MedicalRecord as MedicalRecord } from "./medical-record.model";
+import { ToastService } from "../services/toast.service";
 
 @Injectable()
 export class MedicalRecordRepository {
   private _medicalRecord: MedicalRecord[] = [];
   listReady: boolean = false;
 
-  constructor(private dataSource: RestDataSource) {}
+  constructor(
+    private dataSource: RestDataSource,
+    private toast: ToastService
+  ) {}
 
   getMedicalRecord(): MedicalRecord[] {
     return this._medicalRecord;
@@ -49,7 +53,10 @@ export class MedicalRecordRepository {
         this._medicalRecord.push(response);
       } else {
         const error = response as ResponseModel;
-        alert(`Error: ${error.message}`);
+        this.toast.show(error.message, {
+          className: "bg-danger text-light",
+          delay: 15000,
+        });
       }
     } else {
       const response: ResponseModel = await this.dataSource
@@ -62,7 +69,10 @@ export class MedicalRecordRepository {
           item
         );
       } else {
-        alert(`Error: ${response.message}`);
+        this.toast.show(response.message, {
+          className: "bg-danger text-light",
+          delay: 15000,
+        });
       }
     }
   }
@@ -75,7 +85,10 @@ export class MedicalRecordRepository {
           1
         );
       } else {
-        alert(`Error: ${response.message}`);
+        this.toast.show(response.message, {
+          className: "bg-danger text-light",
+          delay: 15000,
+        });
       }
     });
   }

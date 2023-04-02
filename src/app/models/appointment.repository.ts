@@ -1,5 +1,6 @@
 import { Injectable } from "@angular/core";
 import { lastValueFrom } from "rxjs";
+import { ToastService } from "../services/toast.service";
 import { Appointment } from "./appointment.model";
 import { ResponseModel } from "./response.model";
 import { RestDataSource } from "./rest.datasource";
@@ -9,7 +10,10 @@ export class AppointmentRepository {
   private _appointments: Appointment[] = [];
   listReady: boolean = false;
 
-  constructor(private dataSource: RestDataSource) {}
+  constructor(
+    private dataSource: RestDataSource,
+    private toast: ToastService
+  ) {}
 
   getAppointments(): Appointment[] {
     return this._appointments;
@@ -37,7 +41,10 @@ export class AppointmentRepository {
         item._id = response._id;
       } else {
         const error = response as ResponseModel;
-        alert(`Error: ${error.message}`);
+        this.toast.show(error.message, {
+          className: "bg-danger text-light",
+          delay: 15000,
+        });
       }
     } else {
       const response: ResponseModel = await this.dataSource
@@ -50,7 +57,10 @@ export class AppointmentRepository {
           item
         );
       } else {
-        alert(`Error: ${response.message}`);
+        this.toast.show(response.message, {
+          className: "bg-danger text-light",
+          delay: 15000,
+        });
       }
     }
 
@@ -69,7 +79,10 @@ export class AppointmentRepository {
         item
       );
     } else {
-      alert(`Error: ${response.message}`);
+      this.toast.show(response.message, {
+        className: "bg-danger text-light",
+        delay: 15000,
+      });
     }
   }
 
@@ -83,7 +96,10 @@ export class AppointmentRepository {
         1
       );
     } else {
-      alert(`Error: ${response.message}`);
+      this.toast.show(response.message, {
+        className: "bg-danger text-light",
+        delay: 15000,
+      });
     }
   }
 }

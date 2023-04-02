@@ -1,5 +1,6 @@
 import { Injectable } from "@angular/core";
 import { lastValueFrom } from "rxjs";
+import { ToastService } from "../services/toast.service";
 import { ResponseModel } from "./response.model";
 import { RestDataSource } from "./rest.datasource";
 import { User } from "./user.model";
@@ -16,7 +17,10 @@ export class UserRepository {
   listReady: boolean = false;
   profileReady: boolean = false;
 
-  constructor(private dataSource: RestDataSource) {}
+  constructor(
+    private dataSource: RestDataSource,
+    private toast: ToastService
+  ) {}
 
   getUsers(): User[] {
     return this._users;
@@ -57,7 +61,10 @@ export class UserRepository {
       if (response.success) {
         response.message;
       } else {
-        alert(`Error: ${response.message}`);
+        this.toast.show(response.message, {
+          className: "bg-danger text-light",
+          delay: 15000,
+        });
       }
     });
   }

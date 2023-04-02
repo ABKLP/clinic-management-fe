@@ -3,6 +3,7 @@ import { NgForm } from "@angular/forms";
 import { Router } from "@angular/router";
 import { AuthService } from "src/app/models/auth.service";
 import { User } from "src/app/models/user.model";
+import { ToastService } from "src/app/services/toast.service";
 
 @Component({
   selector: "app-register",
@@ -14,7 +15,11 @@ export class RegisterComponent implements OnInit {
   public message: string;
   isPasswordVisible: boolean = false;
 
-  constructor(private router: Router, private auth: AuthService) {}
+  constructor(
+    private router: Router,
+    private auth: AuthService,
+    private toast: ToastService
+  ) {}
 
   ngOnInit(): void {}
 
@@ -32,13 +37,19 @@ export class RegisterComponent implements OnInit {
         console.log(response);
 
         if (response.success) {
-          alert(response.message);
+          this.toast.show(response.message, {
+            className: "bg-success text-light",
+            delay: 10000,
+          });
           this.router.navigateByUrl("auth/login");
         }
         this.message = response.message;
       });
     } else {
-      this.message = "Invalid Form Data";
+      this.toast.show("Invalid Form Data", {
+        className: "bg-danger text-light",
+        delay: 15000,
+      });
     }
   }
 }
