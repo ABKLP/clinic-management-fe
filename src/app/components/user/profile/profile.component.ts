@@ -21,7 +21,7 @@ export class UserProfileComponent implements OnInit {
     private router: Router,
     private auth: AuthService
   ) {
-    this.repository.setUser();
+    this.repository.setUserProfile();
   }
 
   ngOnInit(): void {}

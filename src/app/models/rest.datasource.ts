@@ -147,8 +147,15 @@ export class RestDataSource {
     );
   }
 
-  getUser(): Observable<User> {
+  getUserProfile(): Observable<User> {
     return this.http.get<User>(`${this.baseUrl}/users/me`, this.provideToken());
+  }
+
+  getUser(id: string): Observable<User> {
+    return this.http.get<User>(
+      `${this.baseUrl}/users/show/${id}`,
+      this.provideToken()
+    );
   }
 
   updateUser(user: User): Observable<ResponseModel> {

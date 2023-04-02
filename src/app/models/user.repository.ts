@@ -1,4 +1,5 @@
 import { Injectable } from "@angular/core";
+import { lastValueFrom } from "rxjs";
 import { ResponseModel } from "./response.model";
 import { RestDataSource } from "./rest.datasource";
 import { User } from "./user.model";
@@ -6,7 +7,7 @@ import { User } from "./user.model";
 @Injectable()
 export class UserRepository {
   private _users: User[] = [];
-  private user: User = new User();
+  private _user: User = new User();
   page: number = 1;
   limit: number = 10;
   nextPage: number;
@@ -35,15 +36,19 @@ export class UserRepository {
   }
 
   get getUser(): User {
-    return this.user;
+    return this._user;
   }
 
-  setUser() {
+  setUserProfile() {
     this.profileReady = false;
-    this.dataSource.getUser().subscribe((data) => {
-      this.user = data;
+    this.dataSource.getUserProfile().subscribe((data) => {
+      this._user = data;
       this.profileReady = true;
     });
+  }
+
+  async setUser(id: string) {
+    this._user = await lastValueFrom(this.dataSource.getUser(id));
   }
 
   async saveUser(user: User) {
