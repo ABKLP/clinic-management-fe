@@ -18,7 +18,7 @@
               <th class="text-center">Diagnostic</th>
               <th class="text-center">Medication</th>
               <th class="text-center">Recorded Date</th>
-              <th class="text-center" colspan="3">Actions</th>
+              <th class="text-center" colspan="3" *ngIf="!this.isPatient">Actions</th>
             </tr>
           </thead>
           <tbody *ngIf="medicalRecordList.length > 0">
@@ -27,22 +27,24 @@
               <td class="text-center">{{ item.diagnostic }}</td>
               <td class="text-center">{{ item.medicine }}</td>
               <td class="text-center">{{ toLocaleString(item.createdAt) }}</td>
-              <td class="text-center">
-                <button
-                  [routerLink]="['/medical-record', 'edit', item._id]"
-                  class="btn bg-primary btn-primary btn-sm"
-                >
-                  <i class="fas fa-pencil-alt"></i>
-                </button>
-              </td>
-              <td class="text-center">
-                <button
-                  (click)="deleteMethod(item._id)"
-                  class="btn bg-danger btn-danger btn-sm"
-                >
-                  <i class="fas fa-trash-alt"></i>
-                </button>
-              </td>
+              <div *ngIf="!this.isPatient">
+                <td class="text-center">
+                  <button
+                    [routerLink]="['/medical-record', 'edit', item._id]"
+                    class="btn bg-primary btn-primary btn-sm"
+                  >
+                    <i class="fas fa-pencil-alt"></i>
+                  </button>
+                </td>
+                <td class="text-center">
+                  <button
+                    (click)="deleteMethod(item._id)"
+                    class="btn bg-danger btn-danger btn-sm"
+                  >
+                    <i class="fas fa-trash-alt"></i>
+                  </button>
+                </td>
+              </div>
             </tr>
           </tbody>
 

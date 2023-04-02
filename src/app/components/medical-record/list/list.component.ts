@@ -38,4 +38,8 @@ export class MedicalRecordListComponent implements OnInit {
       this.repository.deleteMedicalRecord(id);
     }
   }
+
+  get isPatient(): boolean {
+    return sessionStorage.getItem("userRole") === "patient" ? true : false;
+  }
 }

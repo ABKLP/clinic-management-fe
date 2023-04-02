@@ -41,14 +41,14 @@
           </li>
         </ul>
       </li>
-      <li *ngIf="auth.authenticated" class="nav-item">
+      <!-- <li *ngIf="auth.authenticated" class="nav-item">
         <a
           class="nav-link"
           [class.active]="title === 'search-page'"
           [routerLink]="['/medical-record', 'search']"
           >Search Medical Record</a
         >
-      </li>
+      </li> -->
       <li *ngIf="auth.authenticated" class="nav-item">
         <a
           class="nav-link"

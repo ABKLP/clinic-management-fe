@@ -34,6 +34,8 @@ export class MedicalRecordSearchComponent implements OnInit {
       this.searchFilter,
       this.searchQuery
     );
+    let firstItem = this.medicalRecord[0].owner;
+    this.patientName = firstItem.fullName; 
   }
 
   get medicalRecord(): MedicalRecord[] {
