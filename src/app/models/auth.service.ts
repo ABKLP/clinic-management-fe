@@ -54,7 +54,6 @@ export class AuthService {
   getUser(): void {
     this.dataSource.getUser().subscribe((response) => {
       this.userId = response._id;
-      // this.userRole = response.role;
     });
   }
 
