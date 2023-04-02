@@ -16,6 +16,25 @@
             <input type="hidden" name="id" [(ngModel)]="_medicalRecord._id" />
           </div>
 
+          <!-- 00 begin user field -->
+          <div class="form-group" *ngIf="!this.editing">
+            <label for="patient"><strong>Patient</strong></label>
+            <input
+              type="text"
+              class="form-control"
+              id="patient"
+              [(ngModel)]="selectedPatient"
+              [ngbTypeahead]="search"
+              [resultFormatter]="userFormatter"
+              [inputFormatter]="userFormatter"
+              (selectItem)="onPatientSelected($event)"
+            />
+            <div *ngIf="isSearching" class="form-text text-muted">
+              Searching...
+            </div>
+          </div>
+          <!-- 00 end user field -->
+          <br />
           <!-- 00 begin diagnostic | diagnostic field -->
           <div class="form-group">
             <label for="diagnosticTextField"
@@ -126,7 +145,10 @@
               Submit
             </button>
             <span>&nbsp;</span>
-            <a [routerLink]="['/medical-record', 'list']" class="btn btn-secondary">
+            <a
+              [routerLink]="['/medical-record', 'list']"
+              class="btn btn-secondary"
+            >
               <i class="fa-solid fa-rotate-left"></i>
               Back
             </a>

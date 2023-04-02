@@ -1,10 +1,19 @@
 import { Component, OnInit } from "@angular/core";
 import { NgForm } from "@angular/forms";
 import { ActivatedRoute, Router } from "@angular/router";
-import { AuthService } from "src/app/models/auth.service";
+import {
+  debounceTime,
+  distinctUntilChanged,
+  filter,
+  map,
+  Observable,
+  tap,
+} from "rxjs";
 import { MedicalRecord } from "src/app/models/medical-record.model";
+import { User } from "src/app/models/user.model";
 import { MedicalRecordRepository } from "src/app/models/medical-record.repository";
-import { isNotEmpty, setTimeToZero } from "src/app/utils";
+import { UserRepository } from "src/app/models/user.repository";
+import { isNotEmpty } from "src/app/utils";
 
 @Component({
   selector: "app-medical-record-add-edit",
@@ -16,19 +25,18 @@ export class MedicalRecordAddEditComponent implements OnInit {
   isSubmitted: boolean = false;
   editing: boolean = false;
   _medicalRecord: MedicalRecord = new MedicalRecord();
-
-  //LIST OF DOCTORS IN THE HOSPITAL
-  doctorList = ["Dr.Wilson", "Dr.Reyes", "Dr.Chua"];
+  isSearching: boolean = false;
+  selectedPatient: string = "";
 
   constructor(
-    private repository: MedicalRecordRepository,
+    private medicalRecordRepository: MedicalRecordRepository,
+    private userRepository: UserRepository,
     private router: Router,
-    private auth: AuthService,
     private activeRoute: ActivatedRoute
   ) {}
 
   async ngOnInit(): Promise<void> {
-    await this.repository.setMedicalRecord();
+    await this.medicalRecordRepository.setMedicalRecord();
 
     // Delete
     if (this.activeRoute.snapshot.params["mode"] === "delete") {
@@ -39,14 +47,14 @@ export class MedicalRecordAddEditComponent implements OnInit {
 
     // Edit
     if (this.editing) {
-      this._medicalRecord = this.repository.getItem(
+      this._medicalRecord = this.medicalRecordRepository.getItem(
         this.activeRoute.snapshot.params["id"]
       );
     }
   }
 
   private deleteItem(id: string) {
-    this.repository.deleteMedicalRecord(id);
+    this.medicalRecordRepository.deleteMedicalRecord(id);
     this.router.navigateByUrl("/medical-record/list");
   }
 
@@ -54,12 +62,7 @@ export class MedicalRecordAddEditComponent implements OnInit {
     this.isSubmitted = true;
     // TODO: add validations to the form
     if (this.isFindingsValid && this.isMedicationValid) {
-      if (!this.editing) {
-        // TODO: Assign ID of patient
-        // this._medicalRecord.owner = this.auth.userId;
-      }
-
-      await this.repository.saveMedicalRecord(this._medicalRecord);
+      await this.medicalRecordRepository.saveMedicalRecord(this._medicalRecord);
       this.router.navigateByUrl("/medical-record/list");
     }
   }
@@ -74,18 +77,28 @@ export class MedicalRecordAddEditComponent implements OnInit {
     return isNotEmpty(this._medicalRecord.medicine);
   }
 
-  //CHECK RECORDED DATE VALIDATION
-  // get isRecordDateValid(): boolean {
-  //   return (
-  //     this._medicalRecord.createdAt !== null &&
-  //     (setTimeToZero(new Date(this._medicalRecord.createdAt + "T10:00:00")) >=
-  //       setTimeToZero(new Date()) ||
-  //       this.editing)
-  //   );
-  // }
+  get userList(): User[] {
+    return this.userRepository.getUsers();
+  }
 
-  // //CHECK DOCTOR VALIDATION
-  // get isDoctorValid(): boolean {
-  //   return isNotEmpty(this._medicalRecord.medicine);
-  // }
+  search = (text$: Observable<string>) =>
+    text$.pipe(
+      debounceTime(300),
+      distinctUntilChanged(),
+      filter((term) => term.length > 2),
+      tap(() => (this.isSearching = true)),
+      tap(async (term) => {
+        await this.userRepository.setSearchedUsers(term);
+      }),
+      map(() => this.userList),
+      tap(() => (this.isSearching = false))
+    );
+
+  userFormatter(result: User) {
+    return result.fullName;
+  }
+
+  onPatientSelected(event: any) {
+    this._medicalRecord.owner = event.item.id;
+  }
 }
