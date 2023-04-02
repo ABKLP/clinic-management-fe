@@ -43,9 +43,7 @@ export class UserAddEditComponent implements OnInit {
 
     // Edit
     if (this.editing) {
-      // this.user = this.repository.getUser(
-      //   this.activeRoute.snapshot.params["id"]
-      // );
+      await this.repository.setUser(this.activeRoute.snapshot.params["id"]);
       this.user = this.repository.getUser;
     }
   }
@@ -58,19 +56,26 @@ export class UserAddEditComponent implements OnInit {
     this.isPasswordVisible = !this.isPasswordVisible;
   }
 
-  signup(form: NgForm) {
-    if (form.valid) {
-      this.auth.signup(this.user).subscribe((response) => {
-        console.log(response);
-
-        if (response.success) {
-          console.log(response.message);
-          this.router.navigateByUrl("admin/dashboard");
-        }
-        this.message = response.message;
-      });
-    } else {
+  async submit(form: NgForm) {
+    if (!form.valid) {
       this.message = "Invalid Form Data";
+      return;
     }
+
+    if (this.editing) {
+      await this.repository.saveUser(this.user);
+      this.router.navigateByUrl("/dashboard");
+      return;
+    }
+
+    this.auth.signup(this.user).subscribe((response) => {
+      console.log(response);
+
+      if (response.success) {
+        console.log(response.message);
+        this.router.navigateByUrl("/dashboard");
+      }
+      this.message = response.message;
+    });
   }
 }

@@ -9,7 +9,7 @@
       <feedback-message [message]="message" [error]="true"></feedback-message>
       <!-- end error message -->
       <!-- begin registration form -->
-      <form novalidate #form="ngForm" (ngSubmit)="signup(form)">
+      <form novalidate #form="ngForm" (ngSubmit)="submit(form)">
         <div class="row">
           <!-- begin first name -->
           <div class="col-6">
@@ -112,7 +112,7 @@
           </div>
           <!-- end username -->
           <!-- begin password -->
-          <div class="col-12">
+          <div class="col-12" *ngIf="!this.editing">
             <div class="form-group">
               <label for="password" class="form-label"> Password </label>
               <div class="input-group mb-3">
@@ -136,6 +136,9 @@
             </div>
           </div>
           <!-- end password -->
+
+          <br />
+
           <!-- begin form controls -->
           <div class="col-12">
             <button class="btn btn-primary" type="submit">
