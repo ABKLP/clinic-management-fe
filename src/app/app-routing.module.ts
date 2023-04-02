@@ -8,6 +8,7 @@ import { DefaultLayoutComponent } from "./components/layout/default/default.comp
 import { EmptyLayoutComponent } from "./components/layout/empty/empty.component";
 import { DashboardComponent } from "./components/dashboard/dashboard.component";
 import { UserProfileComponent } from "./components/user/profile/profile.component";
+import { UserAddEditComponent } from "./components/user/add-edit/add-edit.component";
 import { MedicalRecordListComponent } from "./components/medical-record/list/list.component";
 import { MedicalRecordSearchComponent } from "./components/medical-record/search/search.component";
 import { MedicalRecordAddEditComponent } from "./components/medical-record/add-edit/add-edit.component";
@@ -21,8 +22,18 @@ import { EmployeePermissionGuard } from "./guards/employee-permission.guard";
 const routesDefaultLayout: Routes = [
   { path: "", component: IndexComponent },
   {
-    path: "admin/dashboard",
+    path: "dashboard",
     component: DashboardComponent,
+    canActivate: [AuthGuard, AdminPermissionGuard],
+  },
+  {
+    path: "dashboard/users/:mode",
+    component: UserAddEditComponent,
+    canActivate: [AuthGuard, AdminPermissionGuard],
+  },
+  {
+    path: "dashboard/users/:mode/:id",
+    component: UserAddEditComponent,
     canActivate: [AuthGuard, AdminPermissionGuard],
   },
   {
