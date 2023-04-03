@@ -10,86 +10,72 @@
         <h3 class="mt-2">{{ editing ? "Edit" : "Create" }} Appointment</h3>
         <!-- </div> -->
 
-        <nav aria-label="breadcrumb">
-      <ol class="breadcrumb">
-        <li class="breadcrumb-item">
-          <a [routerLink]="'/'">Home</a>
-        </li>
-        <li class="breadcrumb-item">
-          <a [routerLink]="['/appointments', 'list']">Appointments</a>
-        </li>
-        <li class="breadcrumb-item" aria-current="page">
-          {{ editing ? "Edit" : "Create" }} Appointment
-        </li>
-      </ol>
-        </nav>
-
         <form #form="ngForm" (ngSubmit)="save(form)">
-      <div class="form-group">
-        <input type="hidden" name="id" [(ngModel)]="appointment._id" />
-      </div>
+          <div class="form-group">
+            <input type="hidden" name="id" [(ngModel)]="appointment._id" />
+          </div>
 
-      <div class="form-group">
-        <label for="purposeTextField">Purpose *</label>
-        <input
-          type="text"
-          class="form-control"
-          id="purposeTextField"
-          placeholder="e.g. Appointment X"
-          name="purpose"
-          [(ngModel)]="appointment.purpose"
-        />
-      </div>
+          <div class="form-group">
+            <label for="purposeTextField">Purpose *</label>
+            <input
+              type="text"
+              class="form-control"
+              id="purposeTextField"
+              placeholder="e.g. Appointment X"
+              name="purpose"
+              [(ngModel)]="appointment.purpose"
+            />
+          </div>
 
-      <div *ngIf="isSubmitted" class="text-danger">
-        <div [hidden]="isPurposeValid">The purpose cannot be empty</div>
-      </div>
+          <div *ngIf="isSubmitted" class="text-danger">
+            <div [hidden]="isPurposeValid">The purpose cannot be empty</div>
+          </div>
 
-      <br />
+          <br />
 
-      <div class="form-group">
-        <label for="descTextField">Description</label>
-        <textarea
-          type="text"
-          class="form-control"
-          id="descTextField"
-          placeholder="What is your symptomp?"
-          name="description"
-          [(ngModel)]="appointment.description"
-        ></textarea>
-      </div>
+          <div class="form-group">
+            <label for="descTextField">Description</label>
+            <textarea
+              type="text"
+              class="form-control"
+              id="descTextField"
+              placeholder="What is your symptomp?"
+              name="description"
+              [(ngModel)]="appointment.description"
+            ></textarea>
+          </div>
 
-      <br />
+          <br />
 
-      <div class="form-group">
-        <label for="scheduledAtTextField">Date & Time</label>
-        <input
-          type="datetime-local"
-          class="form-control"
-          id="scheduledAtTextField"
-          name="scheduledAt"
-          [(ngModel)]="appointment.scheduledAt"
-          required
-        />
-      </div>
+          <div class="form-group">
+            <label for="scheduledAtTextField">Date & Time</label>
+            <input
+              type="datetime-local"
+              class="form-control"
+              id="scheduledAtTextField"
+              name="scheduledAt"
+              [(ngModel)]="appointment.scheduledAt"
+              required
+            />
+          </div>
 
-      <div *ngIf="isSubmitted" class="text-danger">
-        <div [hidden]="isScheduledAtValid">
-          The date & time must be equal or greater than today's date
-        </div>
-      </div>
+          <div *ngIf="isSubmitted" class="text-danger">
+            <div [hidden]="isScheduledAtValid">
+              The date & time must be equal or greater than today's date
+            </div>
+          </div>
 
-      <br />
+          <br />
 
-      <button class="btn btn-primary">
-        <i class="fa-solid fa-pen-to-square"></i>
-        Submit
-      </button>
-      <span>&nbsp;</span>
-      <a [routerLink]="['/appointments', 'list']" class="btn btn-secondary">
-        <i class="fa-solid fa-rotate-left"></i>
-        Back
-      </a>
+          <button class="btn btn-primary">
+            <i class="fa-solid fa-pen-to-square"></i>
+            Submit
+          </button>
+          <span>&nbsp;</span>
+          <a [routerLink]="['/appointments', 'list']" class="btn btn-secondary">
+            <i class="fa-solid fa-rotate-left"></i>
+            Back
+          </a>
         </form>
       </div>
     </div>
