@@ -34,10 +34,6 @@ export class AuthService {
     return role;
   }
 
-  // set userRole(value: string | null) {
-  //   sessionStorage.setItem("userRole", value);
-  // }
-
   authenticate(username: string, password: string): Observable<ResponseModel> {
     return this.dataSource.authenticate(username, password).pipe(
       map((response) => {
