@@ -8,7 +8,14 @@ import { DashboardComponent } from "./dashboard.component";
 import { LayoutModule } from "../layout/layout.module";
 
 @NgModule({
-  imports: [BrowserModule, FormsModule, RouterModule, SharedModule, UserModule,LayoutModule],
+  imports: [
+    BrowserModule,
+    FormsModule,
+    RouterModule,
+    SharedModule,
+    UserModule,
+    LayoutModule,
+  ],
   declarations: [DashboardComponent],
   exports: [DashboardComponent],
 })

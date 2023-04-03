@@ -1,82 +1,92 @@
-<div class="container">
+<div class="SbMargin row align-items-md-stretch">
   <div class="row">
-    <div class="col-12">
-      <div class="mt-2">
-        <a
-          [routerLink]="['/dashboard', 'users', 'add']"
-          class="btn btn-primary btn-sm float-end"
-          >Create User</a
-        >
-      </div>
-      <h1 class="headTitle text-center">Users</h1>
-
-      <form #form="ngForm" (ngSubmit)="submit(form)">
-        <!-- begin search field -->
-        <div class="input-group mb-2">
-          <input
-            type="search"
-            class="form-control"
-            id="searchQuery"
-            name="searchQuery"
-            required
-            placeholder="Enter query to search for users"
-            [(ngModel)]="searchQuery"
-          />
-          <div class="input-group-append">
-            <button class="btn btn-outline-secondary" type="submit">
-              <i class="fa fa-search"></i>
-            </button>
-          </div>
-        </div>
-        <!-- end search field -->
-      </form>
-
-      <!-- begin loading -->
-      <loading-placeholder *ngIf="!this.isReady"></loading-placeholder>
-      <!-- end loading -->
-
-      <!-- begin list user -->
-      <div class="table-responsive">
-        <table class="table table-bordered table-hover">
-          <thead>
-            <tr>
-              <th class="text-center">#</th>
-              <th class="text-center">First name</th>
-              <th class="text-center">Last name</th>
-              <th class="text-center">Email</th>
-              <th class="text-center">Phone number</th>
-              <th class="text-center">Username</th>
-              <th class="text-center">Role</th>
-            </tr>
-          </thead>
-
-          <tbody *ngIf="userList.length > 0">
-            <tr *ngFor="let user of userList; let i = index">
-              <td class="text-center">{{ i + 1 }}</td>
-              <td class="text-center">{{ user.firstName }}</td>
-              <td class="text-center">{{ user.lastName }}</td>
-              <td class="text-center">{{ user.email }}</td>
-              <td class="text-center">{{ user.phoneNumber }}</td>
-              <td class="text-center">{{ user.username }}</td>
-              <td class="text-center">{{ toCapitalize(user.role) }}</td>
-            </tr>
-          </tbody>
-          <!-- begin empty table -->
-          <tbody *ngIf="userList.length === 0">
-            <tr *ngFor="let user of userList; let i = index">
-              <td class="text-center" colspan="7">No records to display :(</td>
-            </tr>
-          </tbody>
-          <!-- end empty table -->
-        </table>
-      </div>
-
-      <app-pagination
-        [currentPage]="currentPage"
-        [totalPage]="totalPage"
-        (pageChanged)="onPageChanged($event)"
-      ></app-pagination>
-      <!-- end list user -->
+    <div class="col-md-3 align-items-center">
+      <app-sidebar></app-sidebar>
     </div>
+    <div class="col-md-6 align-items-center">
+      <div class="row">
+        <div class="h-300 p-5 bg-light border rounded-4">
+          <div class="mt-2">
+            <a
+              [routerLink]="['/dashboard', 'users', 'add']"
+              class="btn btn-primary btn-sm float-end"
+              >Create User</a
+            >
+          </div>
+          <h1 class="headTitle text-center">Users</h1>
+
+          <form #form="ngForm" (ngSubmit)="submit(form)">
+            <!-- begin search field -->
+            <div class="input-group mb-2">
+              <input
+                type="search"
+                class="form-control"
+                id="searchQuery"
+                name="searchQuery"
+                required
+                placeholder="Enter query to search for users"
+                [(ngModel)]="searchQuery"
+              />
+              <div class="input-group-append">
+                <button class="btn btn-outline-secondary" type="submit">
+                  <i class="fa fa-search"></i>
+                </button>
+              </div>
+            </div>
+            <!-- end search field -->
+          </form>
+
+          <!-- begin loading -->
+          <loading-placeholder *ngIf="!this.isReady"></loading-placeholder>
+          <!-- end loading -->
+
+          <!-- begin list user -->
+          <div class="table-responsive">
+            <table class="table table-bordered table-hover">
+              <thead>
+                <tr>
+                  <th class="text-center">#</th>
+                  <th class="text-center">First name</th>
+                  <th class="text-center">Last name</th>
+                  <th class="text-center">Email</th>
+                  <th class="text-center">Phone number</th>
+                  <th class="text-center">Username</th>
+                  <th class="text-center">Role</th>
+                </tr>
+              </thead>
+
+              <tbody *ngIf="userList.length > 0">
+                <tr *ngFor="let user of userList; let i = index">
+                  <td class="text-center">{{ i + 1 }}</td>
+                  <td class="text-center">{{ user.firstName }}</td>
+                  <td class="text-center">{{ user.lastName }}</td>
+                  <td class="text-center">{{ user.email }}</td>
+                  <td class="text-center">{{ user.phoneNumber }}</td>
+                  <td class="text-center">{{ user.username }}</td>
+                  <td class="text-center">{{ toCapitalize(user.role) }}</td>
+                </tr>
+              </tbody>
+              <!-- begin empty table -->
+              <tbody *ngIf="userList.length === 0">
+                <tr *ngFor="let user of userList; let i = index">
+                  <td class="text-center" colspan="7">
+                    No records to display :(
+                  </td>
+                </tr>
+              </tbody>
+              <!-- end empty table -->
+            </table>
+          </div>
+
+          <app-pagination
+            [currentPage]="currentPage"
+            [totalPage]="totalPage"
+            (pageChanged)="onPageChanged($event)"
+          ></app-pagination>
+          <!-- end list user -->
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3 align-items-center"></div>
   </div>
 </div>
