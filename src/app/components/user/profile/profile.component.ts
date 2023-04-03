@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { NgForm } from "@angular/forms";
 import { Router } from "@angular/router";
+import { AuthService } from "src/app/models/auth.service";
 import { User } from "src/app/models/user.model";
 import { UserRepository } from "src/app/models/user.repository";
 
@@ -15,7 +16,11 @@ export class UserProfileComponent implements OnInit {
   isPasswordVisible: boolean = false;
   isEditing: boolean = false;
 
-  constructor(public repository: UserRepository, private router: Router) {
+  constructor(
+    public repository: UserRepository,
+    private router: Router,
+    private auth: AuthService
+  ) {
     this.repository.setUser();
   }
 
@@ -46,5 +51,9 @@ export class UserProfileComponent implements OnInit {
     this.repository.saveUser(this.user);
     this.router.navigateByUrl("/user/profile");
     this.toggleEditMode();
+  }
+
+  get isPatient(): boolean {
+    return this.auth.userRole === "patient";
   }
 }

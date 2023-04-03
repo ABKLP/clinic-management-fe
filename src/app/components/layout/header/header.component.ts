@@ -20,4 +20,8 @@ export class HeaderComponent implements OnInit {
       this.router.navigateByUrl("/");
     }
   }
+
+  get isPatient(): boolean {
+    return this.auth.userRole === "patient";
+  }
 }

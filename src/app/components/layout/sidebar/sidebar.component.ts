@@ -1,8 +1,6 @@
 import { Component, Input, OnInit } from "@angular/core";
 import { AuthService } from "src/app/models/auth.service";
 import { ActivatedRoute } from "@angular/router";
-import { MedicalRecord } from "../../../models/medical-record.model";
-import { MedicalRecordRepository } from "../../../models/medical-record.repository";
 
 @Component({
   selector: "app-sidebar",
@@ -12,19 +10,34 @@ import { MedicalRecordRepository } from "../../../models/medical-record.reposito
 export class SidebarComponent implements OnInit {
   @Input() title?: string;
   editing: boolean = false;
+  isEmpProfilePg: boolean = false;
 
-  sideTitles = ["Account Information", "Medical Record", "Add Medical Record","Search Medical Record"];
-  constructor(
-    public auth: AuthService,
-    private activeRoute: ActivatedRoute
-  ) {}
+  sideTitles = [
+    "Account Information",
+    "Medical Record",
+    "Add Medical Record",
+    "Search Medical Record",
+    "Schedule",
+    "User List",
+  ];
 
-  async ngOnInit(): Promise<void> {
+  //FOR PATIENT ONLY    [MEDICAL-RECORD]
+  //FOR EMPLOYEE ONLY   [ADD MEDICAL RECORD, SEARCH MEDICAL RECORD, USER LIST]
+  //FOR BOTH = [ACCOUNT INFO, SCHEDULE]
+
+  constructor(public auth: AuthService, private activeRoute: ActivatedRoute) {}
+
+  ngOnInit(): void {
     this.editing = this.activeRoute.snapshot.params["mode"] === "edit";
+    this.isEmpProfilePg =
+      this.activeRoute.snapshot.routeConfig.path === "employee/profile";
   }
 
-  get isPatient() : boolean{
-    console.log("role =---- " + this.auth.userRole);
-    return this.auth.userRole === "patient" ? true : false;
+  get isPatient(): boolean {
+    return this.auth.userRole === "patient";
+  }
+
+  get isAdmin(): boolean {
+    return this.auth.userRole === "admin";
   }
 }

@@ -1,71 +1,118 @@
-<div *ngIf="auth.authenticated" class="col-md-12 align-items-center"> 
+<div *ngIf="auth.authenticated" class="col-md-12 align-items-center">
   <!--SideBar-->
-  <br>
-  <div class="SbMargin d-flex flex-column flex-shrink-0 p-3 text-white bg-info border rounded-2" style="width: 280px;">
-        <a  class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
-          <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"/></svg>
-          <span class="fs-4" *ngIf="this.isPatient">User Profile</span>
-          <span class="fs-4" *ngIf="!this.isPatient">Employee Profile</span>
+  <br />
+  <div
+    class="SbMargin d-flex flex-column flex-shrink-0 p-3 text-white bg-info border rounded-2"
+    style="width: 280px"
+  >
+    <ul class="nav nav-pills flex-column mb-auto">
+      <!-- ACCOUNT INFO PATIENT START -->
+      <li class="nav-item" *ngIf="this.isPatient">
+        <a
+          class="nav-link text-white"
+          [class.active]="title == 'Profile'"
+          [routerLink]="'/user/profile'"
+          routerLinkActive="active"
+          RouterLinkActiveOptions="{exact: true}"
+        >
+          {{ sideTitles[0] }}
         </a>
-        <hr>
-        <ul class="nav nav-pills flex-column mb-auto">
-          <li class="nav-item">
-              <a class="nav-link text-white"
-                 [class.active]="title == 'Profile'"
-                 [routerLink]="'/user/profile'"
-                 routerLinkActive="active"
-                 RouterLinkActiveOptions="{exact: true}"
-                >
-                <svg class="bi me-2" width="16" height="16"><use xlink:href="#home"/></svg>
-                {{sideTitles[0]}}
-              </a>
-          </li>
-          <li *ngIf="this.isPatient">
-            <a class="nav-link text-white"
-              [class.active]="title == 'Medical Record'"
-              [routerLink]="'/medical-record/list'"
-              routerLinkActive="active"
-            >
-              <svg class="bi me-2" width="16" height="16"><use xlink:href="#speedometer2"/></svg>
-              {{sideTitles[1]}}
-            </a>
-          </li>
-          <div *ngIf="!this.isPatient">
-            <li>
-              <!--if not edit mode see this -->
-              <a *ngIf="!editing" class="nav-link text-white"
-                [class.active]="title == 'Add Medical Record'"
-                [routerLink]="'/medical-record/add'"
-                routerLinkActive="active"
-              >
-                <svg class="bi me-2" width="16" height="16"><use xlink:href="#speedometer2"/></svg>
-                {{sideTitles[2]}}
-              </a>
-  
-              <!--if edit mode see this -->
-              <a *ngIf="editing" class="nav-link text-white"
-                [class.active]="title == 'Edit Medical Record'"
-                [routerLink]="'/medical-record/edit'"
-                routerLinkActive="active"
-              >
-                <svg class="bi me-2" width="16" height="16"><use xlink:href="#speedometer2"/></svg>
-                Edit Medical Record
-              </a>
-            </li>
-            <li>
-              <a class="nav-link text-white"
-                [class.active]="title == 'Search Medical Record'"
-                [routerLink]="['/medical-record', 'search']"
-                routerLinkActive="active"
-              >
-                <svg class="bi me-2" width="16" height="16"><use xlink:href="#speedometer2"/></svg>
-                {{sideTitles[3]}}
-              </a>
-            </li>
-          </div>
-        </ul>
-        <hr>
+      </li>
+      <!-- ACCOUNT INFO PATIENT END -->
+
+      <!-- ACCOUNT INFO EMPLOYEE START -->
+      <li class="nav-item" *ngIf="this.isAdmin && this.isEmpProfilePg">
+        <a
+          class="nav-link text-white"
+          [class.active]="title == 'Profile'"
+          [routerLink]="'/employee/profile'"
+          routerLinkActive="active"
+          RouterLinkActiveOptions="{exact: true}"
+        >
+          {{ sideTitles[0] }}
+        </a>
+      </li>
+      <!-- ACCOUNT INFO EMPLOYEE END -->
+
+      <!-- USER LIST START -->
+      <li class="nav-item" *ngIf="!this.isPatient && !this.isEmpProfilePg">
+        <a
+          class="nav-link text-white"
+          [class.active]="title == 'USER LIST'"
+          [routerLink]="'/admin/dashboard'"
+          routerLinkActive="active"
+        >
+          {{ sideTitles[5] }}
+        </a>
+      </li>
+      <!-- USER LIST END -->
+
+      <!-- MEDICAL RECORD LIST START -->
+      <li *ngIf="this.isPatient">
+        <a
+          class="nav-link text-white"
+          [class.active]="title == 'Medical Record'"
+          [routerLink]="'/medical-record/list'"
+          routerLinkActive="active"
+        >
+          {{ sideTitles[1] }}
+        </a>
+      </li>
+      <!-- MEDICAL RECORD LIST END -->
+
+      <div *ngIf="!this.isPatient && !this.isEmpProfilePg">
+        <!-- ADD EDIT START -->
+        <li>
+          <!--if not edit mode see this -->
+          <a
+            *ngIf="!editing"
+            class="nav-link text-white"
+            [class.active]="title == 'Add Medical Record'"
+            [routerLink]="'/medical-record/add'"
+            routerLinkActive="active"
+          >
+            {{ sideTitles[2] }}
+          </a>
+
+          <!--if edit mode see this -->
+          <a
+            *ngIf="editing"
+            class="nav-link text-white"
+            [class.active]="title == 'Edit Medical Record'"
+            [routerLink]="'/medical-record/edit'"
+            routerLinkActive="active"
+          >
+            Edit Medical Record
+          </a>
+        </li>
+        <!-- ADD EDIT END  -->
+
+        <!-- SEARCH MED START -->
+        <li>
+          <a
+            class="nav-link text-white"
+            [class.active]="title == 'Search Medical Record'"
+            [routerLink]="['/medical-record', 'search']"
+            routerLinkActive="active"
+          >
+            {{ sideTitles[3] }}
+          </a>
+        </li>
+        <!-- SEARCH MED END -->
+      </div>
+
+      <!-- APPOINTMENT START-->
+      <li *ngIf="!this.isEmpProfilePg">
+        <a
+          class="nav-link text-white"
+          [class.active]="title == 'Appointment List'"
+          [routerLink]="['/appointments', 'list']"
+          routerLinkActive="active"
+        >
+          {{ sideTitles[4] }}
+        </a>
+      </li>
+      <!-- APPOINTMENT END  -->
+    </ul>
   </div>
 </div>
-
-

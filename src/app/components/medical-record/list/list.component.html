@@ -4,60 +4,62 @@
   </div>
   <div class="col-md-6 align-items-center">
     <br />
-    <div class="h-300 p-5 bg-light border rounded-4">
-      <h1 class="headTitle text-center">{{ title }}</h1>
+    <div class="row">
+      <div class="h-300 p-5 bg-light border rounded-4">
+        <h1 class="headTitle text-center">{{ title }}</h1>
 
-      <loading-placeholder *ngIf="!this.isReady"></loading-placeholder>
+        <loading-placeholder *ngIf="!this.isReady"></loading-placeholder>
 
-      <!-- begin medical record -->
-      <div class="table-responsive">
-        <table class="table table-bordered table-hover">
-          <thead>
-            <tr>
-              <th class="text-center">#</th>
-              <th class="text-center">Diagnostic</th>
-              <th class="text-center">Medication</th>
-              <th class="text-center">Recorded Date</th>
-              <th class="text-center" colspan="3" *ngIf="!this.isPatient">Actions</th>
-            </tr>
-          </thead>
-          <tbody *ngIf="medicalRecordList.length > 0">
-            <tr *ngFor="let item of medicalRecordList; let i = index">
-              <td class="text-center">#{{ i + 1 }}</td>
-              <td class="text-center">{{ item.diagnostic }}</td>
-              <td class="text-center">{{ item.medicine }}</td>
-              <td class="text-center">{{ toLocaleString(item.createdAt) }}</td>
-              <div *ngIf="!this.isPatient">
-                <td class="text-center">
-                  <button
-                    [routerLink]="['/medical-record', 'edit', item._id]"
-                    class="btn bg-primary btn-primary btn-sm"
-                  >
-                    <i class="fas fa-pencil-alt"></i>
-                  </button>
-                </td>
-                <td class="text-center">
-                  <button
-                    (click)="deleteMethod(item._id)"
-                    class="btn bg-danger btn-danger btn-sm"
-                  >
-                    <i class="fas fa-trash-alt"></i>
-                  </button>
-                </td>
-              </div>
-            </tr>
-          </tbody>
+        <!-- begin medical record -->
+        <div class="table-responsive">
+          <table class="table table-bordered table-hover">
+            <thead>
+              <tr>
+                <th class="text-center">#</th>
+                <th class="text-center">Diagnostic</th>
+                <th class="text-center">Medication</th>
+                <th class="text-center">Recorded Date</th>
+                <th class="text-center" colspan="3" *ngIf="!this.isPatient">Actions</th>
+              </tr>
+            </thead>
+            <tbody *ngIf="medicalRecordList.length > 0">
+              <tr *ngFor="let item of medicalRecordList; let i = index">
+                <td class="text-center">#{{ i + 1 }}</td>
+                <td class="text-center">{{ item.diagnostic }}</td>
+                <td class="text-center">{{ item.medicine }}</td>
+                <td class="text-center">{{ toLocaleString(item.createdAt) }}</td>
+                <div *ngIf="!this.isPatient">
+                  <td class="text-center">
+                    <button
+                      [routerLink]="['/medical-record', 'edit', item._id]"
+                      class="btn bg-primary btn-primary btn-sm"
+                    >
+                      <i class="fas fa-pencil-alt"></i>
+                    </button>
+                  </td>
+                  <td class="text-center">
+                    <button
+                      (click)="deleteMethod(item._id)"
+                      class="btn bg-danger btn-danger btn-sm"
+                    >
+                      <i class="fas fa-trash-alt"></i>
+                    </button>
+                  </td>
+                </div>
+              </tr>
+            </tbody>
 
-          <!-- begin empty table -->
-          <tbody *ngIf="medicalRecordList.length === 0">
-            <tr>
-              <td class="text-center" colspan="6">No records to display :(</td>
-            </tr>
-          </tbody>
-          <!-- end empty table -->
-        </table>
+            <!-- begin empty table -->
+            <tbody *ngIf="medicalRecordList.length === 0">
+              <tr>
+                <td class="text-center" colspan="6">No records to display :(</td>
+              </tr>
+            </tbody>
+            <!-- end empty table -->
+          </table>
+        </div>
+        <!-- end medical record -->
       </div>
-      <!-- end medical record -->
     </div>
   </div>
   <div class="col-md-3 align-items-center"></div>
