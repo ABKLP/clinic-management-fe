@@ -33,6 +33,7 @@ export class UserRepository {
   async setSearchedUsers(query?: string) {
     this.listReady = false;
     this._users = await lastValueFrom(this.dataSource.searchUser(query));
+    this.totalPage = 1;
     this.listReady = true;
   }
 
