@@ -18,7 +18,11 @@ export class AppointmentListComponent implements OnInit {
   ) {}
 
   async ngOnInit(): Promise<void> {
-    await this.repository.setAppointments(this.auth.userId);
+    if (this.auth.userRole === "patient") {
+      await this.repository.setAppointments(this.auth.userId);
+    } else {
+      await this.repository.setAppointments();
+    }
   }
 
   get appointmentList(): Appointment[] {
