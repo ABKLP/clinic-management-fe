@@ -5,11 +5,13 @@
         <a  class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
           <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"/></svg>
           <span class="fs-4" *ngIf="this.isPatient">User Profile</span>
-          <span class="fs-4" *ngIf="!this.isPatient">Employee Profile</span>
+          <span class="fs-4" *ngIf="!this.isPatient">Emp. Dashboard</span>
         </a>
         <hr>
         <ul class="nav nav-pills flex-column mb-auto">
-          <li class="nav-item">
+
+          <!-- ACCOUNT INFO START -->
+          <li class="nav-item" *ngIf="this.isProfilePage">
               <a class="nav-link text-white"
                  [class.active]="title == 'Profile'"
                  [routerLink]="'/user/profile'"
@@ -20,6 +22,21 @@
                 {{sideTitles[0]}}
               </a>
           </li>
+          <!-- ACCOUNT INFO END -->
+
+          <!-- USER LIST START -->
+          <li class="nav-item" *ngIf="!this.isPatient && !this.isProfilePage">
+            <a class="nav-link text-white px-5"
+               [class.active]="title == 'USER LIST'"
+               [routerLink]="'/admin/dashboard'"
+               routerLinkActive="active"
+              >
+              {{sideTitles[5]}}
+            </a>
+          </li>
+          <!-- USER LIST END -->
+
+          <!-- MEDICAL RECORD LIST START -->
           <li *ngIf="this.isPatient">
             <a class="nav-link text-white"
               [class.active]="title == 'Medical Record'"
@@ -30,7 +47,10 @@
               {{sideTitles[1]}}
             </a>
           </li>
-          <div *ngIf="!this.isPatient">
+          <!-- MEDICAL RECORD LIST END -->
+
+          <div *ngIf="!this.isPatient && !this.isProfilePage">
+            <!-- ADD EDIT START -->
             <li>
               <!--if not edit mode see this -->
               <a *ngIf="!editing" class="nav-link text-white"
@@ -52,6 +72,9 @@
                 Edit Medical Record
               </a>
             </li>
+            <!-- ADD EDIT END  -->
+
+            <!-- SEARCH MED START -->
             <li>
               <a class="nav-link text-white"
                 [class.active]="title == 'Search Medical Record'"
@@ -62,7 +85,47 @@
                 {{sideTitles[3]}}
               </a>
             </li>
+            <!-- SEARCH MED END -->
           </div>
+          
+          <!-- APPOINTMENT START-->
+          <li *ngIf="auth.authenticated  && !this.isProfilePage" class="nav-item dropdown" >
+            <a
+              *ngIf="
+                title === 'Appointment List' || title === 'Create new Appointment';
+                else deactiveList
+              "
+              class="nav-link active dropdown-toggle text-white px-5"
+              href="#"
+              role="button"
+              data-bs-toggle="dropdown"
+            >
+            {{sideTitles[4]}}
+            </a>
+            <ng-template #deactiveList>
+              <a
+                class="nav-link dropdown-toggle text-white px-5"
+                href="#"
+                role="button"
+                data-bs-toggle="dropdown"
+                routerLinkActive="active" [routerLinkActiveOptions]="{ exact: false}">
+              {{sideTitles[4]}}
+              </a>
+            </ng-template>
+            <ul class="dropdown-menu">
+              <li>
+                <a class="dropdown-item" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" [routerLink]="['/appointments', 'list']">
+                  Appointment List
+                </a>
+              </li>
+              <li>
+                <a class="dropdown-item" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" [routerLink]="['/appointments', 'add']">
+                  Create Appointment
+                </a>
+              </li>
+            </ul>
+          </li>
+          <!-- APPOINTMENT END  -->
         </ul>
         <hr>
   </div>

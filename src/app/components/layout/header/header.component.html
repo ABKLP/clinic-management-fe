@@ -5,7 +5,7 @@
       <strong class="d-block">We Care For Your Health</strong>
     </a>
     <ul class="navbar-nav">
-      <li *ngIf="auth.authenticated" class="nav-item dropdown">
+      <!-- <li *ngIf="auth.authenticated" class="nav-item dropdown">
         <a
           *ngIf="
             title === 'Appointment List' || title === 'Create new Appointment';
@@ -40,7 +40,7 @@
             </a>
           </li>
         </ul>
-      </li>
+      </li> -->
       <!-- <li *ngIf="auth.authenticated" class="nav-item">
         <a
           class="nav-link"
@@ -49,6 +49,14 @@
           >Search Medical Record</a
         >
       </li> -->
+      <li *ngIf="auth.authenticated" class="nav-item">
+        <a
+          class="nav-link"
+          [class.active]="title == 'Dashboard'"
+          [routerLink]="['/admin', 'dashboard']"
+          >Employee Dashboard</a
+        >
+      </li>
       <li *ngIf="auth.authenticated" class="nav-item">
         <a
           class="nav-link"

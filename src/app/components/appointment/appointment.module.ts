@@ -6,9 +6,10 @@ import { SharedModule } from "../shared/shared.module";
 import { AppointmentListComponent } from "./list/list.component";
 import { AppointmentAddEditComponent } from "./add-edit/add-edit.component";
 import { AppointmentShowComponent } from "./show/show.component";
+import { LayoutModule } from "../layout/layout.module";
 
 @NgModule({
-  imports: [BrowserModule, FormsModule, RouterModule, SharedModule],
+  imports: [BrowserModule, FormsModule, RouterModule, SharedModule,LayoutModule],
   declarations: [
     AppointmentListComponent,
     AppointmentAddEditComponent,
