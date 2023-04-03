@@ -24,7 +24,7 @@
           <!-- ACCOUNT INFO PATIENT END -->
 
           <!-- ACCOUNT INFO EMPLOYEE START -->
-          <li class="nav-item" *ngIf="!this.isPatient && !this.isAdminDBoard">
+          <li class="nav-item" *ngIf="this.isAdmin && this.isEmpProfilePg">
             <a class="nav-link text-white"
                [class.active]="title == 'Profile'"
                [routerLink]="'/employee/profile'"
@@ -60,7 +60,7 @@
           </li>
           <!-- MEDICAL RECORD LIST END -->
 
-          <div *ngIf="this.isAdmin && !this.isEmpProfilePg">
+          <div *ngIf="!this.isPatient && !this.isEmpProfilePg">
             <!-- ADD EDIT START -->
             <li>
               <!--if not edit mode see this -->
