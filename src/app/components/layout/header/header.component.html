@@ -49,7 +49,7 @@
           >Search Medical Record</a
         >
       </li> -->
-      <li *ngIf="auth.authenticated" class="nav-item">
+      <li *ngIf="auth.authenticated && !this.isPatient" class="nav-item">
         <a
           class="nav-link"
           [class.active]="title == 'Dashboard'"
