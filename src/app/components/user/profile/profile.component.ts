@@ -16,10 +16,11 @@ export class UserProfileComponent implements OnInit {
   isPasswordVisible: boolean = false;
   isEditing: boolean = false;
 
-  constructor(public repository: UserRepository, 
+  constructor(
+    public repository: UserRepository,
     private router: Router,
     private auth: AuthService
-    ) {
+  ) {
     this.repository.setUser();
   }
 
@@ -53,6 +54,6 @@ export class UserProfileComponent implements OnInit {
   }
 
   get isPatient(): boolean {
-    return this.auth.userRole === "patient" ? true : false;
+    return this.auth.userRole === "patient";
   }
 }
