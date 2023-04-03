@@ -12,9 +12,15 @@ import { MedicalRecordRepository } from "../../../models/medical-record.reposito
 export class SidebarComponent implements OnInit {
   @Input() title?: string;
   editing: boolean = false;
-  isProfilePage: boolean = false;
+  isEmpProfilePg: boolean = false;
+  isAdminDBoard: boolean = false;
 
   sideTitles = ["Account Information", "Medical Record", "Add Medical Record","Search Medical Record","Schedule","User List"];
+
+  //FOR PATIENT ONLY    [MEDICAL-RECORD]
+  //FOR EMPLOYEE ONLY   [ADD MEDICAL RECORD, SEARCH MEDICAL RECORD, USER LIST]
+  //FOR BOTH = [ACCOUNT INFO, SCHEDULE]
+
   constructor(
     public auth: AuthService,
     private activeRoute: ActivatedRoute
@@ -22,12 +28,18 @@ export class SidebarComponent implements OnInit {
 
   async ngOnInit(): Promise<void> {
     this.editing = this.activeRoute.snapshot.params["mode"] === "edit";
-    this.isProfilePage = this.activeRoute.snapshot.routeConfig.path === "user/profile";
-    console.log("test if true profile page = " + this.isProfilePage); 
+    this.isEmpProfilePg = this.activeRoute.snapshot.routeConfig.path === "employee/profile";
+    this.isAdminDBoard = this.activeRoute.snapshot.routeConfig.path === "admin/dashboard";
+    console.log("test if true profile page = " + this.isEmpProfilePg); 
   }
 
   get isPatient() : boolean{
     console.log("role =---- " + this.auth.userRole);
     return this.auth.userRole === "patient" ? true : false;
+  }
+
+  get isAdmin() : boolean{
+    console.log("role =---- " + this.auth.userRole);
+    return this.auth.userRole === "admin" ? true : false;
   }
 }

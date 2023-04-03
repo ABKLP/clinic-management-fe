@@ -10,23 +10,35 @@
         <hr>
         <ul class="nav nav-pills flex-column mb-auto">
 
-          <!-- ACCOUNT INFO START -->
-          <li class="nav-item" *ngIf="this.isProfilePage">
+          <!-- ACCOUNT INFO PATIENT START -->
+          <li class="nav-item" *ngIf="this.isPatient">
               <a class="nav-link text-white"
                  [class.active]="title == 'Profile'"
                  [routerLink]="'/user/profile'"
                  routerLinkActive="active"
                  RouterLinkActiveOptions="{exact: true}"
                 >
-                <svg class="bi me-2" width="16" height="16"><use xlink:href="#home"/></svg>
                 {{sideTitles[0]}}
               </a>
           </li>
-          <!-- ACCOUNT INFO END -->
+          <!-- ACCOUNT INFO PATIENT END -->
+
+          <!-- ACCOUNT INFO EMPLOYEE START -->
+          <li class="nav-item" *ngIf="!this.isPatient && !this.isAdminDBoard">
+            <a class="nav-link text-white"
+               [class.active]="title == 'Profile'"
+               [routerLink]="'/employee/profile'"
+               routerLinkActive="active"
+               RouterLinkActiveOptions="{exact: true}"
+              >
+              {{sideTitles[0]}}
+            </a>
+          </li>
+          <!-- ACCOUNT INFO EMPLOYEE END -->
 
           <!-- USER LIST START -->
-          <li class="nav-item" *ngIf="!this.isPatient && !this.isProfilePage">
-            <a class="nav-link text-white px-5"
+          <li class="nav-item" *ngIf="!this.isPatient && !this.isEmpProfilePg">
+            <a class="nav-link text-white"
                [class.active]="title == 'USER LIST'"
                [routerLink]="'/admin/dashboard'"
                routerLinkActive="active"
@@ -43,13 +55,12 @@
               [routerLink]="'/medical-record/list'"
               routerLinkActive="active"
             >
-              <svg class="bi me-2" width="16" height="16"><use xlink:href="#speedometer2"/></svg>
               {{sideTitles[1]}}
             </a>
           </li>
           <!-- MEDICAL RECORD LIST END -->
 
-          <div *ngIf="!this.isPatient && !this.isProfilePage">
+          <div *ngIf="this.isAdmin && !this.isEmpProfilePg">
             <!-- ADD EDIT START -->
             <li>
               <!--if not edit mode see this -->
@@ -58,7 +69,6 @@
                 [routerLink]="'/medical-record/add'"
                 routerLinkActive="active"
               >
-                <svg class="bi me-2" width="16" height="16"><use xlink:href="#speedometer2"/></svg>
                 {{sideTitles[2]}}
               </a>
   
@@ -68,7 +78,6 @@
                 [routerLink]="'/medical-record/edit'"
                 routerLinkActive="active"
               >
-                <svg class="bi me-2" width="16" height="16"><use xlink:href="#speedometer2"/></svg>
                 Edit Medical Record
               </a>
             </li>
@@ -81,7 +90,6 @@
                 [routerLink]="['/medical-record', 'search']"
                 routerLinkActive="active"
               >
-                <svg class="bi me-2" width="16" height="16"><use xlink:href="#speedometer2"/></svg>
                 {{sideTitles[3]}}
               </a>
             </li>
@@ -89,41 +97,14 @@
           </div>
           
           <!-- APPOINTMENT START-->
-          <li *ngIf="auth.authenticated  && !this.isProfilePage" class="nav-item dropdown" >
-            <a
-              *ngIf="
-                title === 'Appointment List' || title === 'Create new Appointment';
-                else deactiveList
-              "
-              class="nav-link active dropdown-toggle text-white px-5"
-              href="#"
-              role="button"
-              data-bs-toggle="dropdown"
+          <li *ngIf="!this.isEmpProfilePg">
+            <a class="nav-link text-white"
+              [class.active]="title == 'Appointment List'"
+              [routerLink]="['/appointments', 'list']"
+              routerLinkActive="active"
             >
-            {{sideTitles[4]}}
-            </a>
-            <ng-template #deactiveList>
-              <a
-                class="nav-link dropdown-toggle text-white px-5"
-                href="#"
-                role="button"
-                data-bs-toggle="dropdown"
-                routerLinkActive="active" [routerLinkActiveOptions]="{ exact: false}">
               {{sideTitles[4]}}
-              </a>
-            </ng-template>
-            <ul class="dropdown-menu">
-              <li>
-                <a class="dropdown-item" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" [routerLink]="['/appointments', 'list']">
-                  Appointment List
-                </a>
-              </li>
-              <li>
-                <a class="dropdown-item" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" [routerLink]="['/appointments', 'add']">
-                  Create Appointment
-                </a>
-              </li>
-            </ul>
+            </a>
           </li>
           <!-- APPOINTMENT END  -->
         </ul>
