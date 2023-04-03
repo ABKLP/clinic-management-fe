@@ -26,6 +26,16 @@ export class UserRepository {
     return this._users;
   }
 
+  setEmptyUsers() {
+    this._users = [];
+  }
+
+  async setSearchedUsers(query?: string) {
+    this.listReady = false;
+    this._users = await lastValueFrom(this.dataSource.searchUser(query));
+    this.listReady = true;
+  }
+
   async setUsers() {
     this.listReady = false;
     this.dataSource.getUserList(this.page, this.limit).subscribe((response) => {

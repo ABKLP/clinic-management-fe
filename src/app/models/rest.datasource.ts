@@ -147,6 +147,15 @@ export class RestDataSource {
     );
   }
 
+  searchUser(query: string): Observable<MedicalRecord[]> {
+    const url = `${this.baseUrl}/users/search`;
+    const params = new HttpParams().set("q", query);
+    return this.http.get<MedicalRecord[]>(url, {
+      params: params,
+      ...this.provideToken(),
+    });
+  }
+
   getUserProfile(): Observable<User> {
     return this.http.get<User>(`${this.baseUrl}/users/me`, this.provideToken());
   }
