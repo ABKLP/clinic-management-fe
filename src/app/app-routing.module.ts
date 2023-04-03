@@ -24,7 +24,7 @@ const routesDefaultLayout: Routes = [
   {
     path: "dashboard",
     component: DashboardComponent,
-    canActivate: [AuthGuard, AdminPermissionGuard],
+    canActivate: [AuthGuard, EmployeePermissionGuard],
   },
   {
     path: "dashboard/users/:mode",

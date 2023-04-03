@@ -21,7 +21,7 @@
       <!-- ACCOUNT INFO PATIENT END -->
 
       <!-- ACCOUNT INFO EMPLOYEE START -->
-      <li class="nav-item" *ngIf="this.isAdmin && this.isEmpProfilePg">
+      <li class="nav-item" *ngIf="this.isEmployee && this.isEmpProfilePg">
         <a
           class="nav-link text-white"
           [class.active]="title == 'Profile'"
@@ -35,7 +35,7 @@
       <!-- ACCOUNT INFO EMPLOYEE END -->
 
       <!-- USER LIST START -->
-      <li class="nav-item" *ngIf="!this.isPatient && !this.isEmpProfilePg">
+      <li class="nav-item" *ngIf="this.isAdmin && !this.isEmpProfilePg">
         <a
           class="nav-link text-white"
           [class.active]="title == 'User List'"
@@ -60,7 +60,7 @@
       </li>
       <!-- MEDICAL RECORD LIST END -->
 
-      <div *ngIf="!this.isPatient && !this.isEmpProfilePg">
+      <div *ngIf="this.isEmployee && !this.isEmpProfilePg">
         <!-- ADD EDIT START -->
         <li>
           <!--if not edit mode see this -->

@@ -40,4 +40,8 @@ export class SidebarComponent implements OnInit {
   get isAdmin(): boolean {
     return this.auth.userRole === "admin";
   }
+
+  get isEmployee(): boolean {
+    return ["admin", "doctor", "nurse"].includes(this.auth.userRole);
+  }
 }
