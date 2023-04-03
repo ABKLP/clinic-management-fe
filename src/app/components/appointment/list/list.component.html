@@ -2,92 +2,89 @@
   <div class="col-md-3 align-items-center">
     <app-sidebar></app-sidebar>
   </div>
-    <div class="col-md-6 align-items-center">
-      <br />
-      <div class="row">
-        <div class="h-300 p-5 bg-light border rounded-4">
-          <!-- <div class="col-12"> -->
-            <div class="mt-2">
-              <a
-                [routerLink]="['/appointments', 'add']"
-                class="btn btn-primary btn-sm float-end"
-                >Create new Appointment</a
-              >
-            </div>
-            <h3>Appointments</h3>
-          <!-- </div> -->
+  <div class="col-md-6 align-items-center">
+    <br />
+    <div class="row">
+      <div class="h-300 p-5 bg-light border rounded-4">
+        <!-- <div class="col-12"> -->
+        <div class="mt-2">
+          <a
+            [routerLink]="['/appointments', 'add']"
+            class="btn btn-primary btn-sm float-end"
+            >Create new Appointment</a
+          >
+        </div>
+        <h3>Appointments</h3>
+        <!-- </div> -->
 
-          <nav aria-label="breadcrumb">
-            <ol class="breadcrumb">
-              <li class="breadcrumb-item"><a [routerLink]="'/'">Home</a></li>
-              <li class="breadcrumb-item active" aria-current="page">Appointments</li>
-            </ol>
-          </nav>
+        <loading-placeholder *ngIf="!this.isReady"></loading-placeholder>
 
-          <loading-placeholder *ngIf="!this.isReady"></loading-placeholder>
+        <div class="table-responsive" *ngIf="this.isReady">
+          <table class="table table-bordered table-hover">
+            <thead>
+              <tr>
+                <th class="text-center">#</th>
+                <th class="text-center">Name</th>
+                <th class="text-center">Date & Time</th>
+                <th class="text-center">Status</th>
+                <th class="text-center" colspan="4">Actions</th>
+              </tr>
+            </thead>
 
-          <div class="table-responsive" *ngIf="this.isReady">
-            <table class="table table-bordered table-hover">
-              <thead>
-                <tr>
-                  <th class="text-center">#</th>
-                  <th class="text-center">Name</th>
-                  <th class="text-center">Date & Time</th>
-                  <th class="text-center">Status</th>
-                  <th class="text-center" colspan="4">Actions</th>
-                </tr>
-              </thead>
+            <tbody *ngIf="appointmentList.length > 0">
+              <tr *ngFor="let item of appointmentList; let i = index">
+                <td class="text-center">{{ i + 1 }}</td>
+                <td class="text-center">{{ item.purpose }}</td>
+                <td class="text-center">
+                  {{ toLocaleString(item.scheduledAt) }}
+                </td>
+                <td class="text-center">{{ toCapitalize(item.status) }}</td>
+                <td class="text-center">
+                  <button
+                    [routerLink]="['/appointments', 'show', item._id]"
+                    class="btn bg-secondary btn-primary btn-sm"
+                  >
+                    <i class="fas fa-folder-tree"></i>
+                  </button>
+                </td>
+                <td class="text-center">
+                  <button
+                    [routerLink]="['/appointments', 'edit', item._id]"
+                    class="btn bg-primary btn-primary btn-sm"
+                  >
+                    <i class="fas fa-pencil-alt"></i>
+                  </button>
+                </td>
+                <td class="text-center">
+                  <button
+                    (click)="cancelMethod(item)"
+                    class="btn bg-warning btn-warning btn-sm"
+                  >
+                    <i class="fa-solid fa-handshake-slash"></i>
+                  </button>
+                </td>
+                <td class="text-center">
+                  <button
+                    (click)="deleteMethod(item._id)"
+                    class="btn bg-danger btn-danger btn-sm"
+                  >
+                    <i class="fas fa-trash-alt"></i>
+                  </button>
+                </td>
+              </tr>
+            </tbody>
 
-              <tbody *ngIf="appointmentList.length > 0">
-                <tr *ngFor="let item of appointmentList; let i = index">
-                  <td class="text-center">{{ i + 1 }}</td>
-                  <td class="text-center">{{ item.purpose }}</td>
-                  <td class="text-center">{{ toLocaleString(item.scheduledAt) }}</td>
-                  <td class="text-center">{{ toCapitalize(item.status) }}</td>
-                  <td class="text-center">
-                    <button
-                      [routerLink]="['/appointments', 'show', item._id]"
-                      class="btn bg-secondary btn-primary btn-sm"
-                    >
-                      <i class="fas fa-folder-tree"></i>
-                    </button>
-                  </td>
-                  <td class="text-center">
-                    <button
-                      [routerLink]="['/appointments', 'edit', item._id]"
-                      class="btn bg-primary btn-primary btn-sm"
-                    >
-                      <i class="fas fa-pencil-alt"></i>
-                    </button>
-                  </td>
-                  <td class="text-center">
-                    <button
-                      (click)="cancelMethod(item)"
-                      class="btn bg-warning btn-warning btn-sm"
-                    >
-                      <i class="fa-solid fa-handshake-slash"></i>
-                    </button>
-                  </td>
-                  <td class="text-center">
-                    <button
-                      (click)="deleteMethod(item._id)"
-                      class="btn bg-danger btn-danger btn-sm"
-                    >
-                      <i class="fas fa-trash-alt"></i>
-                    </button>
-                  </td>
-                </tr>
-              </tbody>
-
-              <tbody *ngIf="appointmentList.length === 0">
-                <tr>
-                  <td class="text-center" colspan="7">No records to display :(</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
+            <tbody *ngIf="appointmentList.length === 0">
+              <tr>
+                <td class="text-center" colspan="7">
+                  No records to display :(
+                </td>
+              </tr>
+            </tbody>
+          </table>
         </div>
       </div>
     </div>
-    <div class="col-md-3 align-items-center"></div>
+  </div>
+  <div class="col-md-3 align-items-center"></div>
 </div>

@@ -52,7 +52,7 @@ export class AuthService {
 
   // TODO: must be done properly
   getUser(): void {
-    this.dataSource.getUser().subscribe((response) => {
+    this.dataSource.getUserProfile().subscribe((response) => {
       this.userId = response._id;
     });
   }

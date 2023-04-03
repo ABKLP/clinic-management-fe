@@ -1,4 +1,5 @@
 import { Component, OnInit } from "@angular/core";
+import { NgForm } from "@angular/forms";
 import { User } from "src/app/models/user.model";
 import { UserRepository } from "src/app/models/user.repository";
 import { toCapitalize } from "src/app/utils";
@@ -10,6 +11,7 @@ import { toCapitalize } from "src/app/utils";
 })
 export class UserListComponent implements OnInit {
   title: string = "User List";
+  searchQuery: string;
 
   constructor(private repository: UserRepository) {}
 
@@ -44,5 +46,10 @@ export class UserListComponent implements OnInit {
   async onPageChanged(page: number) {
     this.currentPage = page;
     await this.repository.setUsers();
+  }
+
+  async submit(form: NgForm): Promise<void> {
+    if (!form.valid) return;
+    await this.repository.setSearchedUsers(this.searchQuery);
   }
 }

@@ -1,4 +1,6 @@
 import { Injectable } from "@angular/core";
+import { lastValueFrom } from "rxjs";
+import { ToastService } from "../services/toast.service";
 import { ResponseModel } from "./response.model";
 import { RestDataSource } from "./rest.datasource";
 import { User } from "./user.model";
@@ -6,7 +8,7 @@ import { User } from "./user.model";
 @Injectable()
 export class UserRepository {
   private _users: User[] = [];
-  private user: User = new User();
+  private _user: User = new User();
   page: number = 1;
   limit: number = 10;
   nextPage: number;
@@ -15,10 +17,24 @@ export class UserRepository {
   listReady: boolean = false;
   profileReady: boolean = false;
 
-  constructor(private dataSource: RestDataSource) {}
+  constructor(
+    private dataSource: RestDataSource,
+    private toast: ToastService
+  ) {}
 
   getUsers(): User[] {
     return this._users;
+  }
+
+  setEmptyUsers() {
+    this._users = [];
+  }
+
+  async setSearchedUsers(query?: string) {
+    this.listReady = false;
+    this._users = await lastValueFrom(this.dataSource.searchUser(query));
+    this.totalPage = 1;
+    this.listReady = true;
   }
 
   async setUsers() {
@@ -35,15 +51,19 @@ export class UserRepository {
   }
 
   get getUser(): User {
-    return this.user;
+    return this._user;
   }
 
-  setUser() {
+  setUserProfile() {
     this.profileReady = false;
-    this.dataSource.getUser().subscribe((data) => {
-      this.user = data;
+    this.dataSource.getUserProfile().subscribe((data) => {
+      this._user = data;
       this.profileReady = true;
     });
+  }
+
+  async setUser(id: string) {
+    this._user = await lastValueFrom(this.dataSource.getUser(id));
   }
 
   async saveUser(user: User) {
@@ -52,7 +72,10 @@ export class UserRepository {
       if (response.success) {
         response.message;
       } else {
-        alert(`Error: ${response.message}`);
+        this.toast.show(response.message, {
+          className: "bg-danger text-light",
+          delay: 15000,
+        });
       }
     });
   }

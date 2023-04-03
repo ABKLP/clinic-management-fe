@@ -3,20 +3,6 @@
     <div class="col-12">
       <h3 class="mt-2">{{ appointment.purpose }}</h3>
 
-      <nav aria-label="breadcrumb">
-        <ol class="breadcrumb">
-          <li class="breadcrumb-item">
-            <a [routerLink]="'/'">Home</a>
-          </li>
-          <li class="breadcrumb-item" *ngIf="isOwner">
-            <a [routerLink]="['/appointments', 'list']">Appointments</a>
-          </li>
-          <li class="breadcrumb-item active" aria-current="page">
-            {{ appointment.purpose }}
-          </li>
-        </ol>
-      </nav>
-
       <div class="card">
         <div class="card-header">
           {{ appointment.purpose }}
