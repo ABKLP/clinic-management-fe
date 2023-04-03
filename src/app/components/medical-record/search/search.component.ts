@@ -13,7 +13,6 @@ export class MedicalRecordSearchComponent implements OnInit {
   searchQuery: string;
   searchFilters: object = { email: "Email", phoneNumber: "Phone Number" };
   searchFilter: string = Object.keys(this.searchFilters)[0];
-  isSubmitted: boolean;
   patientName: string;
 
   constructor(private repository: MedicalRecordRepository) {}
@@ -28,14 +27,13 @@ export class MedicalRecordSearchComponent implements OnInit {
   }
 
   async submit(form: NgForm): Promise<void> {
-    this.isSubmitted = true;
     if (!form.valid) return;
     await this.repository.setSearchedMedicalRecord(
       this.searchFilter,
       this.searchQuery
     );
     let firstItem = this.medicalRecord[0].owner;
-    this.patientName = firstItem.fullName; 
+    this.patientName = firstItem.fullName;
   }
 
   get medicalRecord(): MedicalRecord[] {

@@ -63,7 +63,7 @@ export class MedicalRecordAddEditComponent implements OnInit {
     // TODO: add validations to the form
     if (this.isFindingsValid && this.isMedicationValid) {
       await this.medicalRecordRepository.saveMedicalRecord(this._medicalRecord);
-      this.router.navigateByUrl("/medical-record/list");
+      this.router.navigateByUrl("/medical-record/search");
     }
   }
 

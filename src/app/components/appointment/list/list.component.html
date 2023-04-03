@@ -14,7 +14,7 @@
             >Create new Appointment</a
           >
         </div>
-        <h3>Appointments</h3>
+        <h1 class="headTitle text-center">Appointments</h1>
         <!-- </div> -->
 
         <loading-placeholder *ngIf="!this.isReady"></loading-placeholder>
@@ -24,7 +24,8 @@
             <thead>
               <tr>
                 <th class="text-center">#</th>
-                <th class="text-center">Name</th>
+                <th class="text-center">Patient</th>
+                <th class="text-center">Purpose</th>
                 <th class="text-center">Date & Time</th>
                 <th class="text-center">Status</th>
                 <th class="text-center" colspan="4">Actions</th>
@@ -34,6 +35,7 @@
             <tbody *ngIf="appointmentList.length > 0">
               <tr *ngFor="let item of appointmentList; let i = index">
                 <td class="text-center">{{ i + 1 }}</td>
+                <td class="text-center">{{ item.owner.fullName }}</td>
                 <td class="text-center">{{ item.purpose }}</td>
                 <td class="text-center">
                   {{ toLocaleString(item.scheduledAt) }}
