@@ -54,7 +54,7 @@
           class="nav-link"
           [class.active]="title == 'Dashboard'"
           [routerLink]="['/admin', 'dashboard']"
-          >Employee Dashboard</a
+          >Dashboard</a
         >
       </li>
       <li *ngIf="auth.authenticated && this.isPatient" class="nav-item">
@@ -62,6 +62,14 @@
           class="nav-link"
           [class.active]="title == 'Profile'"
           [routerLink]="['/user', 'profile']"
+          >Profile</a
+        >
+      </li>
+      <li *ngIf="auth.authenticated && !this.isPatient" class="nav-item">
+        <a
+          class="nav-link"
+          [class.active]="title == 'Profile'"
+          [routerLink]="['/employee', 'profile']"
           >Profile</a
         >
       </li>

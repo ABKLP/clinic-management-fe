@@ -22,6 +22,6 @@ export class HeaderComponent implements OnInit {
   }
 
   get isPatient(): boolean {
-    return this.auth.userRole === "patient" ? true : false;
+    return this.auth.userRole === "patient";
   }
 }
