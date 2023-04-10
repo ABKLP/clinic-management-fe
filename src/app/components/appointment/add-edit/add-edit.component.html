@@ -68,6 +68,26 @@
 
           <br />
 
+          <div *ngIf="editing && isEmployee" class="form-group">
+            <label for="statusSelectField">Status</label>
+            <select
+              class="form-select"
+              name="status"
+              id="statusSelectField"
+              required
+              [(ngModel)]="appointment.status"
+            >
+              <option
+                *ngFor="let status of statuses | keyvalue"
+                [value]="status.key"
+              >
+                {{ status.value }}
+              </option>
+            </select>
+          </div>
+
+          <br />
+
           <div class="d-flex justify-content-end">
             <button class="btn btn-primary">
               <i class="fa-solid fa-pen-to-square"></i>
