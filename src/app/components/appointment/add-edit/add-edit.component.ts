@@ -16,6 +16,11 @@ export class AppointmentAddEditComponent implements OnInit {
   isSubmitted: boolean = false;
   editing: boolean = false;
   appointment: Appointment = new Appointment();
+  statuses: object = {
+    scheduled: "Scheduled",
+    completed: "Completed",
+    cancelled: "Cancelled",
+  };
 
   constructor(
     private repository: AppointmentRepository,
@@ -40,6 +45,10 @@ export class AppointmentAddEditComponent implements OnInit {
         this.activeRoute.snapshot.params["id"]
       );
     }
+  }
+
+  get isEmployee(): boolean {
+    return ["admin", "doctor", "nurse"].includes(this.auth.userRole);
   }
 
   get isPurposeValid(): boolean {
