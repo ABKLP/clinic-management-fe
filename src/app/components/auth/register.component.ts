@@ -41,9 +41,8 @@ export class RegisterComponent implements OnInit {
             className: "bg-success text-light",
             delay: 10000,
           });
-          this.router.navigateByUrl("auth/login");
+          this.router.navigate(["user", "profile"]);
         }
-        this.message = response.message;
       });
     } else {
       this.toast.show("Invalid Form Data", {

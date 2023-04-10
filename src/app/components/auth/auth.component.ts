@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { NgForm } from "@angular/forms";
 import { Router } from "@angular/router";
 import { AuthService } from "src/app/models/auth.service";
+import { ToastService } from "src/app/services/toast.service";
 
 @Component({
   selector: "app-auth",
@@ -14,7 +15,7 @@ export class AuthComponent implements OnInit {
   public message: string;
   isPasswordVisible: boolean = false;
 
-  constructor(private router: Router, private auth: AuthService) {}
+  constructor(private router: Router, private auth: AuthService, private toast: ToastService) {}
 
   ngOnInit() {}
 
@@ -39,12 +40,18 @@ export class AuthComponent implements OnInit {
         .authenticate(this.username, this.password)
         .subscribe((response) => {
           if (response.success) {
+            this.toast.show(response.message, {
+            className: "bg-success text-light",
+            delay: 10000,
+          });
             this.router.navigate(this.defaultRedirectUrl);
           }
-          this.message = response.message;
         });
     } else {
-      this.message = "Invalid Form Data";
+      this.toast.show("Invalid Form Data", {
+        className: "bg-danger text-light",
+        delay: 15000,
+      });
     }
   }
 }
