@@ -15,7 +15,11 @@ export class AuthComponent implements OnInit {
   public message: string;
   isPasswordVisible: boolean = false;
 
-  constructor(private router: Router, private auth: AuthService, private toast: ToastService) {}
+  constructor(
+    private router: Router,
+    private auth: AuthService,
+    private toast: ToastService
+  ) {}
 
   ngOnInit() {}
 
@@ -40,10 +44,10 @@ export class AuthComponent implements OnInit {
         .authenticate(this.username, this.password)
         .subscribe((response) => {
           if (response.success) {
-            this.toast.show(response.message, {
-            className: "bg-success text-light",
-            delay: 10000,
-          });
+            this.toast.show("Signed In Successfully", {
+              className: "bg-success text-light",
+              delay: 10000,
+            });
             this.router.navigate(this.defaultRedirectUrl);
           }
         });

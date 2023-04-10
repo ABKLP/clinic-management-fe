@@ -37,7 +37,7 @@ export class RegisterComponent implements OnInit {
         console.log(response);
 
         if (response.success) {
-          this.toast.show(response.message, {
+          this.toast.show("Signed Up Successfully", {
             className: "bg-success text-light",
             delay: 10000,
           });
