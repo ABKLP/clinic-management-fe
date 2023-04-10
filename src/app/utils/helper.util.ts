@@ -39,7 +39,14 @@ function toDateTimeString(value: any): string {
  */
 
 function toLocaleString(value: any): string {
-  return new Date(value).toLocaleString("en-CA");
+  return new Date(value).toLocaleString("en-CA", {
+    timeZone: "America/Toronto",
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+    hour: "2-digit",
+    minute: "2-digit",
+  });
 }
 
 /**
