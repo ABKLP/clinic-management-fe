@@ -60,19 +60,27 @@ export class MedicalRecordAddEditComponent implements OnInit {
 
   async save(form: NgForm) {
     this.isSubmitted = true;
-    // TODO: add validations to the form
-    if (this.isFindingsValid && this.isMedicationValid) {
-      await this.medicalRecordRepository.saveMedicalRecord(this._medicalRecord);
-      this.router.navigateByUrl("/medical-record/search");
+    // TODO: add validations to the form)
+    if (
+      !this.isPatientValid ||
+      !this.isDiagnosticValid ||
+      !this.isMedicationValid
+    ) {
+      return;
     }
+
+    await this.medicalRecordRepository.saveMedicalRecord(this._medicalRecord);
+    this.router.navigateByUrl("/medical-record/search");
   }
 
-  //CHECK FINDING FIELD IF EMPTY
-  get isFindingsValid(): boolean {
+  get isPatientValid(): boolean {
+    return isNotEmpty(this._medicalRecord.owner);
+  }
+
+  get isDiagnosticValid(): boolean {
     return isNotEmpty(this._medicalRecord.diagnostic);
   }
 
-  //CHECK MEDICATION FIELD IF EMPTY
   get isMedicationValid(): boolean {
     return isNotEmpty(this._medicalRecord.medicine);
   }
