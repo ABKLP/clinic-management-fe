@@ -125,16 +125,15 @@ export class RestDataSource {
   }
 
   signup(user: User): Observable<ResponseModel> {
-    return this.http
-      .post<ResponseModel>(`${this.baseUrl}/users/signup`, user)
-      .pipe(
-        map((response) => {
-          return response;
-        }),
-        catchError((error) => {
-          return of(error.error);
-        })
-      );
+    return this.http.post<any>(`${this.baseUrl}/users/signup`, user).pipe(
+      map((response) => {
+        this.authToken = response.success ? response.token : null;
+        return response;
+      }),
+      catchError((error) => {
+        return of(error.error);
+      })
+    );
   }
 
   getUserList(

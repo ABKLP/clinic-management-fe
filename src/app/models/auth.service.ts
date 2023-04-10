@@ -9,7 +9,9 @@ import { User } from "./user.model";
 export class AuthService {
   private _redirectUrl: string;
 
-  constructor(private dataSource: RestDataSource) {}
+  constructor(
+    private dataSource: RestDataSource
+  ) {}
 
   get userId(): string | null {
     return sessionStorage.getItem("userId");
@@ -28,33 +30,44 @@ export class AuthService {
   }
 
   get userRole(): string | null {
-    const {
-      payload: { role },
-    } = JSON.parse(window.atob(this.dataSource.authToken.split(".")[1]));
-    return role;
+    try {
+      const {
+        payload: { role },
+      } = JSON.parse(window.atob(this.dataSource.authToken.split(".")[1]));
+      return role;
+    } catch (error) {
+      console.error(error);
+      return "";
+    }
   }
 
-  authenticate(username: string, password: string): Observable<ResponseModel> {
-    return this.dataSource.authenticate(username, password).pipe(
+  signup(user: User): Observable<ResponseModel> {
+    return this.dataSource.signup(user).pipe(
       map((response) => {
         if (response.success) {
-          this.getUser(); // TODO: remove later
-          this.username = username;
+          this.getUser();
         }
         return response;
       })
     );
   }
 
-  // TODO: must be done properly
+  authenticate(username: string, password: string): Observable<ResponseModel> {
+    return this.dataSource.authenticate(username, password).pipe(
+      map((response) => {
+        if (response.success) {
+          this.getUser();
+        }
+        return response;
+      })
+    );
+  }
+
   getUser(): void {
     this.dataSource.getUserProfile().subscribe((response) => {
       this.userId = response._id;
+      this.username = response.username;
     });
-  }
-
-  signup(user: User): Observable<ResponseModel> {
-    return this.dataSource.signup(user);
   }
 
   get authenticated(): boolean {
