@@ -65,7 +65,7 @@
                     <i class="fa-solid fa-handshake-slash"></i>
                   </button>
                 </td>
-                <td class="text-center">
+                <td *ngIf="isEmployee" class="text-center">
                   <button
                     (click)="deleteMethod(item._id)"
                     class="btn bg-danger btn-danger btn-sm"
