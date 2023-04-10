@@ -54,6 +54,7 @@
               class="form-control"
               id="scheduledAtTextField"
               name="scheduledAt"
+              [min]="getCurrentDateTimeISO()"
               [(ngModel)]="appointment.scheduledAt"
               required
             />
