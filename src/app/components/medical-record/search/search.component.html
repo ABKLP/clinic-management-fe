@@ -77,7 +77,9 @@
                   <td class="text-center">{{ i + 1 }}</td>
                   <td class="text-center">{{ item.diagnostic }}</td>
                   <td class="text-center">{{ item.medicine }}</td>
-                  <td class="text-center">{{ item.createdAt }}</td>
+                  <td class="text-center">
+                    {{ toDateString(item.createdAt) }}
+                  </td>
 
                   <td class="text-center">
                     <button

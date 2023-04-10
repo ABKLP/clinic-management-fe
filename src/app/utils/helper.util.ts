@@ -23,13 +23,30 @@ function toDateString(value: any): string {
 }
 
 /**
+ * it converts a given value to date then format it properly 'YYYY-MM-DD HH:MM'
+ * @param {any} value value to be converted
+ * @return {string} the formatted value
+ */
+
+function toDateTimeString(value: any): string {
+  return new Date(value).toISOString().slice(0, 16).replace("T", " ");
+}
+
+/**
  * it converts a given value to date & time then format it to local date & time
  * @param {any} value value to be converted
  * @return {string} the formatted value
  */
 
 function toLocaleString(value: any): string {
-  return new Date(value).toLocaleString("en-CA");
+  return new Date(value).toLocaleString("en-CA", {
+    timeZone: "America/Toronto",
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+    hour: "2-digit",
+    minute: "2-digit",
+  });
 }
 
 /**
@@ -90,6 +107,7 @@ function setTimeToZero(date: Date): Date | any {
 export {
   toCapitalize,
   toDateString,
+  toDateTimeString,
   toLocaleString,
   toTimestamp,
   hasValue,

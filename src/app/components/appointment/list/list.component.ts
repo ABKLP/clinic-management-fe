@@ -25,6 +25,10 @@ export class AppointmentListComponent implements OnInit {
     }
   }
 
+  get isEmployee(): boolean {
+    return ["admin", "doctor", "nurse"].includes(this.auth.userRole);
+  }
+
   get appointmentList(): Appointment[] {
     return this.repository.getAppointments();
   }

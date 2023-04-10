@@ -2,7 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { NgForm } from "@angular/forms";
 import { MedicalRecord } from "src/app/models/medical-record.model";
 import { MedicalRecordRepository } from "src/app/models/medical-record.repository";
-import { isNotEmpty } from "src/app/utils";
+import { toDateString } from "src/app/utils";
 
 @Component({
   selector: "app-search",
@@ -21,9 +21,8 @@ export class MedicalRecordSearchComponent implements OnInit {
     this.repository.setEmptyMedicalRecord();
   }
 
-  //CHECK SEARCH FIELD IF EMPTY
-  get isSearchValid(): boolean {
-    return isNotEmpty(this.searchQuery);
+  toDateString(value: any) {
+    return toDateString(value);
   }
 
   async submit(form: NgForm): Promise<void> {

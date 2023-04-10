@@ -1,20 +1,22 @@
 import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { RouterModule } from "@angular/router";
-import { NgbToastModule } from "@ng-bootstrap/ng-bootstrap";
+import { NgbModalModule, NgbToastModule } from "@ng-bootstrap/ng-bootstrap";
 
 import { FeedbackComponent } from "./feedback";
 import { LoadingComponent, NoRecordComponent } from "./placeholder";
 import { PaginationComponent } from "./pagination";
+import { ModalComponent } from "./modal";
 import { ToastsComponent } from "./toasts/toasts.component";
 
 @NgModule({
-  imports: [CommonModule, RouterModule, NgbToastModule],
+  imports: [CommonModule, RouterModule, NgbToastModule, NgbModalModule],
   declarations: [
     FeedbackComponent,
     NoRecordComponent,
     LoadingComponent,
     PaginationComponent,
+    ModalComponent,
     ToastsComponent,
   ],
   exports: [
@@ -22,6 +24,7 @@ import { ToastsComponent } from "./toasts/toasts.component";
     NoRecordComponent,
     LoadingComponent,
     PaginationComponent,
+    ModalComponent,
     ToastsComponent,
   ],
 })

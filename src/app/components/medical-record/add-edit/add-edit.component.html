@@ -23,6 +23,7 @@
               type="text"
               class="form-control"
               id="patient"
+              placeholder="Enter query to search for patient"
               [(ngModel)]="selectedPatient"
               [ngbTypeahead]="search"
               [resultFormatter]="userFormatter"
@@ -34,7 +35,15 @@
             </div>
           </div>
           <!-- 00 end user field -->
+
+          <!-- start validation -->
+          <div *ngIf="isSubmitted" class="text-danger">
+            <div [hidden]="isPatientValid">Please select a patient</div>
+          </div>
+          <!-- end validation -->
+
           <br />
+
           <!-- 00 begin diagnostic | diagnostic field -->
           <div class="form-group">
             <label for="diagnosticTextField"
@@ -53,21 +62,23 @@
 
           <!-- start validation -->
           <div *ngIf="isSubmitted" class="text-danger">
-            <div [hidden]="isFindingsValid">
-              Please write patient's finding or diagnostic
+            <div [hidden]="isDiagnosticValid">
+              Please enter patient's finding or diagnostic
             </div>
           </div>
           <!-- end validation -->
           <!-- 00 end diagnostic | diagnostic field -->
+
           <br />
+
           <!-- 01 begin note for medication-->
           <div class="form-group">
-            <label for="medicineTextField"><strong>Medication</strong></label>
+            <label for="medicineTextField"><strong>Medicine</strong></label>
             <textarea
               type="text"
               class="form-control"
               id="medicineTextField"
-              placeholder="Enter Patient Medicine Prescription"
+              placeholder="Enter Patient Medicine Prescription e.g. Tylenol"
               name="medicine"
               [(ngModel)]="_medicalRecord.medicine"
             >
@@ -77,67 +88,14 @@
           <!-- medication validation -->
           <div *ngIf="isSubmitted" class="text-danger">
             <div [hidden]="isMedicationValid">
-              Please write patient's precribe medication
+              Please enter patient's medicine prescription
             </div>
           </div>
           <!-- end validation -->
           <!-- 01 end note for medication-->
+
           <br />
 
-          <!-- 02 recorded date field -->
-          <!-- <div class="form-group">
-            <label for="createdAtTextField"
-              ><strong>Recorded Date</strong>
-            </label>
-            <input
-              type="date"
-              class="form-control"
-              id="createdAtTextField"
-              name="createdAt"
-              [(ngModel)]="_medicalRecord.createdAt"
-              required
-            />
-          </div> -->
-
-          <!-- recorded date validation -->
-          <!-- <div *ngIf="isSubmitted" class="text-danger">
-            <div [hidden]="isRecordDateValid">
-              The start date must be greater or equals to than today's date.
-            </div>
-          </div> -->
-          <!-- end validation -->
-          <!-- 02 END recorded date field -->
-
-          <!-- <br /> -->
-          <!-- <div class="form-group">
-            <label for="doctor"><strong>Physician</strong></label>
-            <select
-              class="form-control"
-              id="doctor"
-              required
-              [(ngModel)]="_medicalRecord.doctorName"
-              name="doctor"
-              #doctor="ngModel"
-            >
-              <option *ngFor="let pow of doctorList" [value]="pow">
-                {{ pow }}
-              </option>
-            </select>
-            <div
-              [hidden]="doctor.valid || doctor.pristine"
-              class="alert alert-danger"
-            >
-              Select the doctor
-            </div>
-          </div> -->
-
-          <!-- doctor validation -->
-          <!-- <div *ngIf="isSubmitted" class="text-danger">
-            <div [hidden]="isDoctorValid">Select the prescribing doctor</div>
-          </div> -->
-          <!-- end validation -->
-
-          <!-- <br /> -->
           <!-- begin actions -->
           <div class="d-flex justify-content-end">
             <button class="btn btn-primary">
@@ -157,7 +115,7 @@
 
           <!-- end description -->
         </form>
-        <!--End Add - Edit MEdical Record -->
+        <!--End Add - Edit Medical Record -->
       </div>
     </div>
   </div>

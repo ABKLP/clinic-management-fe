@@ -27,8 +27,7 @@ export class AuthComponent implements OnInit {
   }
 
   get defaultRedirectUrl(): string[] {
-    console.log(this.auth.userRole);
-    return this.auth.userRole == "patient"
+    return this.auth.userRole === "patient"
       ? ["user", "profile"]
       : ["employee", "profile"];
   }
