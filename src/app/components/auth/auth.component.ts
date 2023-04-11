@@ -49,6 +49,11 @@ export class AuthComponent implements OnInit {
               delay: 10000,
             });
             this.router.navigate(this.defaultRedirectUrl);
+          } else {
+            this.toast.show(response.message, {
+              className: "bg-danger text-light",
+              delay: 15000,
+            });
           }
         });
     } else {

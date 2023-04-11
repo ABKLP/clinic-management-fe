@@ -42,6 +42,11 @@ export class RegisterComponent implements OnInit {
             delay: 10000,
           });
           this.router.navigate(["user", "profile"]);
+        } else {
+          this.toast.show(response.message, {
+            className: "bg-danger text-light",
+            delay: 15000,
+          });
         }
       });
     } else {
