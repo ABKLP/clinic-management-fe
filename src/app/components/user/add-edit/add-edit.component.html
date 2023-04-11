@@ -141,18 +141,20 @@
 
           <!-- begin form controls -->
           <div class="col-12">
-            <button class="btn btn-primary" type="submit">
-              <i class="fa-solid fa-pen-to-square"></i>
-              Submit
-            </button>
-            <span>&nbsp;</span>
-            <a
-              [routerLink]="['/dashboard/users/list']"
-              class="btn btn-secondary"
-            >
-              <i class="fa-solid fa-rotate-left"></i>
-              Back
-            </a>
+            <div class="d-flex justify-content-end">
+              <button class="btn btn-primary" type="submit">
+                <i class="fa-solid fa-pen-to-square"></i>
+                Submit
+              </button>
+              <span>&nbsp;</span>
+              <a
+                [routerLink]="['/dashboard/users/list']"
+                class="btn btn-secondary"
+              >
+                <i class="fa-solid fa-rotate-left"></i>
+                Back
+              </a>
+            </div>
           </div>
           <!-- end form controls -->
         </div>
