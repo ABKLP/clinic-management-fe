@@ -68,7 +68,7 @@
                 class="form-control"
                 id="phone"
                 name="phone"
-                placeholder="6471234567"
+                placeholder="XXX-XXX-XXXX"
                 [(ngModel)]="user.phoneNumber"
               />
             </div>
@@ -146,7 +146,10 @@
               Submit
             </button>
             <span>&nbsp;</span>
-            <a [routerLink]="['/dashboard']" class="btn btn-secondary">
+            <a
+              [routerLink]="['/dashboard/users/list']"
+              class="btn btn-secondary"
+            >
               <i class="fa-solid fa-rotate-left"></i>
               Back
             </a>
