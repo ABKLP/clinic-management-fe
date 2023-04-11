@@ -1,9 +1,9 @@
 import { Component, OnInit } from "@angular/core";
 import { NgForm } from "@angular/forms";
 import { ActivatedRoute, Router } from "@angular/router";
-import { AuthService } from "src/app/models/auth.service";
 import { User } from "src/app/models/user.model";
 import { UserRepository } from "src/app/models/user.repository";
+import { ToastService } from "src/app/services/toast.service";
 
 @Component({
   selector: "app-user-add-edit",
@@ -25,10 +25,10 @@ export class UserAddEditComponent implements OnInit {
   public user: User = new User();
 
   constructor(
-    private auth: AuthService,
     private activeRoute: ActivatedRoute,
     private repository: UserRepository,
-    private router: Router
+    private router: Router,
+    private toast: ToastService
   ) {}
 
   async ngOnInit(): Promise<void> {
@@ -58,24 +58,16 @@ export class UserAddEditComponent implements OnInit {
 
   async submit(form: NgForm) {
     if (!form.valid) {
-      this.message = "Invalid Form Data";
+      this.toast.show("Invalid Form Data", {
+        className: "bg-danger text-light",
+        delay: 15000,
+      });
       return;
     }
 
-    if (this.editing) {
-      await this.repository.saveUser(this.user);
-      this.router.navigateByUrl("/dashboard");
-      return;
+    const response = await this.repository.saveUser(this.user);
+    if (response.success) {
+      this.router.navigateByUrl("/dashboard/users/list");
     }
-
-    this.auth.signup(this.user).subscribe((response) => {
-      console.log(response);
-
-      if (response.success) {
-        console.log(response.message);
-        this.router.navigateByUrl("/dashboard");
-      }
-      this.message = response.message;
-    });
   }
 }
