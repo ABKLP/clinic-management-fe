@@ -67,16 +67,24 @@ export class UserRepository {
   }
 
   async saveUser(user: User) {
-    this.dataSource.updateUser(user).subscribe((resp) => {
-      const response = resp as ResponseModel;
-      if (response.success) {
-        response.message;
-      } else {
+    let response;
+
+    if (["", null, undefined].includes(user._id)) {
+      response = await lastValueFrom(this.dataSource.addUser(user));
+      this.toast.show(response.message, {
+        className: `bg-${response.success ? "success" : "danger"} text-light`,
+        delay: 15000,
+      });
+    } else {
+      this.dataSource.updateUser(user).subscribe((resp) => {
+        response = resp as ResponseModel;
         this.toast.show(response.message, {
-          className: "bg-danger text-light",
+          className: `bg-${response.success ? "success" : "danger"} text-light`,
           delay: 15000,
         });
-      }
-    });
+      });
+    }
+
+    return response;
   }
 }

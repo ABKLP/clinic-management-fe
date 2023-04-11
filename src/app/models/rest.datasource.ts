@@ -166,6 +166,24 @@ export class RestDataSource {
     );
   }
 
+  addUser(user: User): Observable<ResponseModel> {
+    return this.http
+      .post<ResponseModel>(
+        `${this.baseUrl}/users/add`,
+        user,
+        this.provideToken()
+      )
+      .pipe(
+        map((response) => {
+          return response;
+        }),
+        catchError((error) => {
+          console.error(error.error);
+          return of(error.error);
+        })
+      );
+  }
+
   updateUser(user: User): Observable<ResponseModel> {
     return this.http
       .put<ResponseModel>(

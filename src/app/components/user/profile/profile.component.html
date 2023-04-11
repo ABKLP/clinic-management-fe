@@ -1,6 +1,6 @@
 <div class="SbMargin row align-items-md-stretch">
   <div class="col-md-3 align-items-center">
-      <app-sidebar></app-sidebar>
+    <app-sidebar></app-sidebar>
   </div>
   <div class="col-md-6 align-items-center">
     <br />
@@ -76,14 +76,14 @@
                 id="phone"
                 name="phone"
                 required
-                placeholder="6471234567"
+                placeholder="XXX-XXX-XXXX"
                 [(ngModel)]="user.phoneNumber"
               />
             </div>
           </div>
           <!-- end phone number -->
           <!-- begin username -->
-          <div class="col col-sm-12">
+          <div class="col col-sm-6">
             <div class="form-group mb-2">
               <label for="username" class="form-label">Username</label>
               <input
@@ -100,7 +100,7 @@
           </div>
           <!-- end username -->
           <!-- begin password -->
-          <div class="col col-sm-6" hidden>
+          <div class="col col-sm-6">
             <div class="form-group">
               <label for="password" class="form-label"> Password </label>
               <div class="input-group mb-3">
@@ -130,8 +130,8 @@
           <!-- end password -->
           <!-- begin form controls -->
           <div class="col-12">
-              <br>
-              <div class="d-flex justify-content-end">
+            <br />
+            <div class="d-flex justify-content-end">
               <button
                 class="btn btn-primary"
                 type="button"
