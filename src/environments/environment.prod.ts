@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  apiURL: "https://abklp-clinic-management-be.nn.r.appspot.com",
+  apiURL: process.env["API_ENDPOINT"],
 };
