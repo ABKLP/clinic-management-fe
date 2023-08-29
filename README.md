@@ -1,27 +1,67 @@
-# ClinicManagement
+# CareConnect
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.2.8.
+## Table of Contents
+- [About](#about)
+- [Technologies](#technologies)
+- [Repositories](#repositories)
+- [Getting Started](#getting-started)
+  - [Prerequisites](#prerequisites)
+  - [Installation](#installation)
 
-## Development server
+## About
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+CareConnect is a powerful solution for streamlining clinic management and enhancing patient experience. Our scalable, integrated web application helps medical professionals efficiently handle their day-to-day operations, from managing electronic health records and patient data to scheduling appointments and managing medical staff.
 
-## Code scaffolding
+## Technologies
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+- Tech stack: Node.js, Express, Angular, and MongoDB
+- DevOps: CircleCI, Netlify, Render
 
-## Build
+## Repositories
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+- Backend: [https://github.com/lanhhoang/care-connect-be](https://github.com/lanhhoang/care-connect-be)
+- Frontend: [https://github.com/lanhhoang/care-connect-fe](https://github.com/lanhhoang/care-connect-fe)
 
-## Running unit tests
+## Getting Started
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+### Prerequisites
 
-## Running end-to-end tests
+- npm
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+```sh
+npm install npm@latest -g
+```
 
-## Further help
+### Installation
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+1. Clone the repo
+
+```sh
+git clone git@github.com:lanhhoang/care-connect-fe.git
+```
+
+2. Change directory
+
+```sh
+cd care-connect-fe
+```
+
+3. Install NPM packages
+
+```sh
+npm install
+```
+
+4. Prepare environment variables
+
+```sh
+cp .env.sample .env
+```
+
+Modify value of `API_ENDPOINT` to `localhost:3000` (default URL of backend)
+
+5. Run development server
+
+```sh
+ng serve
+```
